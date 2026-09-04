@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MyType • Real Food • Medirite</title>
+<title>MyType • Real Food • Vitamins</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;800&display=swap');
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Plus Jakarta Sans',sans-serif}
@@ -40,62 +40,61 @@ body{background:#080a14;color:white;display:flex;justify-content:center}
 .fchip.active{background:linear-gradient(135deg,#2a5bd7,#ff3b7f);border-color:transparent}
 #modal{position:fixed;inset:0;z-index:99;background:rgba(0,0,0,0.7);backdrop-filter:blur(12px);display:none;align-items:end;justify-content:center}
 #modal.show{display:flex}
-.modalBox{width:100%;max-width:430px;background:#11152b;border-top-left-radius:32px;border-top-right-radius:32px;border:1px solid rgba(255,255,255,0.1);max-height:88vh;overflow:auto;animation:slideUp 0.35s}
-@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.modalBox{width:100%;max-width:430px;background:#11152b;border-top-left-radius:32px;border-top-right-radius:32px;border:1px solid rgba(255,255,255,0.1);max-height:88vh;overflow:auto}
 .modalBox img{width:100%;height:220px;object-fit:cover}
 .modalPad{padding:18px 20px 30px 20px}
 .closeBtn{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);padding:10px 18px;border-radius:100px;font-size:12px;font-weight:700;cursor:pointer;float:right;margin-bottom:8px}
-/* NEW WHATS YOUR TYPE SECTION */
 .dontKnowCard{background:linear-gradient(135deg,rgba(42,91,215,0.25),rgba(255,59,127,0.18));border:1px solid rgba(90,133,255,0.25);border-radius:24px;padding:18px;display:flex;gap:14px;align-items:flex-start}
 .iconBox{width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,#5a85ff,#ff3b7f);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0}
 .metaRow{display:flex;gap:8px;margin-top:12px}
 .metaChip{background:rgba(0,229,168,0.12);border:1px solid rgba(0,229,168,0.2);color:#00e5a8;font-size:10px;font-weight:800;padding:8px 10px;border-radius:12px;flex:1}
 .orDivider{text-align:center;color:rgba(255,255,255,0.4);font-size:12px;letter-spacing:2px;margin:18px 0;font-weight:700}
 .siteItem{display:flex;justify-content:space-between;align-items:center;padding:12px;background:rgba(255,255,255,0.05);border-radius:14px;margin:8px 0;border:1px solid rgba(255,255,255,0.06)}
-.siteItem b{font-size:13px}
-.siteItem span{font-size:11px;color:rgba(255,255,255,0.5)}
 </style>
 </head>
 <body>
 <div class="app">
 <div class="blob b1"></div><div class="blob b2"></div>
-<div class="top"><div class="logo">🩸 <span>MyType</span></div><div class="badge">MEDIRITE PARTNER</div></div>
+<div class="top"><div class="logo">🩸 <span>MyType</span></div><div class="badge">REAL FOOD • REAL BLOOD</div></div>
 
 <div id="s1" class="screen active">
-<div style="text-align:center;padding:18px 0">
+<div style="text-align:center;padding:18px 0 10px 0">
 <div style="width:76px;height:76px;border-radius:24px;display:flex;align-items:center;justify-content:center;font-size:38px;margin:0 auto 14px auto;background:linear-gradient(135deg,#2a5bd7,#ff3b7f)">🩸</div>
 <div class="pill">MyType • Know. Eat. Give.</div>
 <h1 style="margin-top:14px;font-size:32px;line-height:0.95">Real food,<br>real vitamins,<br><span style="background:linear-gradient(90deg,#5a85ff,#ff7ab6);-webkit-background-clip:text;-webkit-text-fill-color:transparent">for your blood.</span></h1>
 </div>
+
+<!-- FOOD PICTURE BACK ON LOGIN -->
+<div class="card" style="cursor:pointer" onclick="go('s2')">
+<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800" style="width:100%;height:210px;object-fit:cover;display:block">
+<div class="info">
+<span class="tag">MyType • O</span>
+<h3 style="font-size:18px;margin-top:4px">Grilled Lamb + Rosemary Greens</h3>
+<p class="small" style="margin-top:4px">High iron, high protein — warrior fuel for O types. Real food, real photo.</p>
+</div>
+</div>
+
 <button class="btn" onclick="go('s2')">Create MyType Profile →</button>
 </div>
 
 <div id="s2" class="screen"><div class="pill">MyType • Step 1</div><h1 style="margin-top:12px;font-size:26px">You</h1><input id="name" class="input" placeholder="Full name"><input id="age" class="input" type="number" placeholder="Age"><input id="allergy" class="input" placeholder="Allergies (optional)"><button class="btn" onclick="saveP()">Continue → What's Your Type?</button></div>
 
-<!-- NEW SCREEN FROM SCREENSHOT -->
 <div id="whatsType" class="screen">
 <h1 style="font-size:32px;line-height:0.95;margin-top:10px">What's Your Type?</h1>
 <p class="small" style="margin-top:8px">Choose your path to get started</p>
-
-<div class="card" style="margin-top:20px;cursor:default;padding:0;overflow:hidden">
+<div class="card" style="margin-top:20px;cursor:default;padding:0">
 <div class="dontKnowCard" onclick="go('medirite')" style="cursor:pointer">
 <div class="iconBox">🔬</div>
 <div style="flex:1">
 <b style="font-size:18px;line-height:1.2">I Don't Know My Blood Type</b>
 <p class="small" style="margin-top:6px;color:rgba(255,255,255,0.7)">Find a Checkers Medirite pharmacy near you, book a quick blood type test (R75–R90), and your results sync automatically to the app.</p>
-<div class="metaRow">
-<div class="metaChip">140+ Medirite locations</div>
-<div class="metaChip">Results in 24–48hrs</div>
-</div>
+<div class="metaRow"><div class="metaChip">140+ Medirite locations</div><div class="metaChip">Results in 24–48hrs</div></div>
 <div style="margin-top:12px;color:#5a85ff;font-weight:800;font-size:13px">Find a site →</div>
 </div>
 </div>
 </div>
-
 <div class="orDivider">O R</div>
-
-<div>
-<p style="font-size:14px;font-weight:700;margin-bottom:12px;color:rgba(255,255,255,0.8)">I already know my blood type</p>
+<div><p style="font-size:14px;font-weight:700;margin-bottom:12px;color:rgba(255,255,255,0.8)">I already know my blood type</p>
 <div class="typeGrid" style="margin-top:0">
 <div class="typeCard" onclick="pick('O+')"><div style="font-size:22px">🩸</div><b>O+</b></div>
 <div class="typeCard" onclick="pick('O-')"><div style="font-size:22px">🩸</div><b>O-</b></div>
@@ -105,46 +104,26 @@ body{background:#080a14;color:white;display:flex;justify-content:center}
 <div class="typeCard" onclick="pick('B-')"><div style="font-size:22px">🩸</div><b>B-</b></div>
 <div class="typeCard" onclick="pick('AB+')"><div style="font-size:22px">🩸</div><b>AB+</b></div>
 <div class="typeCard" onclick="pick('AB-')"><div style="font-size:22px">🩸</div><b>AB-</b></div>
-</div>
-<button class="btn" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);margin-top:12px" onclick="pick('Unknown')">Skip for now</button>
-</div>
+</div><button class="btn" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);margin-top:12px" onclick="pick('Unknown')">Skip for now</button></div>
 </div>
 
-<!-- MEDIRITE DUMMY BOOKING -->
-<div id="medirite" class="screen">
-<div class="pill" onclick="go('whatsType')" style="cursor:pointer">← Back</div>
-<h1 style="margin-top:14px;font-size:28px">Find Medirite<br>near you</h1>
-<p class="small" style="margin-top:8px">Book blood type test • R75–R90 • 140+ locations • Results sync to MyType</p>
-<div class="searchWrap"><span class="searchIcon">🔍</span><input id="siteSearch" class="search" placeholder="Search Pretoria, Centurion, Joburg..." oninput="filterSites()"></div>
-<div id="siteList"></div>
-<div class="card" style="cursor:default"><div class="card-pad"><b>💡 How it works</b><p class="small" style="margin-top:8px">1. Choose site → Book slot<br>2. Walk in, 10-min finger prick<br>3. Results in 24-48hrs → auto-sync to MyType → unlock meals + emergency card</p></div></div>
-</div>
+<div id="medirite" class="screen"><div class="pill" onclick="go('whatsType')" style="cursor:pointer">← Back</div><h1 style="margin-top:14px;font-size:28px">Find Medirite<br>near you</h1><p class="small" style="margin-top:8px">R75–R90 • 140+ locations • Results auto-sync</p><div class="searchWrap"><span class="searchIcon">🔍</span><input id="siteSearch" class="search" placeholder="Search Pretoria, Joburg..." oninput="filterSites()"></div><div id="siteList"></div></div>
 
 <div id="home" class="screen">
 <div style="display:flex;justify-content:space-between"><div><div class="pill" id="greetMain">Hi</div><h1 style="font-size:22px;margin-top:8px" id="homeName">Welcome</h1></div><div class="pill" id="badgeType">MyType</div></div>
 <div class="card" style="background:linear-gradient(135deg,#2a5bd7,#ff3b7f);cursor:default"><div class="card-pad"><p style="font-size:11px">SCORE</p><h1 style="font-size:42px" id="score">60</h1><p class="small" style="color:white" id="homeDesc">Tap meals below</p></div></div>
 <div class="searchWrap"><span class="searchIcon">🔍</span><input id="quickSearch" class="search" placeholder="Search food, iron, vitamin C..." oninput="quickSearch(this.value)"></div>
-<h3 style="margin:6px 0">Your meals 👇 tap any</h3>
-<div id="homeMeals"></div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px"><div class="card" onclick="go('foods')"><div class="card-pad"><b>🥩 Foods</b><p class="small">Searchable</p></div></div><div class="card" onclick="go('meals')"><div class="card-pad"><b>🥗 Meals</b><p class="small">Tap details</p></div></div></div>
+<h3 style="margin:6px 0">Your meals 👇 tap any</h3><div id="homeMeals"></div>
 </div>
 
 <div id="foods" class="screen"><div class="pill">MyType • Foods • Tap any</div><h1 style="margin-top:10px;font-size:26px">Real foods + vitamins</h1><div class="searchWrap"><span class="searchIcon">🔍</span><input id="foodSearch" class="search" placeholder="Search lamb, iron, vitamin D..." oninput="filterFoods()"></div><div class="filterRow"><div class="fchip active" onclick="setFilter('all',this)">All</div><div class="fchip" onclick="setFilter('O',this)">O Best</div><div class="fchip" onclick="setFilter('A',this)">A Best</div><div class="fchip" onclick="setFilter('B',this)">B Best</div><div class="fchip" onclick="setFilter('AB',this)">AB Best</div><div class="fchip" onclick="setFilter('iron',this)">Iron</div></div><div id="foodList"></div></div>
 <div id="meals" class="screen"><div class="pill" id="mType">MyType</div><h1 style="margin-top:10px;font-size:26px">Meals for your type 👇</h1><div id="mealCards"></div></div>
-<div id="donate" class="screen"><h1>Donate</h1><div class="card" style="cursor:default"><div class="card-pad"><h1 id="d1">0</h1><p class="small">Donations</p><button class="btn" onclick="donate()">Book SANBS</button></div></div></div>
 <div id="profile" class="screen"><h1>MyType</h1><div class="card" style="cursor:default"><div class="card-pad"><p id="pInfo"></p><button class="btn" style="background:rgba(255,255,255,0.06)" onclick="go('whatsType')">Change type</button></div></div></div>
 
-<div class="nav" id="nav">
-<div class="navI active" onclick="go('home')">🏠<br>Home</div>
-<div class="navI" onclick="go('foods')">🥩<br>Foods</div>
-<div class="navI" onclick="go('meals')">🥗<br>Meals</div>
-<div class="navI" onclick="go('profile')">👤<br>You</div>
-</div>
+<div class="nav" id="nav"><div class="navI active" onclick="go('home')">🏠<br>Home</div><div class="navI" onclick="go('foods')">🥩<br>Foods</div><div class="navI" onclick="go('meals')">🥗<br>Meals</div><div class="navI" onclick="go('profile')">👤<br>You</div></div>
 </div>
 
-<div id="modal" onclick="if(event.target==this)closeModal()">
-<div class="modalBox"><img id="modalImg" src=""><div class="modalPad"><button class="closeBtn" onclick="closeModal()">✕ Close</button><div style="clear:both"></div><span class="tag" id="modalTag"></span><h2 id="modalTitle" style="margin:8px 0"></h2><p class="small" id="modalDesc" style="margin-bottom:12px"></p><b style="font-size:13px">💊 Vitamins & Minerals:</b><div class="vits" id="modalVits"></div><div style="background:rgba(255,255,255,0.06);border-radius:16px;padding:14px;margin-top:12px"><b style="font-size:12px">📊 Per serving:</b><p class="small" id="modalMins" style="margin-top:6px"></p></div><div style="background:rgba(42,91,215,0.15);border:1px solid rgba(42,91,215,0.3);border-radius:16px;padding:14px;margin-top:12px"><b style="font-size:12px">🩸 Why good:</b><p class="small" id="modalWhy" style="margin-top:6px"></p></div><button class="btn" onclick="logMealFromModal()">Log +3 Score</button></div></div>
-</div>
+<div id="modal" onclick="if(event.target==this)closeModal()"><div class="modalBox"><img id="modalImg" src=""><div class="modalPad"><button class="closeBtn" onclick="closeModal()">✕ Close</button><div style="clear:both"></div><span class="tag" id="modalTag"></span><h2 id="modalTitle" style="margin:8px 0"></h2><p class="small" id="modalDesc"></p><b style="font-size:13px">💊 Vitamins & Minerals:</b><div class="vits" id="modalVits"></div><div style="background:rgba(255,255,255,0.06);border-radius:16px;padding:14px;margin-top:12px"><b style="font-size:12px">📊 Per serving:</b><p class="small" id="modalMins" style="margin-top:6px"></p></div><div style="background:rgba(42,91,215,0.15);border:1px solid rgba(42,91,215,0.3);border-radius:16px;padding:14px;margin-top:12px"><b style="font-size:12px">🩸 Why good:</b><p class="small" id="modalWhy" style="margin-top:6px"></p></div><button class="btn" onclick="logMealFromModal()">Log +3 Score</button></div></div></div>
 
 <script>
 let s=JSON.parse(localStorage.getItem('mytype_v3')||'{"name":"","age":"","allergy":"","type":"","don":0,"meals":0}');
@@ -157,18 +136,14 @@ let FOODS=[
 {t:"Beef Liver",type:"O",img:"https://images.unsplash.com/photo-1608039824140-e0bbfdc64b04?w=800",vits:["Vitamin A","B12","Folate"],mins:["Vitamin A 9400mcg","B12 60mcg","Iron 6.5mg"],desc:"Most nutrient dense",why:"One serving covers B12 for week."},
 {t:"Avocado & Egg",type:"A",img:"https://images.unsplash.com/photo-1526948128573-703ee1aeb6fa?w=800",vits:["K","E","B6","Folate"],mins:["Potassium 485mg","Fiber 7g","Fat 15g"],desc:"Healthy fat",why:"Good fat for A/B limiting red meat."},
 {t:"Beetroot",type:"A",img:"https://images.unsplash.com/photo-1593105544554-aa78d3c9d03c?w=800",vits:["Folate","C","Nitrate"],mins:["Folate 109mcg","Potassium 305mg"],desc:"Blood flow booster",why:"Nitric oxide opens vessels."},
-{t:"Greek Yogurt",type:"B",img:"https://images.unsplash.com/photo-1488477181946-64290103bbd6?w=800",vits:["B12","Calcium","Probiotic"],mins:["Calcium 110mg","Protein 6g"],desc:"B gut hero",why:"B only type digests dairy well."},
-{t:"Lentils",type:"A",img:"https://images.unsplash.com/photo-1547592180-85f173990554?w=800",vits:["Folate","Iron","Fiber"],mins:["Folate 180mcg","Iron 3.3mg","Fiber 8g"],desc:"Plant iron",why:"Iron without meat for A."},
-{t:"Goat Cheese",type:"B",img:"https://images.unsplash.com/photo-1552767059-ce182ead6c1b?w=800",vits:["Calcium","A","B2"],mins:["Calcium 140mg","Protein 5g"],desc:"Easier than cow",why:"A2 casein easier for B/AB."},
-{t:"Blueberries",type:"AB",img:"https://images.unsplash.com/photo-1498557850523-fd3d118b962e?w=800",vits:["C","K","Antioxidants"],mins:["Vitamin C 9.7mg","Fiber 2.4g"],desc:"AB antioxidant",why:"AB needs antioxidants."},
-{t:"Pasture Eggs",type:"B",img:"https://images.unsplash.com/photo-1482049016688-2d3e1b31122f?w=800",vits:["B12","D","Choline"],mins:["Choline 147mg","Vitamin D 1mcg","Protein 6g"],desc:"Complete protein",why:"B balanced omnivore."}
+{t:"Greek Yogurt",type:"B",img:"https://images.unsplash.com/photo-1488477181946-64290103bbd6?w=800",vits:["B12","Calcium","Probiotic"],mins:["Calcium 110mg","Protein 6g"],desc:"B gut hero",why:"B only type digests dairy well."}
 ];
 let MEALS={
 "O+":[{title:"Herb Grilled Lamb + Kale",img:FOODS[0].img,note:"Iron + Zinc",foods:[0,1]},{title:"Salmon Bowl",img:FOODS[2].img,note:"Omega",foods:[2,5]}],
-"A+":[{title:"Tofu Buddha Bowl",img:FOODS[3].img,note:"Calm",foods:[3,1]},{title:"Lentil + Beet Bowl",img:FOODS[8].img,note:"Iron",foods:[8,6]}],
-"B+":[{title:"Yogurt + Berries",img:FOODS[7].img,note:"Gut",foods:[7,10]}],
+"A+":[{title:"Tofu Buddha Bowl",img:FOODS[3].img,note:"Calm",foods:[3,1]},{title:"Lentil + Beet Bowl",img:FOODS[6].img,note:"Iron",foods:[6,1]}],
+"B+":[{title:"Yogurt + Berries",img:FOODS[7].img,note:"Gut",foods:[7,1]}],
 "AB+":[{title:"Seafood + Avocado",img:FOODS[2].img,note:"Ocean",foods:[2,5]}],
-"O-":[{title:"Steak + Spinach",img:FOODS[0].img,note:"Donor",foods:[0,1]}],"A-":[{title:"Tofu Greens",img:FOODS[3].img,note:"Calm",foods:[3,1]}],"B-":[{title:"Eggs Yogurt",img:FOODS[11].img,note:"Balanced",foods:[11,7]}],"AB-":[{title:"Rarest Plate",img:FOODS[10].img,note:"Rare",foods:[10,3]}],
+"O-":[{title:"Steak + Spinach",img:FOODS[0].img,note:"Donor",foods:[0,1]}],"A-":[{title:"Tofu Greens",img:FOODS[3].img,note:"Calm",foods:[3,1]}],"B-":[{title:"Eggs Yogurt",img:FOODS[7].img,note:"Balanced",foods:[7,0]}],"AB-":[{title:"Rarest Plate",img:FOODS[5].img,note:"Rare",foods:[5,3]}],
 "Unknown":[{title:"Balanced Bowl",img:FOODS[2].img,note:"Real food",foods:[2,1,5]}]
 };
 let SITES=[
@@ -176,25 +151,21 @@ let SITES=[
 {name:"Medirite Kolonnade",area:"Montana • 3.4km",price:"R75",slots:"Today 2pm, 4pm"},
 {name:"Medirite Centurion Mall",area:"Centurion • 8.2km",price:"R90",slots:"Tomorrow 10am"},
 {name:"Medirite Menlyn",area:"Pretoria East • 6.5km",price:"R85",slots:"Today 3pm"},
-{name:"Medirite Brooklyn",area:"Pretoria • 5.1km",price:"R80",slots:"Tomorrow 8am, 2pm"},
-{name:"Medirite Jabulani",area:"Soweto • 12km",price:"R75",slots:"Today 1pm"},
-{name:"Medirite East Rand Mall",area:"Boksburg • 18km",price:"R90",slots:"Tomorrow 9am"},
-{name:"Medirite Sandton City",area:"Sandton • 22km",price:"R90",slots:"Today 4pm"}
+{name:"Medirite Brooklyn",area:"Pretoria • 5.1km",price:"R80",slots:"Tomorrow 8am, 2pm"}
 ];
-function go(id){document.querySelectorAll('.screen').forEach(e=>e.classList.remove('active'));document.getElementById(id).classList.add('active');document.getElementById('nav').style.display=['home','foods','meals','profile','donate'].includes(id)?'flex':'none';render();}
+function go(id){document.querySelectorAll('.screen').forEach(e=>e.classList.remove('active'));document.getElementById(id).classList.add('active');document.getElementById('nav').style.display=['home','foods','meals','profile'].includes(id)?'flex':'none';render();}
 function saveP(){s.name=document.getElementById('name').value;s.age=document.getElementById('age').value;s.allergy=document.getElementById('allergy').value;localStorage.setItem('mytype_v3',JSON.stringify(s));go('whatsType');}
 function pick(t){s.type=t;localStorage.setItem('mytype_v3',JSON.stringify(s));go('home');}
 function setFilter(f,el){currentFilter=f;document.querySelectorAll('.fchip').forEach(c=>c.classList.remove('active'));el.classList.add('active');filterFoods();}
-function filterFoods(){let q=(document.getElementById('foodSearch').value||'').toLowerCase();let list=document.getElementById('foodList');let html='';FOODS.forEach((fd,i)=>{let matchSearch=!q||fd.t.toLowerCase().includes(q)||fd.vits.join(' ').toLowerCase().includes(q)||fd.mins.join(' ').toLowerCase().includes(q);let matchFilter=currentFilter=='all'||(currentFilter=='iron'&&fd.mins.join(' ').toLowerCase().includes('iron'))||fd.type.includes(currentFilter)||currentFilter=='vitamin';if(matchSearch&&matchFilter){html+=`<div class="card" onclick="openFoodDetail(${i})"><img src="${fd.img}" style="width:100%;height:160px;object-fit:cover"><div class="info"><span class="tag">${fd.type} • TAP</span><h4>${fd.t}</h4><p class="small">${fd.desc}</p><div class="vits">${fd.vits.map(v=>`<span class="vit"><b>${v}</b></span>`).join('')}</div></div></div>`;}});list.innerHTML=html||`<div class="card"><div class="card-pad"><p class="small">No food for "${q}"</p></div></div>`;}
+function filterFoods(){let q=(document.getElementById('foodSearch').value||'').toLowerCase();let list=document.getElementById('foodList');let html='';FOODS.forEach((fd,i)=>{let match=!q||fd.t.toLowerCase().includes(q)||fd.vits.join(' ').toLowerCase().includes(q);let filt=currentFilter=='all'||fd.type.includes(currentFilter)||(currentFilter=='iron'&&fd.mins.join(' ').toLowerCase().includes('iron'));if(match&&filt){html+=`<div class="card" onclick="openFoodDetail(${i})"><img src="${fd.img}" style="width:100%;height:160px;object-fit:cover"><div class="info"><span class="tag">${fd.type} • TAP</span><h4>${fd.t}</h4><p class="small">${fd.desc}</p></div></div>`;}});list.innerHTML=html;}
 function filterSites(){let q=(document.getElementById('siteSearch').value||'').toLowerCase();let list=document.getElementById('siteList');let html='';SITES.filter(s=>!q||s.name.toLowerCase().includes(q)||s.area.toLowerCase().includes(q)).forEach(site=>{html+=`<div class="siteItem" onclick="bookSite('${site.name}')"><div><b>${site.name}</b><br><span>${site.area} • ${site.price}</span><br><span style="color:#00e5a8">${site.slots}</span></div><div style="background:linear-gradient(135deg,#2a5bd7,#ff3b7f);padding:10px 14px;border-radius:100px;font-size:12px;font-weight:800">Book</div></div>`;});list.innerHTML=html;}
-function bookSite(name){alert(`✅ MyType Booking Requested\n\n${name}\nTest: R75–R90\nTime: 10 mins\nResults: 24-48hrs auto-sync to MyType app\n\n(Dummy booking — for demo, Noma can see flow)`);pick('O+');}
+function bookSite(name){alert(`✅ MyType Booking: ${name}\nR75–R90 • 10 mins • Results auto-sync`);pick('O+');}
 function quickSearch(v){if(v.length>1){go('foods');document.getElementById('foodSearch').value=v;filterFoods();}}
 function openFoodDetail(i){let f=FOODS[i];document.getElementById('modalImg').src=f.img;document.getElementById('modalTag').textContent=f.type+' • '+f.t;document.getElementById('modalTitle').textContent=f.t;document.getElementById('modalDesc').textContent=f.desc;document.getElementById('modalVits').innerHTML=f.vits.map(v=>`<span class="vit"><b>${v}</b></span>`).join('')+f.mins.map(m=>`<span class="vit"><b>${m.split(' ')[0]}</b> ${m.substring(m.indexOf(' ')+1)}</span>`).join('');document.getElementById('modalMins').innerHTML=f.mins.join('<br>• ');document.getElementById('modalWhy').textContent=f.why;document.getElementById('modal').classList.add('show');}
-function openMealDetail(t,idx){let mt=MEALS[t]||MEALS['Unknown'];let m=mt[idx];let allMins=m.foods.map(fi=>FOODS[fi].mins.join(', ')).join(', ');let allVits=[...new Set(m.foods.flatMap(fi=>FOODS[fi].vits))];document.getElementById('modalImg').src=m.img;document.getElementById('modalTag').textContent=t+' • Meal';document.getElementById('modalTitle').textContent=m.title;document.getElementById('modalDesc').textContent=m.note+' — '+m.foods.map(fi=>FOODS[fi].t).join(' + ');document.getElementById('modalVits').innerHTML=allVits.map(v=>`<span class="vit"><b>${v}</b></span>`).join('');document.getElementById('modalMins').innerHTML=allMins.split(',').map(x=>`• ${x.trim()}`).join('<br>');document.getElementById('modalWhy').textContent=FOODS[m.foods[0]].why;document.getElementById('modal').classList.add('show');}
+function openMealDetail(t,idx){let mt=MEALS[t]||MEALS['Unknown'];let m=mt[idx];document.getElementById('modalImg').src=m.img;document.getElementById('modalTag').textContent=t+' • Meal';document.getElementById('modalTitle').textContent=m.title;document.getElementById('modalDesc').textContent=m.note+' — '+m.foods.map(fi=>FOODS[fi].t).join(' + ');let allVits=[...new Set(m.foods.flatMap(fi=>FOODS[fi].vits))];document.getElementById('modalVits').innerHTML=allVits.map(v=>`<span class="vit"><b>${v}</b></span>`).join('');let allMins=m.foods.map(fi=>FOODS[fi].mins.join(', ')).join(', ');document.getElementById('modalMins').innerHTML=allMins.split(',').map(x=>`• ${x.trim()}`).join('<br>');document.getElementById('modalWhy').textContent=FOODS[m.foods[0]].why;document.getElementById('modal').classList.add('show');}
 function closeModal(){document.getElementById('modal').classList.remove('show');}
 function logMealFromModal(){s.meals++;localStorage.setItem('mytype_v3',JSON.stringify(s));closeModal();render();}
-function render(){let t=s.type||'Unknown';document.getElementById('homeName').textContent=s.name?'Hi '+s.name.split(' ')[0]:'Welcome';document.getElementById('badgeType').textContent=t+' • MyType';document.getElementById('score').textContent=50+s.meals*3+s.don*8;document.getElementById('d1').textContent=s.don;document.getElementById('pInfo').textContent=(s.name||'No name')+' • '+(s.type||'No type');let mt=MEALS[t]||MEALS['Unknown'];let mType=document.getElementById('mType');if(mType)mType.textContent='MyType • '+t;let homeMeals=document.getElementById('homeMeals');if(homeMeals){let hm='';mt.forEach((m,i)=>{hm+=`<div class="card" onclick="openMealDetail('${t}',${i})"><img src="${m.img}" style="width:100%;height:160px;object-fit:cover"><div class="info"><span class="tag">${t} • ${m.title}</span><h4>${m.title}</h4><p class="small">${m.note} — tap for vitamins</p></div></div>`});homeMeals.innerHTML=hm;}let mealCards=document.getElementById('mealCards');if(mealCards){let mh='';mt.forEach((m,i)=>{mh+=`<div class="card" onclick="openMealDetail('${t}',${i})"><img src="${m.img}" style="width:100%;height:160px;object-fit:cover"><div class="info"><span class="tag">${t} • TAP FOR VITAMINS</span><h4>${m.title}</h4><p class="small">${m.note}</p></div></div>`});mealCards.innerHTML=mh;}filterFoods();filterSites();}
-function donate(){s.don++;localStorage.setItem('mytype_v3',JSON.stringify(s));render();}
+function render(){let t=s.type||'Unknown';document.getElementById('homeName').textContent=s.name?'Hi '+s.name.split(' ')[0]:'Welcome';document.getElementById('badgeType').textContent=t+' • MyType';document.getElementById('score').textContent=50+s.meals*3;document.getElementById('pInfo').textContent=(s.name||'No name')+' • '+(s.type||'No type');let mt=MEALS[t]||MEALS['Unknown'];let mType=document.getElementById('mType');if(mType)mType.textContent='MyType • '+t;let homeMeals=document.getElementById('homeMeals');if(homeMeals){let hm='';mt.forEach((m,i)=>{hm+=`<div class="card" onclick="openMealDetail('${t}',${i})"><img src="${m.img}" style="width:100%;height:160px;object-fit:cover"><div class="info"><span class="tag">${t} • ${m.title}</span><h4>${m.title}</h4><p class="small">${m.note} — tap for vitamins</p></div></div>`});homeMeals.innerHTML=hm;}let mealCards=document.getElementById('mealCards');if(mealCards){let mh='';mt.forEach((m,i)=>{mh+=`<div class="card" onclick="openMealDetail('${t}',${i})"><img src="${m.img}" style="width:100%;height:160px;object-fit:cover"><div class="info"><span class="tag">${t} • TAP FOR VITAMINS</span><h4>${m.title}</h4><p class="small">${m.note}</p></div></div>`});mealCards.innerHTML=mh;}filterFoods();filterSites();}
 render();if(s.name&&s.type)go('home');else go('s1');
 </script>
 </body>
