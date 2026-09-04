@@ -3,36 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SMG BloodType • Know. Eat. Give.</title>
+<title>MyType • Know. Eat. Give.</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;800&display=swap');
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Plus Jakarta Sans',sans-serif}
 body{background:#06091a;color:white;display:flex;justify-content:center;overflow:hidden}
 .app{width:100%;max-width:430px;min-height:100vh;position:relative;background:#06091a;overflow:hidden}
-
-/* SMG HEADER */
-.smg-top{position:relative;z-index:5;padding:18px 20px 0 20px;display:flex;justify-content:space-between;align-items:center}
-.smg-logo{font-weight:800;letter-spacing:-1px;font-size:18px;display:flex;align-items:center;gap:8px}
-.smg-logo span{background:linear-gradient(135deg,#2a5bd7,#ff3b7f);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.smg-badge{font-size:10px;letter-spacing:1px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);padding:6px 10px;border-radius:100px}
-
-/* BLOOD ANIMATION BACKGROUND */
+.mytype-top{position:relative;z-index:5;padding:18px 20px 0 20px;display:flex;justify-content:space-between;align-items:center}
+.my-logo{font-weight:800;letter-spacing:-1px;font-size:19px;display:flex;align-items:center;gap:8px}
+.my-logo span{background:linear-gradient(135deg,#2a5bd7,#ff3b7f);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.my-badge{font-size:10px;letter-spacing:1px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);padding:6px 10px;border-radius:100px}
 .blood-field{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
-.drop{position:absolute;font-size:22px;animation:float linear infinite;opacity:0.8;filter:drop-shadow(0 4px 12px rgba(255,59,127,0.4))}
-@keyframes float{
-0%{transform:translateY(110vh) translateX(0) rotate(0deg) scale(0.8);opacity:0}
-10%{opacity:0.9}
-90%{opacity:0.6}
-100%{transform:translateY(-10vh) translateX(80px) rotate(360deg) scale(1.2);opacity:0}
-}
+.drop{position:absolute;font-size:22px;animation:float linear infinite;opacity:0.85;filter:drop-shadow(0 4px 12px rgba(255,59,127,0.45))}
+@keyframes float{0%{transform:translateY(110vh) translateX(0) rotate(0deg) scale(0.8);opacity:0}10%{opacity:0.95}90%{opacity:0.6}100%{transform:translateY(-10vh) translateX(80px) rotate(360deg) scale(1.25);opacity:0}}
 .blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:0.5}
 .b1{width:360px;height:360px;background:radial-gradient(circle,#2a5bd7,#7c3aed);top:-100px;left:-120px}
 .b2{width:300px;height:300px;background:radial-gradient(circle,#ff3b7f,#8b1a3d);top:40%;right:-100px;opacity:0.3}
 .b3{width:400px;height:400px;background:radial-gradient(circle,#00d9a6,#0a3a2f);bottom:-80px;left:-150px;opacity:0.2}
-
 .screen{display:none;padding:14px 20px 120px 20px;min-height:100vh;position:relative;z-index:3}
 .screen.active{display:flex;flex-direction:column}
-.hero{text-align:center;padding:20px 0 10px 0}
+.hero{text-align:center;padding:18px 0 10px 0}
 .artIcon{width:76px;height:76px;border-radius:24px;display:flex;align-items:center;justify-content:center;font-size:38px;margin:0 auto 14px auto;background:linear-gradient(135deg,#2a5bd7,#ff3b7f);box-shadow:0 16px 40px rgba(42,91,215,0.45);animation:pulse 2.5s infinite}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
 h1{font-size:32px;font-weight:800;line-height:0.95;letter-spacing:-1px}
@@ -55,32 +45,25 @@ h1{font-size:32px;font-weight:800;line-height:0.95;letter-spacing:-1px}
 <body>
 <div class="app">
 <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
-
-<!-- BLOOD DROPS ANIMATION FIELD -->
 <div class="blood-field" id="bloodField"></div>
-
-<div class="smg-top">
-<div class="smg-logo">🩸 <span>SMG</span> BloodType</div>
-<div class="smg-badge">SMG HEALTH • SA</div>
+<div class="mytype-top">
+<div class="my-logo">🩸 <span>MyType</span></div>
+<div class="my-badge">KNOW • EAT • GIVE</div>
 </div>
-
-<!-- S1 WELCOME -->
 <div id="s1" class="screen active">
 <div class="hero">
 <div class="artIcon">🩸</div>
-<div class="pill" id="greet1">Good Afternoon • SMG</div>
-<h1 style="margin-top:14px">Blood, but<br><span style="background:linear-gradient(90deg,#5a85ff,#ff7ab6);-webkit-background-clip:text;-webkit-text-fill-color:transparent">beautifully</span><br>understood.</h1>
-<p class="sub">SMG's modern health companion — know your type, eat for your type, save lives.</p>
+<div class="pill" id="greet1">Good Afternoon • MyType</div>
+<h1 style="margin-top:14px">Your blood,<br><span style="background:linear-gradient(90deg,#5a85ff,#ff7ab6);-webkit-background-clip:text;-webkit-text-fill-color:transparent">beautifully</span><br>understood.</h1>
+<p class="sub">MyType — modern health companion. Know your type, eat for your type, save lives.</p>
 </div>
-<div class="card" style="background:linear-gradient(135deg,rgba(42,91,215,0.85),rgba(255,59,127,0.75));border:none;margin-top:22px"><b>SMG Mission: 1 donation = 3 lives</b><p class="small" style="color:white;opacity:0.9;margin-top:6px">South Africa needs 3,500 units daily. SMG helps you know, eat, and give — with art.</p></div>
-<button class="btn" onclick="go('s2')">Create SMG Profile →</button>
+<div class="card" style="background:linear-gradient(135deg,rgba(42,91,215,0.85),rgba(255,59,127,0.75));border:none;margin-top:22px"><b>MyType Mission: 1 donation = 3 lives</b><p class="small" style="color:white;opacity:0.9;margin-top:6px">South Africa needs 3,500 units daily. MyType helps you know, eat, and give — with art.</p></div>
+<button class="btn" onclick="go('s2')">Create MyType Profile →</button>
 </div>
-
-<!-- S2 PROFILE -->
 <div id="s2" class="screen">
-<div class="pill">SMG • New User</div>
+<div class="pill">MyType • New User</div>
 <h1 style="margin-top:12px;font-size:26px">You, in your<br>own words</h1>
-<p class="sub">Creates your SMG emergency card — stored only on your phone</p>
+<p class="sub">Creates your MyType emergency card — stored only on your phone</p>
 <input id="name" class="input" placeholder="Full name">
 <input id="age" class="input" type="number" placeholder="Age">
 <input id="phone" class="input" placeholder="Phone (+27...)">
@@ -88,10 +71,8 @@ h1{font-size:32px;font-weight:800;line-height:0.95;letter-spacing:-1px}
 <input id="contact" class="input" placeholder="Emergency contact">
 <button class="btn" onclick="saveP()">Continue to blood types</button>
 </div>
-
-<!-- S3 EDUCATION -->
 <div id="s3" class="screen">
-<div class="pill">SMG Blood Science</div>
+<div class="pill">MyType Blood Science</div>
 <h1 style="margin-top:10px;font-size:26px">Four types.<br>Infinite you.</h1>
 <div class="card"><b>O — The Warrior</b><p class="small">38% • High protein, intense, O- universal donor</p></div>
 <div class="card"><b>A — The Cultivator</b><p class="small">32% • Plant-based, calm, tofu & grains</p></div>
@@ -99,10 +80,8 @@ h1{font-size:32px;font-weight:800;line-height:0.95;letter-spacing:-1px}
 <div class="card"><b>AB — The Enigma</b><p class="small">5% • Rare, AB+ universal recipient, AB- rarest 1%</p></div>
 <button class="btn" onclick="go('types')">Choose my type →</button>
 </div>
-
-<!-- TYPE SELECT -->
 <div id="types" class="screen">
-<div class="pill">SMG • Final Step</div>
+<div class="pill">MyType • Final Step</div>
 <h1 style="margin-top:10px;font-size:26px">Tap your true type</h1>
 <div class="typeGrid">
 <div class="typeCard" onclick="pick('O+')"><b>O+</b><span>38% • Common</span></div>
@@ -116,58 +95,47 @@ h1{font-size:32px;font-weight:800;line-height:0.95;letter-spacing:-1px}
 </div>
 <div class="card" style="margin-top:14px"><p class="small">🧪 Don't know? Visit Clicks / Dis-Chem / SANBS — R120, 10 mins. You can skip.</p><button class="btn btn-ghost" onclick="pick('Unknown')" style="margin-top:10px">Skip for now</button></div>
 </div>
-
-<!-- HOME -->
 <div id="home" class="screen">
-<div style="display:flex;justify-content:space-between;align-items:center"><div><div class="pill" id="greetMain">Good Afternoon</div><h1 style="font-size:22px;margin-top:8px" id="homeName">Welcome</h1></div><div class="pill" id="badge" style="background:linear-gradient(135deg,#2a5bd7,#ff3b7f)">SMG • NEW</div></div>
-<div class="card" style="background:linear-gradient(135deg,#2a5bd7,#ff3b7f);border:none;margin-top:18px"><p style="font-size:11px;letter-spacing:1px;opacity:0.9">SMG WELLNESS SCORE</p><h1 style="font-size:48px" id="score">60</h1><p class="small" style="color:white;opacity:0.9" id="homeDesc">Set type to personalize</p></div>
+<div style="display:flex;justify-content:space-between;align-items:center"><div><div class="pill" id="greetMain">Good Afternoon</div><h1 style="font-size:22px;margin-top:8px" id="homeName">Welcome</h1></div><div class="pill" id="badge" style="background:linear-gradient(135deg,#2a5bd7,#ff3b7f)">MyType • NEW</div></div>
+<div class="card" style="background:linear-gradient(135deg,#2a5bd7,#ff3b7f);border:none;margin-top:18px"><p style="font-size:11px;letter-spacing:1px;opacity:0.9">MyType WELLNESS SCORE</p><h1 style="font-size:48px" id="score">60</h1><p class="small" style="color:white;opacity:0.9" id="homeDesc">Set type to personalize</p></div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px"><div class="card" onclick="go('meals')" style="cursor:pointer;margin:0"><div style="font-size:26px">🥗</div><b>Meals</b><p class="small" id="mealPrev">For you</p></div><div class="card" onclick="go('donate')" style="cursor:pointer;margin:0"><div style="font-size:26px">🩸</div><b id="donNum">0 Donations</b><p class="small" id="donLives">Save lives</p></div></div>
-<div class="card"><b>🆘 SMG Emergency Card</b><p class="small" style="margin-top:6px">Show at hospital — SMG verified</p><div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:8px"><span class="pill" id="eType">Add type</span><span class="pill" id="eName">Add name</span><span class="pill" id="eAllergy">Allergy: -</span></div><div style="margin-top:10px;background:rgba(255,255,255,0.06);border-radius:14px;padding:12px"><p class="small" id="eInfo">Complete profile to activate SMG emergency card</p></div></div>
+<div class="card"><b>🆘 MyType Emergency Card</b><p class="small" style="margin-top:6px">Show at hospital — MyType verified</p><div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:8px"><span class="pill" id="eType">Add type</span><span class="pill" id="eName">Add name</span><span class="pill" id="eAllergy">Allergy: -</span></div><div style="margin-top:10px;background:rgba(255,255,255,0.06);border-radius:14px;padding:12px"><p class="small" id="eInfo">Complete profile to activate MyType emergency card</p></div></div>
 </div>
-
-<!-- MEALS -->
 <div id="meals" class="screen">
-<div class="pill" id="mType">SMG • Your Type</div>
+<div class="pill" id="mType">MyType • Your Type</div>
 <h1 style="margin-top:10px;font-size:26px">Eat beautifully<br>for your blood</h1>
 <div id="mealCards"></div>
 <button class="btn" onclick="logMeal()">Log meal • +wellness</button>
 </div>
-
-<!-- DONATE -->
 <div id="donate" class="screen">
 <h1 style="font-size:26px">Give blood,<br>get art.</h1>
-<p class="sub">SMG impact is visual</p>
+<p class="sub">MyType impact is visual</p>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px">
 <div class="card" style="text-align:center;background:linear-gradient(135deg,#1a1f3d,#2a1a44)"><h1 id="d1">0</h1><p class="small">Donations</p></div>
 <div class="card" style="text-align:center;background:linear-gradient(135deg,#2a1a2f,#3d1a1a)"><h1 id="d2">0</h1><p class="small">Lives saved</p></div>
 </div>
-<div class="card"><b>Next eligible</b><h2 id="nextDon" style="margin:8px 0">Start today</h2><p class="small" id="lastDon">No history yet</p><button class="btn" onclick="donate()">Book at SANBS • SMG Partner</button></div>
-<div class="card"><b>📍 SMG Partner Centers</b><p class="small" style="margin-top:8px">SANBS Pretoria 1.2km • Mediclinic 2.8km • Life Hospital 4.1km</p></div>
+<div class="card"><b>Next eligible</b><h2 id="nextDon" style="margin:8px 0">Start today</h2><p class="small" id="lastDon">No history yet</p><button class="btn" onclick="donate()">Book at SANBS • MyType Partner</button></div>
+<div class="card"><b>📍 MyType Partner Centers</b><p class="small" style="margin-top:8px">SANBS Pretoria 1.2km • Mediclinic 2.8km • Life Hospital 4.1km</p></div>
 </div>
-
-<!-- PROFILE -->
 <div id="profile" class="screen">
-<h1 style="font-size:26px">SMG Profile</h1>
+<h1 style="font-size:26px">MyType Profile</h1>
 <div class="card" style="margin-top:16px"><b>Personal</b><p class="small" id="pInfo" style="margin-top:8px">No info</p><button class="btn btn-ghost" onclick="go('s2')">Edit info</button></div>
 <div class="card"><b>Blood Type</b><h1 id="pType" style="margin:8px 0">Not set</h1><button class="btn btn-ghost" onclick="go('types')">Change type</button></div>
-<button class="btn btn-ghost" onclick="resetApp()">Reset — New SMG User</button>
+<button class="btn btn-ghost" onclick="resetApp()">Reset — New MyType User</button>
 </div>
-
 <div class="nav" id="nav">
 <div class="navI active" onclick="go('home')">🏠<br>Home</div>
 <div class="navI" onclick="go('meals')">🥗<br>Meals</div>
 <div class="navI" onclick="go('donate')">🩸<br>Donate</div>
 <div class="navI" onclick="go('profile')">👤<br>Profile</div>
 </div>
-
 </div>
 <script>
-// BLOOD DROP ANIMATION GENERATOR - SMG
 const field=document.getElementById('bloodField');
 function createDrop(){
 const d=document.createElement('div');
 d.className='drop';
-d.textContent=Math.random()>0.5?'🩸':'💧';
+d.textContent=Math.random()>0.55?'🩸':'💧';
 d.style.left=Math.random()*100+'%';
 d.style.animationDuration=(6+Math.random()*8)+'s';
 d.style.animationDelay=(Math.random()*5)+'s';
@@ -175,14 +143,13 @@ d.style.fontSize=(14+Math.random()*26)+'px';
 field.appendChild(d);
 setTimeout(()=>d.remove(),15000);
 }
-setInterval(createDrop,400);
-for(let i=0;i<12;i++) createDrop();
-
+setInterval(createDrop,380);
+for(let i=0;i<14;i++) createDrop();
 function greet(){let h=new Date().getHours();return h<12?"Good Morning":h<18?"Good Afternoon":"Good Evening";}
-document.getElementById('greet1').textContent=greet()+" • SMG";
-let s=JSON.parse(localStorage.getItem('smg_blood')||'{"name":"","age":"","phone":"","allergy":"","contact":"","type":"","don":0,"meals":0,"last":null}');
+document.getElementById('greet1').textContent=greet()+" • MyType";
+let s=JSON.parse(localStorage.getItem('mytype_app')||'{"name":"","age":"","phone":"","allergy":"","contact":"","type":"","don":0,"meals":0,"last":null}');
 let db={
-"O-":{meals:[["Morning","Spinach & Avocado Omelette","Iron + healthy fat"],["Midday","Herb-crusted Lamb","High protein"],["Night","Miso Salmon","Omega calm"]],best:"Beef, Lamb, Kale, Berries, Walnuts",limit:"Dairy, Wheat, Corn",desc:"Universal Donor • SMG Hero"},
+"O-":{meals:[["Morning","Spinach & Avocado Omelette","Iron + healthy fat"],["Midday","Herb-crusted Lamb","High protein"],["Night","Miso Salmon","Omega calm"]],best:"Beef, Lamb, Kale, Berries, Walnuts",limit:"Dairy, Wheat, Corn",desc:"Universal Donor • MyType Hero"},
 "O+":{meals:[["Morning","Beef & Veggie Stir Fry","Energy burst"],["Lunch","Turkey & Quinoa Bowl","Lean fuel"],["Dinner","Garlic Cod","Light restore"]],best:"Lean meats, Fish, Vegetables",limit:"Dairy, Gluten",desc:"Common but powerful 38%"},
 "A+":{meals:[["Morning","Silken Tofu Scramble","Calm protein"],["Lunch","Lentil & Beet Soup","Grounding"],["Dinner","Wild Mushroom Pasta","Earthy calm"]],best:"Tofu, Grains, Vegetables, Pineapple",limit:"Red meat, Dairy",desc:"The Cultivator • Peaceful"},
 "A-":{meals:[["Morning","Greek Yogurt + Fig","Probiotic calm"],["Lunch","Chickpea & Herb Salad","Fresh"],["Dinner","Seared Salmon","Omega glow"]],best:"Fish, Vegetables, Olive Oil",limit:"Red meat",desc:"Rare & mindful 6%"},
@@ -212,17 +179,17 @@ s.age=document.getElementById('age').value;
 s.phone=document.getElementById('phone').value;
 s.allergy=document.getElementById('allergy').value;
 s.contact=document.getElementById('contact').value;
-localStorage.setItem('smg_blood',JSON.stringify(s));
+localStorage.setItem('mytype_app',JSON.stringify(s));
 go('s3');
 }
-function pick(t){s.type=t;localStorage.setItem('smg_blood',JSON.stringify(s));render();go('home');}
+function pick(t){s.type=t;localStorage.setItem('mytype_app',JSON.stringify(s));render();go('home');}
 function render(){
 let name=s.name||'Welcome';
 document.getElementById('greetMain').textContent=greet()+', '+(s.name? s.name.split(' ')[0]:'friend');
-document.getElementById('homeName').textContent=s.name? 'Hi, '+s.name.split(' ')[0] : 'Welcome to SMG';
+document.getElementById('homeName').textContent=s.name? 'Hi, '+s.name.split(' ')[0] : 'Welcome to MyType';
 let t=s.type||'Unknown';let d=db[t];
-document.getElementById('badge').textContent=s.type? s.type+' • SMG VERIFIED' : 'SMG • NEW';
-document.getElementById('mType').textContent='SMG • '+t+' • '+d.desc;
+document.getElementById('badge').textContent=s.type? s.type+' • MyType VERIFIED' : 'MyType • NEW';
+document.getElementById('mType').textContent='MyType • '+t+' • '+d.desc;
 document.getElementById('pType').textContent=s.type||'Not set';
 document.getElementById('pInfo').innerHTML=s.name? `Name: ${s.name}<br>Age: ${s.age||'-'}<br>Phone: ${s.phone||'-'}<br>Allergy: ${s.allergy||'None'}<br>Emergency: ${s.contact||'-'}`:'No info yet';
 document.getElementById('name').value=s.name;document.getElementById('age').value=s.age;document.getElementById('phone').value=s.phone;document.getElementById('allergy').value=s.allergy;document.getElementById('contact').value=s.contact;
@@ -234,7 +201,7 @@ document.getElementById('donLives').textContent=(s.don*3)+' lives saved';
 document.getElementById('eType').textContent=s.type||'Add type';
 document.getElementById('eName').textContent=s.name||'Add name';
 document.getElementById('eAllergy').textContent='Allergy: '+(s.allergy||'None');
-document.getElementById('eInfo').textContent=(s.name&&s.type)? `${s.name} • ${s.type} • ${s.allergy||'No allergies'} • Contact: ${s.contact||s.phone||'—'} • SMG Verified`:'Complete profile to activate SMG emergency card';
+document.getElementById('eInfo').textContent=(s.name&&s.type)? `${s.name} • ${s.type} • ${s.allergy||'No allergies'} • Contact: ${s.contact||s.phone||'—'} • MyType Verified`:'Complete profile to activate MyType emergency card';
 let html='';
 d.meals.forEach(m=>{
 html+=`<div class="card"><div style="display:flex;justify-content:space-between"><b>${m[0]}</b><span class="pill">${t}</span></div><p style="font-weight:700;margin:8px 0">${m[1]}</p><p class="small">${m[2]}</p></div>`;
@@ -247,11 +214,11 @@ let last=new Date(s.last);let next=new Date(last);next.setDate(last.getDate()+56
 let diff=Math.ceil((next-new Date())/86400000);
 document.getElementById('nextDon').textContent=diff>0?`Eligible in ${diff} days`:'Eligible now!';
 document.getElementById('lastDon').textContent='Last: '+last.toDateString();
-}else{document.getElementById('nextDon').textContent='Book your first SMG donation';document.getElementById('lastDon').textContent='No history yet';}
+}else{document.getElementById('nextDon').textContent='Book your first MyType donation';document.getElementById('lastDon').textContent='No history yet';}
 }
-function logMeal(){s.meals++;localStorage.setItem('smg_blood',JSON.stringify(s));render();alert('✨ SMG Logged — wellness +3');}
-function donate(){s.don++;s.last=new Date().toISOString();localStorage.setItem('smg_blood',JSON.stringify(s));render();alert('🩸 SMG Booked — 3 lives saved because of you!');}
-function resetApp(){if(confirm('Start as new SMG user?')){localStorage.removeItem('smg_blood');location.reload();}}
+function logMeal(){s.meals++;localStorage.setItem('mytype_app',JSON.stringify(s));render();alert('✨ MyType Logged — wellness +3');}
+function donate(){s.don++;s.last=new Date().toISOString();localStorage.setItem('mytype_app',JSON.stringify(s));render();alert('🩸 MyType Booked — 3 lives saved because of you!');}
+function resetApp(){if(confirm('Start as new MyType user?')){localStorage.removeItem('mytype_app');location.reload();}}
 render();
 if(s.name && s.type) go('home'); else go('s1');
 </script>
