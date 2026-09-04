@@ -2,164 +2,170 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MyType • Real Food For Your Blood</title>
+<title>MyType • Real Food • Vitamins • Search</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;800&display=swap');
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Plus Jakarta Sans',sans-serif}
 body{background:#080a14;color:white;display:flex;justify-content:center}
 .app{width:100%;max-width:430px;min-height:100vh;position:relative;background:#080a14;overflow:hidden}
-.blood-field{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
-.drop{position:absolute;animation:float linear infinite;opacity:0.7}
-@keyframes float{0%{transform:translateY(110vh) scale(0.8);opacity:0}10%{opacity:0.8}100%{transform:translateY(-10vh) scale(1.2);opacity:0}}
-.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:0.45}
+.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:0.4}
 .b1{width:380px;height:380px;background:radial-gradient(circle,#2a5bd7,#7c3aed);top:-120px;left:-120px}
-.b2{width:300px;height:300px;background:radial-gradient(circle,#ff3b7f,#8b1a3d);top:35%;right:-90px;opacity:0.25}
+.b2{width:300px;height:300px;background:radial-gradient(circle,#ff3b7f,#8b1a3d);top:35%;right:-90px}
 .top{position:relative;z-index:5;padding:18px 20px 0 20px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-weight:800;font-size:19px;display:flex;gap:8px;align-items:center}
+.logo{font-weight:800;font-size:19px;display:flex;gap:8px}
 .logo span{background:linear-gradient(135deg,#5a85ff,#ff7ab6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.badge{font-size:10px;letter-spacing:1px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);padding:6px 10px;border-radius:100px}
+.badge{font-size:10px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);padding:6px 10px;border-radius:100px}
 .screen{display:none;padding:14px 20px 120px 20px;min-height:100vh;position:relative;z-index:3}
 .screen.active{display:flex;flex-direction:column}
 .pill{display:inline-flex;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);padding:7px 14px;border-radius:100px;font-size:11px;font-weight:700}
-.card{background:rgba(18,24,47,0.78);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,0.07);border-radius:26px;padding:16px;margin:12px 0;overflow:hidden}
-.realMeal{padding:0!important;overflow:hidden}
+.card{background:rgba(18,24,47,0.86);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,0.07);border-radius:26px;padding:0;margin:12px 0;overflow:hidden}
+.card-pad{padding:16px}
+.search{width:100%;padding:16px 18px 16px 42px;border-radius:100px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:white;font-size:14px;outline:none}
+.searchWrap{position:relative;margin:14px 0}
+.searchIcon{position:absolute;left:16px;top:50%;transform:translateY(-50%);opacity:0.5}
 .realMeal img{width:100%;height:180px;object-fit:cover;display:block}
-.realMeal.info{padding:14px 16px}
-.realMeal h4{font-size:16px;margin:2px 0 4px 0}
-.realMeal p{font-size:12px;color:rgba(255,255,255,0.55);line-height:1.4}
-.tag{font-size:10px;font-weight:800;letter-spacing:0.5px;background:linear-gradient(135deg,#2a5bd7,#ff3b7f);padding:5px 10px;border-radius:100px;display:inline-block}
+.info{padding:14px 16px}
+.tag{font-size:10px;font-weight:800;background:linear-gradient(135deg,#2a5bd7,#ff3b7f);padding:5px 10px;border-radius:100px;display:inline-block;margin-bottom:6px}
+.vits{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.vit{font-size:10px;font-weight:700;padding:6px 10px;border-radius:100px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1)}
+.vit b{color:#5a85ff}
+.vit.mineral b{color:#4ade80}
+.vit.omega b{color:#ff7ab6}
 .input{width:100%;padding:16px 18px;border-radius:16px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);color:white;font-size:15px;margin:8px 0}
-.btn{width:100%;background:linear-gradient(135deg,#2a5bd7,#ff3b7f);color:white;border:none;padding:17px;border-radius:100px;font-weight:800;font-size:15px;margin-top:16px;cursor:pointer}
+.btn{width:100%;background:linear-gradient(135deg,#2a5bd7,#ff3b7f);color:white;border:none;padding:17px;border-radius:100px;font-weight:800;font-size:15px;margin-top:12px;cursor:pointer}
 .typeGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
 .typeCard{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:16px;text-align:center;cursor:pointer}
 .typeCard.active{background:linear-gradient(135deg,#2a5bd7,#ff3b7f)}
-.nav{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);width:90%;max-width:380px;background:rgba(15,19,38,0.88);backdrop-filter:blur(30px);border:1px solid rgba(255,255,255,0.08);border-radius:100px;display:flex;justify-content:space-around;padding:8px;z-index:20}
+.nav{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);width:90%;max-width:380px;background:rgba(15,19,38,0.92);backdrop-filter:blur(30px);border:1px solid rgba(255,255,255,0.08);border-radius:100px;display:flex;justify-content:space-around;padding:8px;z-index:20}
 .navI{flex:1;text-align:center;padding:10px 6px;border-radius:100px;cursor:pointer;color:rgba(255,255,255,0.5);font-size:11px;font-weight:700}
 .navI.active{background:white;color:#06091a}
-.small{font-size:12px;color:rgba(255,255,255,0.5)}
+.small{font-size:12px;color:rgba(255,255,255,0.55);line-height:1.45}
+.filterRow{display:flex;gap:8px;overflow:auto;padding:6px 0 10px 0}
+.fchip{white-space:nowrap;padding:8px 14px;border-radius:100px;font-size:11px;font-weight:700;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);cursor:pointer}
+.fchip.active{background:linear-gradient(135deg,#2a5bd7,#ff3b7f);border-color:transparent}
 </style>
 </head>
 <body>
 <div class="app">
 <div class="blob b1"></div><div class="blob b2"></div>
-<div class="blood-field" id="bloodField"></div>
-<div class="top"><div class="logo">🩸 <span>MyType</span></div><div class="badge">REAL FOOD • REAL BLOOD</div></div>
+<div class="top"><div class="logo">🩸 <span>MyType</span></div><div class="badge">REAL FOOD + VITAMINS</div></div>
 
 <div id="s1" class="screen active">
 <div style="text-align:center;padding:18px 0">
 <div style="width:76px;height:76px;border-radius:24px;display:flex;align-items:center;justify-content:center;font-size:38px;margin:0 auto 14px auto;background:linear-gradient(135deg,#2a5bd7,#ff3b7f)">🩸</div>
-<div class="pill" id="greet1">Good Afternoon • MyType</div>
-<h1 style="margin-top:14px;font-size:32px;line-height:0.95;letter-spacing:-1px">Your blood,<br>your food,<br><span style="background:linear-gradient(90deg,#5a85ff,#ff7ab6);-webkit-background-clip:text;-webkit-text-fill-color:transparent">real & beautiful.</span></h1>
-<p class="small" style="margin-top:10px">Tap a food — see it real. No cartoons.</p>
+<div class="pill">MyType • Know. Eat. Give.</div>
+<h1 style="margin-top:14px;font-size:32px;line-height:0.95">Real food,<br>real vitamins,<br><span style="background:linear-gradient(90deg,#5a85ff,#ff7ab6);-webkit-background-clip:text;-webkit-text-fill-color:transparent">for your blood.</span></h1>
 </div>
-<div class="card realMeal"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800"><div class="info"><span class="tag">MyType • O</span><h4>Grilled Lamb + Rosemary Greens</h4><p>High iron, high protein — warrior fuel for O types. Real lamb, real greens.</p></div></div>
+<div class="card"><div class="card-pad"><b>🔍 New: Food Search + Vitamins</b><p class="small" style="margin-top:6px">Search any food → see vitamins, minerals, best for which blood type. Real photos.</p></div></div>
 <button class="btn" onclick="go('s2')">Create MyType Profile →</button>
 </div>
 
-<div id="s2" class="screen"><div class="pill">MyType • New User</div><h1 style="margin-top:12px;font-size:26px">You, in your own words</h1><input id="name" class="input" placeholder="Full name"><input id="age" class="input" type="number" placeholder="Age"><input id="phone" class="input" placeholder="Phone"><input id="allergy" class="input" placeholder="Allergies"><input id="contact" class="input" placeholder="Emergency contact"><button class="btn" onclick="saveP()">Continue</button></div>
+<div id="s2" class="screen"><div class="pill">MyType • New User</div><h1 style="margin-top:12px;font-size:26px">You</h1><input id="name" class="input" placeholder="Full name"><input id="age" class="input" type="number" placeholder="Age"><input id="allergy" class="input" placeholder="Allergies"><button class="btn" onclick="saveP()">Continue</button></div>
 
-<div id="types" class="screen"><div class="pill">MyType • Final Step</div><h1 style="margin-top:10px;font-size:26px">Tap your true type</h1>
+<div id="types" class="screen"><div class="pill">MyType</div><h1 style="margin-top:10px;font-size:26px">Tap your type</h1>
 <div class="typeGrid">
-<div class="typeCard" onclick="pick('O+')"><b>O+</b><span>38%</span></div>
-<div class="typeCard" onclick="pick('O-')"><b>O-</b><span>Donor</span></div>
-<div class="typeCard" onclick="pick('A+')"><b>A+</b><span>32%</span></div>
-<div class="typeCard" onclick="pick('A-')"><b>A-</b><span>6%</span></div>
-<div class="typeCard" onclick="pick('B+')"><b>B+</b><span>9%</span></div>
-<div class="typeCard" onclick="pick('B-')"><b>B-</b><span>2%</span></div>
-<div class="typeCard" onclick="pick('AB+')"><b>AB+</b><span>Receiver</span></div>
-<div class="typeCard" onclick="pick('AB-')"><b>AB-</b><span>1%</span></div>
-</div><button class="btn" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1)" onclick="pick('Unknown')">Skip</button></div>
+<div class="typeCard" onclick="pick('O+')"><b>O+</b></div><div class="typeCard" onclick="pick('O-')"><b>O-</b></div>
+<div class="typeCard" onclick="pick('A+')"><b>A+</b></div><div class="typeCard" onclick="pick('A-')"><b>A-</b></div>
+<div class="typeCard" onclick="pick('B+')"><b>B+</b></div><div class="typeCard" onclick="pick('B-')"><b>B-</b></div>
+<div class="typeCard" onclick="pick('AB+')"><b>AB+</b></div><div class="typeCard" onclick="pick('AB-')"><b>AB-</b></div>
+</div><button class="btn" style="background:rgba(255,255,255,0.06)" onclick="pick('Unknown')">Skip</button></div>
 
 <div id="home" class="screen">
-<div style="display:flex;justify-content:space-between"><div><div class="pill" id="greetMain">Afternoon</div><h1 style="font-size:22px;margin-top:8px" id="homeName">Welcome</h1></div><div class="pill" id="badge" style="background:linear-gradient(135deg,#2a5bd7,#ff3b7f)">MyType</div></div>
-<div class="card" style="background:linear-gradient(135deg,#2a5bd7,#ff3b7f);border:none;margin-top:18px"><p style="font-size:11px">MyType SCORE</p><h1 style="font-size:48px" id="score">60</h1><p class="small" style="color:white" id="homeDesc">Set type</p></div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px"><div class="card" onclick="go('meals')" style="margin:0"><b>🥗 Meals</b><p class="small">Real food</p></div><div class="card" onclick="go('donate')" style="margin:0"><b id="donNum">0</b><p class="small">Donations</p></div></div>
+<div style="display:flex;justify-content:space-between"><div><div class="pill" id="greetMain">Hi</div><h1 style="font-size:22px;margin-top:8px" id="homeName">Welcome</h1></div><div class="pill" id="badge">MyType</div></div>
+<div class="card" style="background:linear-gradient(135deg,#2a5bd7,#ff3b7f)"><div class="card-pad"><p style="font-size:11px">SCORE</p><h1 style="font-size:42px" id="score">60</h1><p class="small" style="color:white" id="homeDesc">Set type</p></div></div>
+<div class="searchWrap"><span class="searchIcon">🔍</span><input id="quickSearch" class="search" placeholder="Search food, vitamin, e.g. iron, lamb, tofu..." oninput="quickSearch(this.value)"></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px"><div class="card" onclick="go('foods')" style="margin:0"><div class="card-pad"><b>🥩 Food Library</b><p class="small">60+ real foods</p></div></div><div class="card" onclick="go('meals')" style="margin:0"><div class="card-pad"><b>🥗 Meals</b><p class="small">For your type</p></div></div></div>
 </div>
 
-<div id="meals" class="screen"><div class="pill" id="mType">MyType</div><h1 style="margin-top:10px;font-size:26px">Real food for<br>your blood</h1><div id="mealCards"></div><button class="btn" onclick="logMeal()">Log meal +3</button></div>
+<div id="foods" class="screen">
+<div class="pill">MyType • Food Library</div>
+<h1 style="margin-top:10px;font-size:26px">Search real foods<br>+ vitamins</h1>
+<div class="searchWrap"><span class="searchIcon">🔍</span><input id="foodSearch" class="search" placeholder="Search lamb, spinach, vitamin C, iron..." oninput="filterFoods()"></div>
+<div class="filterRow">
+<div class="fchip active" onclick="setFilter('all',this)">All</div>
+<div class="fchip" onclick="setFilter('O',this)">O Best</div>
+<div class="fchip" onclick="setFilter('A',this)">A Best</div>
+<div class="fchip" onclick="setFilter('B',this)">B Best</div>
+<div class="fchip" onclick="setFilter('AB',this)">AB Best</div>
+<div class="fchip" onclick="setFilter('iron',this)">Iron</div>
+<div class="fchip" onclick="setFilter('vitamin',this)">Vitamins</div>
+</div>
+<div id="foodList"></div>
+</div>
 
-<div id="donate" class="screen"><h1 style="font-size:26px">Give blood,<br>get life.</h1><div class="card"><b>Donations</b><h1 id="d1">0</h1></div><button class="btn" onclick="donate()">Book SANBS</button></div>
-<div id="profile" class="screen"><h1>MyType Profile</h1><div class="card"><p id="pInfo"></p></div><button class="btn" style="background:rgba(255,255,255,0.06)" onclick="go('types')">Change type</button></div>
+<div id="meals" class="screen"><div class="pill" id="mType">MyType</div><h1 style="margin-top:10px;font-size:26px">Meals for you</h1><div id="mealCards"></div></div>
 
-<div class="nav" id="nav"><div class="navI active" onclick="go('home')">🏠<br>Home</div><div class="navI" onclick="go('meals')">🥗<br>Meals</div><div class="navI" onclick="go('donate')">🩸<br>Donate</div><div class="navI" onclick="go('profile')">👤<br>Profile</div></div>
+<div id="donate" class="screen"><h1>Donate</h1><div class="card"><div class="card-pad"><h1 id="d1">0</h1><p class="small">Donations = lives x3</p><button class="btn" onclick="donate()">Book SANBS</button></div></div></div>
+<div id="profile" class="screen"><h1>MyType</h1><div class="card"><div class="card-pad"><p id="pInfo"></p><button class="btn" style="background:rgba(255,255,255,0.06)" onclick="go('types')">Change type</button></div></div></div>
+
+<div class="nav" id="nav">
+<div class="navI active" onclick="go('home')">🏠<br>Home</div>
+<div class="navI" onclick="go('foods')">🥩<br>Foods</div>
+<div class="navI" onclick="go('meals')">🥗<br>Meals</div>
+<div class="navI" onclick="go('profile')">👤<br>You</div>
+</div>
 </div>
 
 <script>
-const field=document.getElementById('bloodField');
-function createDrop(){const d=document.createElement('div');d.className='drop';d.textContent=Math.random()>0.5?'🩸':'💧';d.style.left=Math.random()*100+'%';d.style.fontSize=(14+Math.random()*20)+'px';d.style.animationDuration=(6+Math.random()*7)+'s';field.appendChild(d);setTimeout(()=>d.remove(),12000);}
-setInterval(createDrop,400);for(let i=0;i<10;i++)createDrop();
-function greet(){let h=new Date().getHours();return h<12?"Good Morning":h<18?"Good Afternoon":"Good Evening";}
-document.getElementById('greet1').textContent=greet()+" • MyType";
-let s=JSON.parse(localStorage.getItem('mytype_real')||'{"name":"","age":"","phone":"","allergy":"","contact":"","type":"","don":0,"meals":0}');
-let db={
-"O+":{desc:"Warrior 38%",meals:[
-{title:"Herb Grilled Lamb Chops + Kale",note:"Iron + protein warrior fuel",img:"https://images.unsplash.com/photo-1546964052-d9334ceb32ee?w=800",tag:"O • High Protein"},
-{title:"Salmon + Avocado Bowl",note:"Omega + healthy fat, light",img:"https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800",tag:"O • Lean"},
-{title:"Beef & Roasted Veg Plate",note:"Energy burst, post-gym",img:"https://images.unsplash.com/photo-1546964053-d2934a56c4a9?w=800",tag:"O • Power"}
-]},
-"O-":{desc:"Universal Donor",meals:[
-{title:"Steak + Spinach",note:"Pure iron",img:"https://images.unsplash.com/photo-1608039824140-e0bbfdc64b04?w=800",tag:"O- • Hero"},
-{title:"Grilled Chicken + Broccoli",note:"Lean clean",img:"https://images.unsplash.com/photo-1532550907401-a500c9a57435?w=800",tag:"O- • Lean"},
-{title:"Tuna Sashimi Bowl",note:"Light protein",img:"https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=800",tag:"O- • Light"}
-]},
-"A+":{desc:"Cultivator 32%",meals:[
-{title:"Tofu Buddha Bowl + Sesame",note:"Calm plant protein, real tofu",img:"https://images.unsplash.com/photo-1540420773420-3366772f4999?w=800",tag:"A • Plant"},
-{title:"Lentil & Roasted Beet Soup",note:"Grounding, earthy",img:"https://images.unsplash.com/photo-1547592180-85f173990554?w=800",tag:"A • Calm"},
-{title:"Mushroom Risotto",note:"Creamy, peaceful",img:"https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=800",tag:"A • Earth"}
-]},
-"A-":{desc:"Rare 6%",meals:[
-{title:"Greek Yogurt + Fresh Figs",note:"Probiotic calm",img:"https://images.unsplash.com/photo-1488477181946-64290103bbd6?w=800",tag:"A- • Light"},
-{title:"Chickpea & Herb Salad",note:"Fresh midday",img:"https://images.unsplash.com/photo-1512621776952-a57141f2eefd?w=800",tag:"A- • Fresh"},
-{title:"Seared Salmon Plate",note:"Omega glow",img:"https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800",tag:"A- • Glow"}
-]},
-"B+":{desc:"Nomad 9%",meals:[
-{title:"Lamb Curry + Turmeric Rice",note:"Warming balanced",img:"https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=800",tag:"B • Balanced"},
-{title:"Eggs + Oats + Berries",note:"Morning stable",img:"https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=800",tag:"B • Morning"},
-{title:"Goat Cheese + Greens",note:"Gut friendly",img:"https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800",tag:"B • Gut"}
-]},
-"B-":{desc:"Rare 2%",meals:[
-{title:"Pan Fish + Lemon Veg",note:"Light nomad",img:"https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800",tag:"B- • Light"},
-{title:"Beef Bone Broth Soup",note:"Hearty",img:"https://images.unsplash.com/photo-1547592180-85f173990554?w=800",tag:"B- • Hearty"},
-{title:"Yogurt Parfait",note:"Cultured",img:"https://images.unsplash.com/photo-1488477181946-64290103bbd6?w=800",tag:"B- • Cultured"}
-]},
-"AB+":{desc:"Universal Receiver",meals:[
-{title:"Seafood Cioppino",note:"Ocean mix",img:"https://images.unsplash.com/photo-1534939561121-4a00a82e5bf2?w=800",tag:"AB+ • Ocean"},
-{title:"Tofu + Veg Stir Fry",note:"Flexible",img:"https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800",tag:"AB+ • Flex"},
-{title:"Yogurt + Passion Fruit",note:"Mixed bliss",img:"https://images.unsplash.com/photo-1488477181946-64290103bbd6?w=800",tag:"AB+ • Bliss"}
-]},
-"AB-":{desc:"Rarest 1%",meals:[
-{title:"Lamb + Roasted Roots",note:"Rich but light",img:"https://images.unsplash.com/photo-1546964053-d2934a56c4a9?w=800",tag:"AB- • Rare"},
-{title:"Tuna + Citrus Salad",note:"Bright enigma",img:"https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800",tag:"AB- • Bright"},
-{title:"Soft Eggs + Sourdough",note:"Gentle morning",img:"https://images.unsplash.com/photo-1482049016688-2d3e1b31122f?w=800",tag:"AB- • Gentle"}
-]},
-"Unknown":{desc:"General",meals:[
-{title:"Grilled Chicken Power Bowl",note:"Whole foods",img:"https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800",tag:"Wellness"},
-{title:"Salmon + Greens",note:"Balanced",img:"https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800",tag:"Wellness"},
-{title:"Fresh Fruit + Yogurt",note:"Light",img:"https://images.unsplash.com/photo-1488477181946-64290103bbd6?w=800",tag:"Wellness"}
-]}
+let s=JSON.parse(localStorage.getItem('mytype_v2')||'{"name":"","age":"","allergy":"","type":"","don":0,"meals":0}');
+let currentFilter='all';
+let FOODS=[
+{t:"Grilled Lamb Chops",type:"O",img:"https://images.unsplash.com/photo-1546964052-d9334ceb32ee?w=800",vits:["B12","Iron","Zinc","Protein"],mins:["Iron 3.5mg","Zinc 5mg","B12 6mcg"],desc:"Warrior fuel, high heme iron"},
+{t:"Spinach & Kale Power",type:"A",img:"https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=800",vits:["Vitamin K","Vitamin A","Folate","Iron"],mins:["Iron 2.7mg","Calcium 99mg","Vitamin K 483mcg"],desc:"Blood builder, vitamin K for clotting"},
+{t:"Wild Salmon Fillet",type:"O",img:"https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800",vits:["Omega-3","D","B12","Selenium"],mins:["Omega-3 2.2g","Vitamin D 11mcg","Selenium 47mcg"],desc:"Anti-inflammatory for all types"},
+{t:"Organic Tofu",type:"A",img:"https://images.unsplash.com/photo-1540420773420-3366772f4999?w=800",vits:["Protein","Iron","Calcium","Manganese"],mins:["Protein 8g","Calcium 130mg","Iron 1.8mg"],desc:"A type calm protein"},
+{t:"Beef Liver",type:"O",img:"https://images.unsplash.com/photo-1608039824140-e0bbfdc64b04?w=800",vits:["Vitamin A","B12","Folate","Copper"],mins:["Vitamin A 9400mcg","B12 60mcg","Iron 6.5mg"],desc:"Most nutrient dense food"},
+{t:"Avocado",type:"A",img:"https://images.unsplash.com/photo-1526948128573-703ee1aeb6fa?w=800",vits:["K","E","B6","Folate"],mins:["Potassium 485mg","Fiber 7g","Healthy Fat 15g"],desc:"Creamy healthy fat for A/B"},
+{t:"Beetroot",type:"A",img:"https://images.unsplash.com/photo-1593105544554-aa78d3c9d03c?w=800",vits:["Folate","C","Nitrate"],mins:["Folate 109mcg","Iron 0.8mg","Potassium 305mg"],desc:"Nitric oxide = blood flow"},
+{t:"Greek Yogurt",type:"B",img:"https://images.unsplash.com/photo-1488477181946-64290103bbd6?w=800",vits:["B12","Calcium","Probiotic","Protein"],mins:["Calcium 110mg","Protein 6g","B12 0.3mcg"],desc:"B type gut hero"},
+{t:"Lentils",type:"A",img:"https://images.unsplash.com/photo-1547592180-85f173990554?w=800",vits:["Folate","Iron","Fiber","Protein"],mins:["Folate 180mcg","Iron 3.3mg","Fiber 8g"],desc:"Plant iron + fiber"},
+{t:"Goat Cheese",type:"B",img:"https://images.unsplash.com/photo-1552767059-ce182ead6c1b?w=800",vits:["Calcium","A","B2"],mins:["Calcium 140mg","Selenium 4mcg"],desc:"B/AB easier than cow dairy"},
+{t:"Blueberries",type:"AB",img:"https://images.unsplash.com/photo-1498557850523-fd3d118b962e?w=800",vits:["C","K","Antioxidants"],mins:["Vitamin C 9.7mg","Fiber 2.4g"],desc:"AB antioxidant protection"},
+{t:"Eggs Pasture Raised",type:"B",img:"https://images.unsplash.com/photo-1482049016688-2d3e1b31122f?w=800",vits:["B12","D","Choline","Lutein"],mins:["Choline 147mg","Vitamin D 1mcg","Protein 6g"],desc:"Complete protein for B"},
+{t:"Broccoli",type:"A",img:"https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?w=800",vits:["C","K","Folate","Sulforaphane"],mins:["Vitamin C 89mg","Vitamin K 101mcg","Fiber 2.6g"],desc:"Detox for A"},
+{t:"Turkey Breast",type:"O",img:"https://images.unsplash.com/photo-1532550907401-a500c9a57435?w=800",vits:["B6","B3","Selenium"],mins:["Protein 29g","Selenium 24mcg","B6 0.5mg"],desc:"Lean O power"},
+{t:"Miso + Seaweed",type:"AB",img:"https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800",vits:["Iodine","K","B12"],mins:["Iodine 35mcg","Probiotics"],desc:"AB enigma gut"},
+{t:"Pap + Morogo (SA)",type:"O",img:"https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800",vits:["Iron","Fiber","Magnesium"],mins:["Iron 1.5mg","Fiber 3g"],desc:"SA staple, add greens for O"}
+];
+let MEALS={
+"O+":[{title:"Lamb + Kale Real Plate",img:FOODS[0].img,note:"Iron + Zinc",foods:[0,1]},{title:"Salmon Bowl",img:FOODS[2].img,note:"Omega",foods:[2,5]}],
+"A+":[{title:"Tofu Buddha Real",img:FOODS[3].img,note:"Calm protein",foods:[3,12]},{title:"Lentil + Beet Power",img:FOODS[8].img,note:"Iron + folate",foods:[8,6]}],
+"B+":[{title:"Yogurt + Berries + Goat Cheese",img:FOODS[7].img,note:"Gut",foods:[7,9,10]},{title:"Eggs + Greens",img:FOODS[11].img,note:"Complete",foods:[11,1]}],
+"AB+":[{title:"Seafood Mix",img:FOODS[2].img,note:"Ocean",foods:[2,14]},{title:"Blueberry Yogurt Parfait",img:FOODS[10].img,note:"Antioxidant",foods:[10,7]}],
+"Unknown":[{title:"Balanced Power Bowl",img:FOODS[13].img,note:"Real food",foods:[13,1,5]}]
 };
-function go(id){document.querySelectorAll('.screen').forEach(e=>e.classList.remove('active'));document.getElementById(id).classList.add('active');document.getElementById('nav').style.display=['home','meals','donate','profile'].includes(id)?'flex':'none';render();}
-function saveP(){s.name=document.getElementById('name').value;s.age=document.getElementById('age').value;s.phone=document.getElementById('phone').value;s.allergy=document.getElementById('allergy').value;s.contact=document.getElementById('contact').value;localStorage.setItem('mytype_real',JSON.stringify(s));go('types');}
-function pick(t){s.type=t;localStorage.setItem('mytype_real',JSON.stringify(s));go('home');}
-function render(){
-let t=s.type||'Unknown';let d=db[t];
-document.getElementById('greetMain').textContent=greet()+', '+(s.name?s.name.split(' ')[0]:'friend');
-document.getElementById('homeName').textContent=s.name?'Hi, '+s.name.split(' ')[0]:'Welcome';
-document.getElementById('badge').textContent=t+' • MyType';
-document.getElementById('mType').textContent='MyType • '+t+' • '+d.desc;
-document.getElementById('score').textContent=50+s.meals*3+s.don*8;
-document.getElementById('donNum').textContent=s.don+' Donations';
-document.getElementById('d1').textContent=s.don;
-document.getElementById('pInfo').innerHTML=`${s.name||''} • ${s.type||'No type'}<br>Allergy: ${s.allergy||'None'}`;
-let html='';
-d.meals.forEach(m=>{
-html+=`<div class="card realMeal"><img src="${m.img}" loading="lazy"><div class="info"><span class="tag">${m.tag}</span><h4>${m.title}</h4><p>${m.note} — real photo, real food for ${t}</p></div></div>`;
-});
-document.getElementById('mealCards').innerHTML=html;
+function go(id){document.querySelectorAll('.screen').forEach(e=>e.classList.remove('active'));document.getElementById(id).classList.add('active');document.getElementById('nav').style.display=['home','foods','meals','donate','profile'].includes(id)?'flex':'none';if(id=='home')document.querySelectorAll('.navI')[0].classList.add('active');render();}
+function saveP(){s.name=document.getElementById('name').value;s.age=document.getElementById('age').value;s.allergy=document.getElementById('allergy').value;localStorage.setItem('mytype_v2',JSON.stringify(s));go('types');}
+function pick(t){s.type=t;localStorage.setItem('mytype_v2',JSON.stringify(s));go('home');}
+function setFilter(f,el){currentFilter=f;document.querySelectorAll('.fchip').forEach(c=>c.classList.remove('active'));el.classList.add('active');filterFoods();}
+function filterFoods(){
+let q=(document.getElementById('foodSearch').value||'').toLowerCase();
+let list=document.getElementById('foodList');let html='';
+FOODS.forEach((fd,i)=>{
+let matchSearch=!q||fd.t.toLowerCase().includes(q)||fd.vits.join(' ').toLowerCase().includes(q)||fd.mins.join(' ').toLowerCase().includes(q)||fd.desc.toLowerCase().includes(q);
+let matchFilter=currentFilter=='all'||(currentFilter=='iron'&&fd.mins.join(' ').toLowerCase().includes('iron'))||(currentFilter=='vitamin'&&fd.vits.length>0)||fd.type.includes(currentFilter);
+if(matchSearch&&matchFilter){
+html+=`<div class="card"><img src="${fd.img}" style="width:100%;height:170px;object-fit:cover"><div class="info"><span class="tag">${fd.type} • ${fd.t}</span><h4 style="margin-top:6px">${fd.t}</h4><p class="small">${fd.desc}</p><div class="vits">${fd.vits.map(v=>`<span class="vit"><b>${v}</b></span>`).join('')}${fd.mins.map(m=>`<span class="vit mineral"><b>${m.split(' ')[0]}</b> ${m.substring(m.indexOf(' ')+1)}</span>`).join('')}</div><p class="small" style="margin-top:8px"><b>Supply:</b> ${fd.mins.join(', ')}</p></div></div>`;
 }
-function logMeal(){s.meals++;localStorage.setItem('mytype_real',JSON.stringify(s));render();}
-function donate(){s.don++;localStorage.setItem('mytype_real',JSON.stringify(s));render();}
-render();if(s.name&&s.type)go('home');else go('s1');
+});
+list.innerHTML=html||`<div class="card"><div class="card-pad"><p class="small">No food found for "${q}" — try iron, vitamin C, lamb, tofu</p></div></div>`;
+}
+function quickSearch(v){if(v.length>2){go('foods');document.getElementById('foodSearch').value=v;filterFoods();}}
+function render(){
+document.getElementById('homeName').textContent=s.name?'Hi '+s.name.split(' ')[0]:'Welcome';
+document.getElementById('badge').textContent=(s.type||'MyType')+' • Real Food';
+document.getElementById('score').textContent=50+s.meals*3+s.don*8;
+document.getElementById('d1').textContent=s.don;
+document.getElementById('pInfo').textContent=(s.name||'No name')+' • '+(s.type||'No type');
+let t=s.type||'Unknown';let mt=MEALS[t]||MEALS['Unknown'];
+let mType=document.getElementById('mType');if(mType)mType.textContent='MyType • '+t;
+let mealCards=document.getElementById('mealCards');if(mealCards){
+let mh='';mt.forEach(m=>{mh+=`<div class="card"><img src="${m.img}" style="width:100%;height:170px;object-fit:cover"><div class="info"><span class="tag">${t}</span><h4>${m.title}</h4><p class="small">${m.note}</p></div></div>`});mealCards.innerHTML=mh;
+}
+filterFoods();
+}
+function donate(){s.don++;localStorage.setItem('mytype_v2',JSON.stringify(s));render();}
+render();
 </script>
 </body>
 </html>
