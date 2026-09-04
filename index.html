@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MyType • Real Food • Clickable • Vitamins</title>
+<title>MyType • Real Food • Vitamins</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;800&display=swap');
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Plus Jakarta Sans',sans-serif}
@@ -29,12 +29,10 @@ body{background:#080a14;color:white;display:flex;justify-content:center}
 .vits{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
 .vit{font-size:10px;font-weight:700;padding:6px 10px;border-radius:100px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1)}
 .vit b{color:#5a85ff}
-.vit.mineral b{color:#4ade80}
 .input{width:100%;padding:16px 18px;border-radius:16px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);color:white;font-size:15px;margin:8px 0}
 .btn{width:100%;background:linear-gradient(135deg,#2a5bd7,#ff3b7f);color:white;border:none;padding:17px;border-radius:100px;font-weight:800;font-size:15px;margin-top:12px;cursor:pointer}
 .typeGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
 .typeCard{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:16px;text-align:center;cursor:pointer}
-.typeCard.active{background:linear-gradient(135deg,#2a5bd7,#ff3b7f)}
 .nav{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);width:90%;max-width:380px;background:rgba(15,19,38,0.94);backdrop-filter:blur(30px);border:1px solid rgba(255,255,255,0.08);border-radius:100px;display:flex;justify-content:space-around;padding:8px;z-index:20}
 .navI{flex:1;text-align:center;padding:10px 6px;border-radius:100px;cursor:pointer;color:rgba(255,255,255,0.5);font-size:11px;font-weight:700}
 .navI.active{background:white;color:#06091a}
@@ -42,7 +40,6 @@ body{background:#080a14;color:white;display:flex;justify-content:center}
 .filterRow{display:flex;gap:8px;overflow:auto;padding:6px 0 10px 0}
 .fchip{white-space:nowrap;padding:8px 14px;border-radius:100px;font-size:11px;font-weight:700;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);cursor:pointer}
 .fchip.active{background:linear-gradient(135deg,#2a5bd7,#ff3b7f);border-color:transparent}
-/* DETAIL MODAL */
 #modal{position:fixed;inset:0;z-index:99;background:rgba(0,0,0,0.7);backdrop-filter:blur(12px);display:none;align-items:end;justify-content:center}
 #modal.show{display:flex}
 .modalBox{width:100%;max-width:430px;background:#11152b;border-top-left-radius:32px;border-top-right-radius:32px;border:1px solid rgba(255,255,255,0.1);max-height:88vh;overflow:auto;animation:slideUp 0.35s}
@@ -55,14 +52,13 @@ body{background:#080a14;color:white;display:flex;justify-content:center}
 <body>
 <div class="app">
 <div class="blob b1"></div><div class="blob b2"></div>
-<div class="top"><div class="logo">🩸 <span>MyType</span></div><div class="badge">TAP ANY MEAL</div></div>
+<div class="top"><div class="logo">🩸 <span>MyType</span></div><div class="badge">REAL FOOD + VITAMINS</div></div>
 
 <div id="s1" class="screen active">
 <div style="text-align:center;padding:18px 0">
 <div style="width:76px;height:76px;border-radius:24px;display:flex;align-items:center;justify-content:center;font-size:38px;margin:0 auto 14px auto;background:linear-gradient(135deg,#2a5bd7,#ff3b7f)">🩸</div>
 <div class="pill">MyType • Know. Eat. Give.</div>
-<h1 style="margin-top:14px;font-size:32px;line-height:0.95">Tap any meal.<br>See <span style="background:linear-gradient(90deg,#5a85ff,#ff7ab6);-webkit-background-clip:text;-webkit-text-fill-color:transparent">real vitamins.</span></h1>
-<p class="small" style="margin-top:10px">All cards now clickable — like Uber Eats</p>
+<h1 style="margin-top:14px;font-size:32px;line-height:0.95">Real food,<br>real vitamins,<br><span style="background:linear-gradient(90deg,#5a85ff,#ff7ab6);-webkit-background-clip:text;-webkit-text-fill-color:transparent">for your blood.</span></h1>
 </div>
 <button class="btn" onclick="go('s2')">Create MyType Profile →</button>
 </div>
@@ -79,15 +75,15 @@ body{background:#080a14;color:white;display:flex;justify-content:center}
 
 <div id="home" class="screen">
 <div style="display:flex;justify-content:space-between"><div><div class="pill" id="greetMain">Hi</div><h1 style="font-size:22px;margin-top:8px" id="homeName">Welcome</h1></div><div class="pill" id="badgeType">MyType</div></div>
-<div class="card" style="background:linear-gradient(135deg,#2a5bd7,#ff3b7f);cursor:default"><div class="card-pad"><p style="font-size:11px">SCORE</p><h1 style="font-size:42px" id="score">60</h1><p class="small" style="color:white" id="homeDesc">Tap meals below → see vitamins</p></div></div>
+<div class="card" style="background:linear-gradient(135deg,#2a5bd7,#ff3b7f);cursor:default"><div class="card-pad"><p style="font-size:11px">SCORE</p><h1 style="font-size:42px" id="score">60</h1><p class="small" style="color:white" id="homeDesc">Tap meals below to see vitamins</p></div></div>
 <div class="searchWrap"><span class="searchIcon">🔍</span><input id="quickSearch" class="search" placeholder="Search food, iron, vitamin C..." oninput="quickSearch(this.value)"></div>
-<h3 style="margin:6px 0">Your meals — tap any 👇</h3>
+<h3 style="margin:6px 0">Your meals 👇</h3>
 <div id="homeMeals"></div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px"><div class="card" onclick="go('foods')"><div class="card-pad"><b>🥩 Foods</b><p class="small">60+ items searchable</p></div></div><div class="card" onclick="go('meals')"><div class="card-pad"><b>🥗 All Meals</b><p class="small">Tap for details</p></div></div></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px"><div class="card" onclick="go('foods')"><div class="card-pad"><b>🥩 Foods</b><p class="small">Searchable library</p></div></div><div class="card" onclick="go('meals')"><div class="card-pad"><b>🥗 All Meals</b><p class="small">Tap for details</p></div></div></div>
 </div>
 
 <div id="foods" class="screen">
-<div class="pill">MyType • Food Library • Tap any</div>
+<div class="pill">MyType • Food Library</div>
 <h1 style="margin-top:10px;font-size:26px">Real foods<br>+ vitamins</h1>
 <div class="searchWrap"><span class="searchIcon">🔍</span><input id="foodSearch" class="search" placeholder="Search lamb, iron, vitamin D..." oninput="filterFoods()"></div>
 <div class="filterRow">
@@ -102,7 +98,7 @@ body{background:#080a14;color:white;display:flex;justify-content:center}
 <div id="foodList"></div>
 </div>
 
-<div id="meals" class="screen"><div class="pill" id="mType">MyType</div><h1 style="margin-top:10px;font-size:26px">Meals for your type — tap 👇</h1><div id="mealCards"></div></div>
+<div id="meals" class="screen"><div class="pill" id="mType">MyType</div><h1 style="margin-top:10px;font-size:26px">Meals for your type 👇</h1><div id="mealCards"></div></div>
 <div id="donate" class="screen"><h1>Donate</h1><div class="card" style="cursor:default"><div class="card-pad"><h1 id="d1">0</h1><p class="small">Donations</p><button class="btn" onclick="donate()">Book SANBS</button></div></div></div>
 <div id="profile" class="screen"><h1>MyType</h1><div class="card" style="cursor:default"><div class="card-pad"><p id="pInfo"></p><button class="btn" style="background:rgba(255,255,255,0.06)" onclick="go('types')">Change type</button></div></div></div>
 
@@ -114,7 +110,6 @@ body{background:#080a14;color:white;display:flex;justify-content:center}
 </div>
 </div>
 
-<!-- DETAIL MODAL -->
 <div id="modal" onclick="if(event.target==this)closeModal()">
 <div class="modalBox">
 <img id="modalImg" src="">
@@ -145,20 +140,20 @@ let currentFilter='all', currentModalFood=null;
 let FOODS=[
 {t:"Grilled Lamb Chops",type:"O",img:"https://images.unsplash.com/photo-1546964052-d9334ceb32ee?w=800",vits:["Vitamin B12","Iron","Zinc","Protein"],mins:["Iron 3.5mg (19% DV)","Zinc 5.2mg (47% DV)","Vitamin B12 6.2mcg (258% DV)","Protein 25g"],desc:"Warrior fuel, high heme iron for O types",why:"O types thrive on high-protein red meat. Heme iron prevents fatigue, B12 builds red blood cells."},
 {t:"Spinach & Kale Power",type:"A",img:"https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=800",vits:["Vitamin K","Vitamin A","Folate","Iron","Calcium"],mins:["Vitamin K 483mcg (402% DV)","Vitamin A 469mcg","Folate 58mcg","Iron 2.7mg","Calcium 99mg"],desc:"Blood builder, vitamin K for clotting",why:"A types do best plant-based. Vitamin K helps clotting, folate builds healthy blood."},
-{t:"Wild Salmon Fillet",type:"O",img:"https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800",vits:["Omega-3","Vitamin D","B12","Selenium"],mins:["Omega-3 2.2g","Vitamin D 11mcg (55% DV)","Selenium 47mcg","Protein 20g"],desc:"Anti-inflammatory for all types",why:"Omega-3 thins blood naturally, vitamin D boosts immunity — critical for all blood types."},
-{t:"Organic Tofu Bowl",type:"A",img:"https://images.unsplash.com/photo-1540420773420-3366772f4999?w=800",vits:["Protein","Iron","Calcium","Manganese"],mins:["Protein 8g","Calcium 130mg (10% DV)","Iron 1.8mg","Manganese 0.6mg"],desc:"A type calm protein, no meat stress",why:"A types produce less stomach acid for meat. Tofu is calm, easy protein."},
-{t:"Beef Liver (Superfood)",type:"O",img:"https://images.unsplash.com/photo-1608039824140-e0bbfdc64b04?w=800",vits:["Vitamin A","B12","Folate","Copper","Iron"],mins:["Vitamin A 9400mcg (1044% DV)","B12 60mcg (2500% DV)","Iron 6.5mg","Copper 10mg"],desc:"Most nutrient dense food on earth",why:"One serving covers B12 for a week. Perfect for O who needs iron & B12."},
-{t:"Avocado & Egg",type:"A",img:"https://images.unsplash.com/photo-1526948128573-703ee1aeb6fa?w=800",vits:["Vitamin K","E","B6","Folate","Healthy Fat"],mins:["Potassium 485mg","Fiber 7g","Healthy Fat 15g","Folate 81mcg"],desc:"Creamy healthy fat for A/B",why:"Good fat for A/B who should limit red meat. Potassium balances blood pressure."},
-{t:"Beetroot",type:"A",img:"https://images.unsplash.com/photo-1593105544554-aa78d3c9d03c?w=800",vits:["Folate","Vitamin C","Nitrate"],mins:["Folate 109mcg","Potassium 305mg","Nitrate 250mg"],desc:"Nitric oxide = blood flow booster",why:"Beets make nitric oxide — opens blood vessels, improves circulation for all types."},
-{t:"Greek Yogurt",type:"B",img:"https://images.unsplash.com/photo-1488477181946-64290103bbd6?w=800",vits:["B12","Calcium","Probiotic","Protein"],mins:["Calcium 110mg","Protein 6g","Probiotics live cultures"],desc:"B type gut hero, easy dairy",why:"B types are only type that digests dairy well. Probiotics = gut immunity."},
-{t:"Lentils",type:"A",img:"https://images.unsplash.com/photo-1547592180-85f173990554?w=800",vits:["Folate","Iron","Fiber","Protein"],mins:["Folate 180mcg (45% DV)","Iron 3.3mg","Fiber 8g","Protein 9g"],desc:"Plant iron + fiber for A",why:"Lentils give iron without meat — ideal for A who should limit red meat."},
-{t:"Goat Cheese & Greens",type:"B",img:"https://images.unsplash.com/photo-1552767059-ce182ead6c1b?w=800",vits:["Calcium","Vitamin A","B2","Probiotic"],mins:["Calcium 140mg","Protein 5g"],desc:"B/AB easier than cow dairy",why:"Goat dairy has A2 casein, easier for B/AB vs cow A1."},
-{t:"Blueberries",type:"AB",img:"https://images.unsplash.com/photo-1498557850523-fd3d118b962e?w=800",vits:["Vitamin C","K","Antioxidants","Fiber"],mins:["Vitamin C 9.7mg","Fiber 2.4g","Antioxidants high"],desc:"AB antioxidant protection",why:"AB is modern rare type — needs antioxidants to protect sensitive immune system."},
-{t:"Pasture Eggs",type:"B",img:"https://images.unsplash.com/photo-1482049016688-2d3e1b31122f?w=800",vits:["B12","Vitamin D","Choline","Lutein"],mins:["Choline 147mg (27% DV)","Vitamin D 1mcg","Protein 6g","Lutein eye health"],desc:"Complete protein for B",why:"B thrives on balanced omnivore — eggs perfect complete protein."}
+{t:"Wild Salmon Fillet",type:"O",img:"https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800",vits:["Omega-3","Vitamin D","B12","Selenium"],mins:["Omega-3 2.2g","Vitamin D 11mcg (55% DV)","Selenium 47mcg","Protein 20g"],desc:"Anti-inflammatory for all types",why:"Omega-3 thins blood naturally, vitamin D boosts immunity."},
+{t:"Organic Tofu Bowl",type:"A",img:"https://images.unsplash.com/photo-1540420773420-3366772f4999?w=800",vits:["Protein","Iron","Calcium","Manganese"],mins:["Protein 8g","Calcium 130mg (10% DV)","Iron 1.8mg","Manganese 0.6mg"],desc:"A type calm protein",why:"A types produce less stomach acid for meat. Tofu is calm, easy protein."},
+{t:"Beef Liver",type:"O",img:"https://images.unsplash.com/photo-1608039824140-e0bbfdc64b04?w=800",vits:["Vitamin A","B12","Folate","Copper","Iron"],mins:["Vitamin A 9400mcg (1044% DV)","B12 60mcg (2500% DV)","Iron 6.5mg","Copper 10mg"],desc:"Most nutrient dense food",why:"One serving covers B12 for a week. Perfect for O who needs iron & B12."},
+{t:"Avocado & Egg",type:"A",img:"https://images.unsplash.com/photo-1526948128573-703ee1aeb6fa?w=800",vits:["Vitamin K","E","B6","Folate"],mins:["Potassium 485mg","Fiber 7g","Healthy Fat 15g","Folate 81mcg"],desc:"Creamy healthy fat for A/B",why:"Good fat for A/B who should limit red meat."},
+{t:"Beetroot",type:"A",img:"https://images.unsplash.com/photo-1593105544554-aa78d3c9d03c?w=800",vits:["Folate","Vitamin C","Nitrate"],mins:["Folate 109mcg","Potassium 305mg","Nitrate 250mg"],desc:"Nitric oxide = blood flow booster",why:"Beets make nitric oxide — opens blood vessels."},
+{t:"Greek Yogurt",type:"B",img:"https://images.unsplash.com/photo-1488477181946-64290103bbd6?w=800",vits:["B12","Calcium","Probiotic","Protein"],mins:["Calcium 110mg","Protein 6g","Probiotics live cultures"],desc:"B type gut hero",why:"B types are only type that digests dairy well."},
+{t:"Lentils",type:"A",img:"https://images.unsplash.com/photo-1547592180-85f173990554?w=800",vits:["Folate","Iron","Fiber","Protein"],mins:["Folate 180mcg (45% DV)","Iron 3.3mg","Fiber 8g","Protein 9g"],desc:"Plant iron + fiber for A",why:"Lentils give iron without meat — ideal for A."},
+{t:"Goat Cheese & Greens",type:"B",img:"https://images.unsplash.com/photo-1552767059-ce182ead6c1b?w=800",vits:["Calcium","Vitamin A","B2"],mins:["Calcium 140mg","Protein 5g"],desc:"B/AB easier than cow dairy",why:"Goat dairy has A2 casein, easier for B/AB."},
+{t:"Blueberries",type:"AB",img:"https://images.unsplash.com/photo-1498557850523-fd3d118b962e?w=800",vits:["Vitamin C","K","Antioxidants"],mins:["Vitamin C 9.7mg","Fiber 2.4g"],desc:"AB antioxidant protection",why:"AB needs antioxidants to protect sensitive immune system."},
+{t:"Pasture Eggs",type:"B",img:"https://images.unsplash.com/photo-1482049016688-2d3e1b31122f?w=800",vits:["B12","Vitamin D","Choline","Lutein"],mins:["Choline 147mg (27% DV)","Vitamin D 1mcg","Protein 6g"],desc:"Complete protein for B",why:"B thrives on balanced omnivore."}
 ];
 let MEALS={
-"O+":[{title:"Herb Grilled Lamb + Kale",img:FOODS[0].img,note:"Tap for vitamins",foods:[0,1]},{title:"Salmon Power Bowl",img:FOODS[2].img,note:"Tap for omega info",foods:[2,5]},{title:"Beef Liver Super Dose",img:FOODS[4].img,note:"Most nutrients",foods:[4]}],
-"A+":[{title:"Tofu Buddha Bowl",img:FOODS[3].img,note:"Tap for protein info",foods:[3,1]},{title:"Lentil + Beet Flow Bowl",img:FOODS[8].img,note:"Iron + circulation",foods:[8,6]},{title:"Avocado Greens",img:FOODS[5].img,note:"Healthy fat",foods:[5,1]}],
+"O+":[{title:"Herb Grilled Lamb + Kale",img:FOODS[0].img,note:"Iron + Zinc",foods:[0,1]},{title:"Salmon Power Bowl",img:FOODS[2].img,note:"Omega",foods:[2,5]},{title:"Beef Liver Super Dose",img:FOODS[4].img,note:"Most nutrients",foods:[4]}],
+"A+":[{title:"Tofu Buddha Bowl",img:FOODS[3].img,note:"Calm protein",foods:[3,1]},{title:"Lentil + Beet Flow Bowl",img:FOODS[8].img,note:"Iron + circulation",foods:[8,6]},{title:"Avocado Greens",img:FOODS[5].img,note:"Healthy fat",foods:[5,1]}],
 "B+":[{title:"Yogurt + Berries + Goat Cheese",img:FOODS[7].img,note:"Gut hero",foods:[7,10,9]},{title:"Pasture Eggs + Greens",img:FOODS[11].img,note:"Complete",foods:[11,1]},{title:"Goat Cheese Salad",img:FOODS[9].img,note:"Easy dairy",foods:[9,1]}],
 "AB+":[{title:"Seafood Mix + Avocado",img:FOODS[2].img,note:"Ocean",foods:[2,5]},{title:"Blueberry Yogurt Parfait",img:FOODS[10].img,note:"Antioxidant",foods:[10,7]},{title:"Tofu + Beet",img:FOODS[3].img,note:"Enigma",foods:[3,6]}],
 "O-":[{title:"Steak + Spinach",img:FOODS[0].img,note:"Donor power",foods:[0,1]}],"A-":[{title:"Tofu + Greens",img:FOODS[3].img,note:"Calm",foods:[3,1]}],"B-":[{title:"Eggs + Yogurt",img:FOODS[11].img,note:"Balanced",foods:[11,7]}],"AB-":[{title:"Rarest Plate",img:FOODS[10].img,note:"Rare",foods:[10,3]}],
@@ -196,7 +191,7 @@ let allMins=m.foods.map(fi=>FOODS[fi].mins.join(', ')).join(', ');
 let allVits=[...new Set(m.foods.flatMap(fi=>FOODS[fi].vits))];
 currentModalFood=combined;
 document.getElementById('modalImg').src=m.img;
-document.getElementById('modalTag').textContent=t+' • Meal • TAP TO LOG';
+document.getElementById('modalTag').textContent=t+' • Meal';
 document.getElementById('modalTitle').textContent=m.title;
 document.getElementById('modalDesc').textContent=m.note+' — contains '+m.foods.map(fi=>FOODS[fi].t).join(' + ');
 document.getElementById('modalVits').innerHTML=allVits.map(v=>`<span class="vit"><b>${v}</b></span>`).join('');
@@ -205,7 +200,7 @@ document.getElementById('modalWhy').textContent=FOODS[m.foods[0]].why;
 document.getElementById('modal').classList.add('show');
 }
 function closeModal(){document.getElementById('modal').classList.remove('show');}
-function logMealFromModal(){s.meals++;localStorage.setItem('mytype_v3',JSON.stringify(s));closeModal();render();alert('✅ MyType logged! +3 score');}
+function logMealFromModal(){s.meals++;localStorage.setItem('mytype_v3',JSON.stringify(s));closeModal();render();}
 function render(){
 let t=s.type||'Unknown';
 document.getElementById('homeName').textContent=s.name?'Hi '+s.name.split(' ')[0]:'Welcome';
@@ -214,11 +209,11 @@ document.getElementById('score').textContent=50+s.meals*3+s.don*8;
 document.getElementById('d1').textContent=s.don;
 document.getElementById('pInfo').textContent=(s.name||'No name')+' • '+(s.type||'No type');
 let mt=MEALS[t]||MEALS['Unknown'];
-let mType=document.getElementById('mType');if(mType)mType.textContent='MyType • '+t+' • Tap any meal';
+let mType=document.getElementById('mType');if(mType)mType.textContent='MyType • '+t;
 let homeMeals=document.getElementById('homeMeals');
-if(homeMeals){let hm='';mt.forEach((m,i)=>{hm+=`<div class="card" onclick="openMealDetail('${t}',${i})"><img src="${m.img}" style="width:100%;height:160px;object-fit:cover"><div class="info"><span class="tag">${t} • ${m.title} • TAP</span><h4>${m.title}</h4><p class="small">${m.note} — tap for full vitamins & minerals</p></div></div>`});homeMeals.innerHTML=hm;}
+if(homeMeals){let hm='';mt.forEach((m,i)=>{hm+=`<div class="card" onclick="openMealDetail('${t}',${i})"><img src="${m.img}" style="width:100%;height:160px;object-fit:cover"><div class="info"><span class="tag">${t} • ${m.title}</span><h4>${m.title}</h4><p class="small">${m.note} — tap for vitamins</p></div></div>`});homeMeals.innerHTML=hm;}
 let mealCards=document.getElementById('mealCards');
-if(mealCards){let mh='';mt.forEach((m,i)=>{mh+=`<div class="card" onclick="openMealDetail('${t}',${i})"><img src="${m.img}" style="width:100%;height:160px;object-fit:cover"><div class="info"><span class="tag">${t} • TAP FOR VITAMINS</span><h4>${m.title}</h4><p class="small">${m.note} — tap to see what it supplies</p></div></div>`});mealCards.innerHTML=mh;}
+if(mealCards){let mh='';mt.forEach((m,i)=>{mh+=`<div class="card" onclick="openMealDetail('${t}',${i})"><img src="${m.img}" style="width:100%;height:160px;object-fit:cover"><div class="info"><span class="tag">${t} • TAP FOR VITAMINS</span><h4>${m.title}</h4><p class="small">${m.note}</p></div></div>`});mealCards.innerHTML=mh;}
 filterFoods();
 }
 function donate(){s.don++;localStorage.setItem('mytype_v3',JSON.stringify(s));render();}
