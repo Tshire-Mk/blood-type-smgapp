@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MyType • Know your type • Know your food</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>MyType • Know your type • Know your food • Red</title>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js"}}</script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;800&display=swap');
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Plus Jakarta Sans',sans-serif}
-body{background:#06080f;color:white;display:flex;justify-content:center;overflow:hidden}
-.app{width:100%;max-width:430px;height:100vh;position:relative;overflow:hidden;background:#06080f}
+html{height:100%;overflow:hidden}
+body{background:#06080f;color:white;display:flex;justify-content:center;overflow:hidden;height:100%;position:fixed;width:100%;touch-action:manipulation}
+.app{width:100%;max-width:430px;height:100dvh;position:relative;overflow:hidden;background:#06080f;display:flex;flex-direction:column}
 #bg3d{position:absolute;inset:0;z-index:0}
 .glass{background:linear-gradient(135deg,rgba(255,255,255,0.14),rgba(255,255,255,0.05));backdrop-filter:blur(40px) saturate(180%);-webkit-backdrop-filter:blur(40px) saturate(180%);border:1px solid rgba(255,255,255,0.18);border-top:1px solid rgba(255,255,255,0.35);box-shadow:inset 0 1px 0 rgba(255,255,255,0.4),0 8px 32px rgba(0,0,0,0.4);position:relative}
-.glass::before{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(105deg,rgba(255,255,255,0.25) 0%,transparent 15%,transparent 85%,rgba(255,255,255,0.1) 100%);pointer-events:none}
-.glass-strong{background:linear-gradient(135deg,rgba(255,255,255,0.20),rgba(255,255,255,0.07));backdrop-filter:blur(50px) saturate(200%);-webkit-backdrop-filter:blur(50px) saturate(200%)}
-.top{position:sticky;top:0;z-index:10;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;margin:12px;border-radius:20px}
+.glass-strong{background:linear-gradient(135deg,rgba(255,255,255,0.20),rgba(255,255,255,0.07));backdrop-filter:blur(50px) saturate(200%)}
+.top{position:sticky;top:0;z-index:10;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;margin:10px;border-radius:20px;flex-shrink:0}
 .logo{font-weight:800;font-size:18px;display:flex;gap:8px;align-items:center}
 .logo span{background:linear-gradient(135deg,#ff5a6a,#8aa7ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .basket{padding:8px 14px;border-radius:100px;font-size:12px;font-weight:800;cursor:pointer}
-.screen{display:none;padding:0 12px 120px 12px;height:100vh;overflow:auto;position:relative;z-index:2}
+.screen{display:none;padding:0 12px 110px 12px;flex:1;overflow:auto;position:relative;z-index:2;-webkit-overflow-scrolling:touch}
 .screen.active{display:flex;flex-direction:column}
 .card{border-radius:22px;overflow:hidden;margin:10px 0;cursor:pointer}
-.search{width:100%;padding:14px 16px 14px 40px;border-radius:16px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.12);color:white;font-size:14px;outline:none;backdrop-filter:blur(20px)}
+.search{width:100%;padding:14px 16px 14px 40px;border-radius:16px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.12);color:white;font-size:16px;outline:none;backdrop-filter:blur(20px)} /* 16px prevents iOS zoom */
 .searchWrap{position:relative;margin:10px 0}
 .searchIcon{position:absolute;left:14px;top:50%;transform:translateY(-50%);opacity:0.6}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -36,8 +37,8 @@ body{background:#06080f;color:white;display:flex;justify-content:center;overflow
 .filterRow{display:flex;gap:6px;overflow:auto;padding:8px 0}
 .fchip{white-space:nowrap;padding:8px 12px;border-radius:100px;font-size:11px;font-weight:700;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);cursor:pointer}
 .fchip.active{background:white;color:black}
-.input{width:100%;padding:14px;border-radius:14px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.12);color:white;margin:6px 0}
-.btn{width:100%;border:none;padding:14px;border-radius:100px;font-weight:800;margin-top:10px;cursor:pointer;color:white;background:linear-gradient(135deg,#ff2a45,#ff5a8a)}
+.input{width:100%;padding:14px;border-radius:14px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.12);color:white;margin:6px 0;font-size:16px} /* 16px = no zoom */
+.btn{width:100%;border:none;padding:14px;border-radius:100px;font-weight:800;margin-top:10px;cursor:pointer;color:white;background:linear-gradient(135deg,#ff2a45,#ff5a8a);font-size:16px}
 .btn-outline{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15)}
 .btn-danger{background:rgba(255,59,79,0.2);border:1px solid rgba(255,59,79,0.3);color:#ff8a9b}
 .nav{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);width:96%;max-width:410px;display:flex;justify-content:space-around;padding:6px;z-index:20;border-radius:100px}
@@ -52,16 +53,16 @@ body{background:#06080f;color:white;display:flex;justify-content:center;overflow
 .small{font-size:12px;opacity:0.65;line-height:1.45}
 .typeGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .typeCard{border-radius:16px;padding:14px;text-align:center;cursor:pointer}
-/* RED ROBOT */
+/* RED ROBOT - NAME RED */
 .botFab{position:fixed;bottom:92px;right:16px;width:74px;height:74px;border-radius:24px;background:linear-gradient(135deg,rgba(255,20,50,0.98),rgba(150,0,20,0.98));backdrop-filter:blur(40px) saturate(200%);border:1px solid rgba(255,255,255,0.3);border-top:1px solid rgba(255,255,255,0.6);box-shadow:0 12px 32px rgba(255,0,40,0.55), inset 0 1px 0 rgba(255,255,255,0.6);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:25;animation:botFloat 3s ease-in-out infinite}
 @keyframes botFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
 .botFace{width:100%;height:100%;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .botEyes{display:flex;gap:14px;margin-bottom:5px}
-.eye{width:14px;height:14px;background:white;border-radius:100px;position:relative;box-shadow:0 0 14px rgba(255,255,255,0.9), inset 0 -2px 0 rgba(0,0,0,0.15)}
-.pupil{width:7px;height:7px;background:#7a000f;border-radius:100px;position:absolute;top:2px;left:2px;transition:all 0.15s;box-shadow:0 0 6px rgba(255,0,40,0.8)}
+.eye{width:14px;height:14px;background:white;border-radius:100px;position:relative;box-shadow:0 0 14px rgba(255,255,255,0.9)}
+.pupil{width:7px;height:7px;background:#7a000f;border-radius:100px;position:absolute;top:2px;left:2px;transition:all 0.15s}
 .botMouth{width:22px;height:3px;background:rgba(0,0,0,0.7);border-radius:100px;margin-top:2px}
 .botDot{position:absolute;top:-5px;right:-5px;width:16px;height:16px;background:#00e5a8;border-radius:100px;border:3px solid #06080f}
-.botName{position:absolute;bottom:-20px;font-size:8px;font-weight:800;letter-spacing:1px;background:rgba(150,0,20,0.9);color:white;padding:3px 8px;border-radius:100px;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.2)}
+.botName{position:absolute;bottom:-20px;font-size:9px;font-weight:800;letter-spacing:1px;background:rgba(150,0,20,0.95);color:white;padding:3px 8px;border-radius:100px;border:1px solid rgba(255,255,255,0.2)}
 .chat{flex:1;overflow:auto;display:flex;flex-direction:column;gap:10px;padding:6px 0}
 .bubble{max-width:82%;padding:12px 14px;border-radius:18px;font-size:13px;line-height:1.4;backdrop-filter:blur(20px)}
 .bubble.bot{align-self:flex-start;border-bottom-left-radius:6px}
@@ -73,7 +74,9 @@ body{background:#06080f;color:white;display:flex;justify-content:center;overflow
 .factOverlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.9) 0%,rgba(0,0,0,0.4) 45%,transparent 85%)}
 .factContent{position:absolute;bottom:0;left:0;right:0;padding:14px}
 .factTag{padding:5px 10px;border-radius:100px;font-size:9px;font-weight:800;display:inline-block;margin-bottom:8px;background:linear-gradient(135deg,#ff2a45,#ff5a8a);color:white}
-.factSource{font-size:9px;opacity:0.6;margin-top:6px}
+/* LOGIN HIGHER */
+#s1{justify-content:flex-start;padding-top:8px}
+#s1.heroTop{padding:12px 0 8px 0}
 </style>
 </head>
 <body>
@@ -82,35 +85,26 @@ body{background:#06080f;color:white;display:flex;justify-content:center;overflow
 <div class="top glass"><div class="logo">🩸 <span>MyType</span></div><div class="basket glass" onclick="go('basket')">🛒 <span id="basketCount">0</span></div></div>
 
 <div id="s1" class="screen active">
-<div style="text-align:center;padding:18px 0 12px 0">
-<div class="glass" style="width:88px;height:88px;border-radius:26px;display:flex;align-items:center;justify-content:center;font-size:38px;margin:0 auto 14px auto;background:linear-gradient(135deg,rgba(255,255,255,0.15),rgba(255,255,255,0.05))">🩸</div>
-<!-- FIXED BADGE HERE -->
+<div class="heroTop" style="text-align:center">
+<div class="glass" style="width:80px;height:80px;border-radius:24px;display:flex;align-items:center;justify-content:center;font-size:36px;margin:0 auto 10px auto">🩸</div>
 <div class="glass" style="display:inline-block;padding:8px 18px;border-radius:100px;font-size:12px;font-weight:800;letter-spacing:0.3px">Know your type • Know your food</div>
-<h1 style="margin-top:14px;font-size:28px;line-height:0.95">Know your type.<br>Save a life.<br><span style="background:linear-gradient(90deg,#ff5a6a,#8aa7ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Feed your blood.</span></h1>
+<h1 style="margin-top:10px;font-size:26px;line-height:0.95">Know your type.<br>Save a life.<br><span style="background:linear-gradient(90deg,#ff5a6a,#8aa7ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Feed your blood.</span></h1>
 </div>
-<div class="card glass" onclick="go('facts')"><img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800" style="width:100%;height:160px;object-fit:cover"><div style="padding:12px"><span style="padding:5px 10px;border-radius:100px;background:linear-gradient(135deg,#ff2a45,#ff5a8a);font-size:10px;font-weight:800">⚠️ DID YOU KNOW?</span><h3 style="margin-top:6px;font-size:16px">72% of South Africans don't know their blood type</h3><p class="small">Tap to see why that's dangerous</p></div></div>
-<div class="card glass" onclick="go('s2')"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800" style="width:100%;height:150px;object-fit:cover"><div style="padding:12px"><h3>Grilled Lamb + Rosemary Greens</h3><p class="small">High iron • O warrior fuel • Real food</p></div></div>
-<button class="btn" onclick="go('s2')">Create Profile → Meet Red Bot</button>
+<div class="card glass" onclick="go('facts')" style="margin-top:12px"><img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800" style="width:100%;height:140px;object-fit:cover"><div style="padding:10px"><span style="padding:5px 10px;border-radius:100px;background:linear-gradient(135deg,#ff2a45,#ff5a8a);font-size:10px;font-weight:800">⚠️ DID YOU KNOW?</span><h3 style="margin-top:6px;font-size:15px">72% don't know their blood type</h3><p class="small">Tap to see risks</p></div></div>
+<div class="card glass" onclick="go('s2')"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800" style="width:100%;height:130px;object-fit:cover"><div style="padding:10px"><h3 style="font-size:14px">Grilled Lamb + Rosemary Greens</h3><p class="small">High iron • O warrior fuel</p></div></div>
+<button class="btn" onclick="go('s2')">Create Profile → Meet Red</button>
 </div>
 
 <div id="s2" class="screen"><div class="glass" style="display:inline-block;padding:6px 12px;border-radius:100px;font-size:11px;width:fit-content">Step 1</div><h2 style="margin-top:10px">You</h2><input id="name" class="input glass" placeholder="Full name"><input id="age" class="input glass" type="number" placeholder="Age"><input id="allergy" class="input glass" placeholder="Allergies"><button class="btn" onclick="saveP()">Continue → Blood Type</button></div>
 
-<div id="whatsType" class="screen"><h2 style="font-size:26px">What's Your Type?</h2><p class="small" style="margin-top:6px">Select to unlock shop + facts</p><div class="typeGrid" style="margin-top:16px"><div class="typeCard glass" onclick="pick('O+')"><b>O+</b><br><span class="small">38%</span></div><div class="typeCard glass" onclick="pick('O-')"><b>O-</b><br><span class="small">Donor</span></div><div class="typeCard glass" onclick="pick('A+')"><b>A+</b><br><span class="small">32%</span></div><div class="typeCard glass" onclick="pick('A-')"><b>A-</b><br><span class="small">6%</span></div><div class="typeCard glass" onclick="pick('B+')"><b>B+</b><br><span class="small">9%</span></div><div class="typeCard glass" onclick="pick('B-')"><b>B-</b><br><span class="small">2%</span></div><div class="typeCard glass" onclick="pick('AB+')"><b>AB+</b><br><span class="small">Receiver</span></div><div class="typeCard glass" onclick="pick('AB-')"><b>AB-</b><br><span class="small">1%</span></div></div><button class="btn glass btn-outline" onclick="pick('Unknown')" style="margin-top:12px">I don't know — show me facts</button></div>
+<div id="whatsType" class="screen"><h2 style="font-size:26px">What's Your Type?</h2><p class="small" style="margin-top:6px">Select to unlock shop</p><div class="typeGrid" style="margin-top:16px"><div class="typeCard glass" onclick="pick('O+')"><b>O+</b><br><span class="small">38%</span></div><div class="typeCard glass" onclick="pick('O-')"><b>O-</b><br><span class="small">Donor</span></div><div class="typeCard glass" onclick="pick('A+')"><b>A+</b><br><span class="small">32%</span></div><div class="typeCard glass" onclick="pick('A-')"><b>A-</b><br><span class="small">6%</span></div><div class="typeCard glass" onclick="pick('B+')"><b>B+</b><br><span class="small">9%</span></div><div class="typeCard glass" onclick="pick('B-')"><b>B-</b><br><span class="small">2%</span></div><div class="typeCard glass" onclick="pick('AB+')"><b>AB+</b><br><span class="small">Receiver</span></div><div class="typeCard glass" onclick="pick('AB-')"><b>AB-</b><br><span class="small">1%</span></div></div><button class="btn glass btn-outline" onclick="pick('Unknown')" style="margin-top:12px">Skip for now</button></div>
 
 <div id="facts" class="screen">
 <div class="glass" style="display:inline-block;padding:6px 12px;border-radius:100px;font-size:11px;width:fit-content;cursor:pointer" onclick="go('home')">← Back to Shop</div>
-<h2 style="margin-top:12px;font-size:26px;line-height:0.95">Did You Know?<br><span style="background:linear-gradient(90deg,#ff7ab6,#8aa7ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Real Risks • Real Pictures</span></h2>
-<p class="small" style="margin-top:8px">Why knowing your blood type saves lives — especially in rural SA</p>
-
-<div class="factCard glass" onclick="openFact(0)"><img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800"><div class="factOverlay"></div><div class="factContent"><span class="factTag">⚠️ DANGER • EMERGENCY</span><h3 style="font-size:18px;line-height:1.1">Not knowing your blood type can kill you in an accident</h3><p class="small" style="color:white;opacity:0.85;margin-top:6px">In trauma, doctors need blood in 10 mins. If you don't know your type, they waste time.</p><div class="factSource">🩸 SANBS • 3.5M trauma/year • Tap</div></div></div>
-
-<div class="factCard glass" onclick="openFact(1)"><img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800"><div class="factOverlay"></div><div class="factContent"><span class="factTag" style="background:linear-gradient(135deg,#00e5a8,#5a85ff)">👶🏾 RURAL CHILDREN</span><h3 style="font-size:18px;line-height:1.1">Rural kids eat same food, but need different iron by blood type</h3><p class="small" style="color:white;opacity:0.85;margin-top:6px">O children need 2x more heme iron than A children. Same pap diet = anemia.</p><div class="factSource">📊 WHO • 61% rural kids anemic • Tap</div></div></div>
-
-<div class="factCard glass" onclick="openFact(2)"><img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=800"><div class="factOverlay"></div><div class="factContent"><span class="factTag">🩸 BLOOD TYPE DIET</span><h3 style="font-size:18px;line-height:1.1">Your blood type changes how you absorb vitamins</h3><p class="small" style="color:white;opacity:0.85;margin-top:6px">A types absorb 30% less B12 from meat. O types absorb 2x more iron from red meat.</p><div class="factSource">🔬 American Journal Clinical Nutrition • Tap</div></div></div>
-
-<div class="factCard glass" onclick="openFact(3)"><img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=800"><div class="factOverlay"></div><div class="factContent"><span class="factTag" style="background:linear-gradient(135deg,#ff5a8a,#ff8a4a)">🤰🏾 PREGNANCY</span><h3 style="font-size:18px;line-height:1.1">Mothers who don't know type risk baby's life</h3><p class="small" style="color:white;opacity:0.85;margin-top:6px">Rh- mothers need injection within 72hrs. 15% of SA women are Rh-.</p><div class="factSource">👶🏾 Dept Health SA • Tap</div></div></div>
-
-<div class="factCard glass" style="cursor:default"><div style="padding:16px"><b>💡 MyType Solution</b><p class="small" style="margin-top:8px;color:white;opacity:0.9">1. Know your type<br>2. Shop by type — Eggs R42.99 for B, Spinach R29.99 for A<br>3. Red Bot checks you daily<br>4. Emergency card on phone</p><button class="btn" style="margin-top:12px" onclick="go('whatsType')">Check My Type →</button></div></div>
+<h2 style="margin-top:12px;font-size:24px;line-height:0.95">Did You Know?<br><span style="background:linear-gradient(90deg,#ff7ab6,#8aa7ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Real Risks</span></h2>
+<div class="factCard glass" onclick="openFact(0)"><img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800"><div class="factOverlay"></div><div class="factContent"><span class="factTag">⚠️ EMERGENCY</span><h3 style="font-size:16px">Not knowing your blood type can kill you</h3><p class="small" style="color:white;opacity:0.85;margin-top:4px">Doctors need blood in 10 mins.</p></div></div>
+<div class="factCard glass" onclick="openFact(1)"><img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800"><div class="factOverlay"></div><div class="factContent"><span class="factTag">👶🏾 RURAL CHILDREN</span><h3 style="font-size:16px">Rural kids need different iron by blood type</h3><p class="small" style="color:white;opacity:0.85;margin-top:4px">O kids need 2x more heme iron.</p></div></div>
+<div class="factCard glass" onclick="openFact(2)"><img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=800"><div class="factOverlay"></div><div class="factContent"><span class="factTag">🩸 VITAMINS</span><h3 style="font-size:16px">Blood type changes vitamin absorption</h3><p class="small" style="color:white;opacity:0.85;margin-top:4px">A absorbs 30% less B12.</p></div></div>
 </div>
 
 <div id="home" class="screen">
@@ -123,22 +117,21 @@ body{background:#06080f;color:white;display:flex;justify-content:center;overflow
 <div id="basket" class="screen"><div class="glass" style="display:inline-block;padding:6px 12px;border-radius:100px;font-size:11px;width:fit-content;cursor:pointer" onclick="go('home')">← Shop</div><h2 style="margin-top:10px">Basket</h2><div id="basketList" style="margin-top:12px"></div><div class="card glass" style="margin-top:16px"><div style="padding:14px"><div style="display:flex;justify-content:space-between"><b>Total</b><b id="basketTotal">R0.00</b></div><p class="small" id="basketNutrition" style="margin-top:8px"></p><button class="btn" onclick="checkout()">Checkout</button></div></div></div>
 
 <div id="aiBot" class="screen">
-<div class="glass" style="display:flex;gap:12px;align-items:center;padding:12px;border-radius:18px;margin-bottom:10px;background:linear-gradient(135deg,rgba(255,20,50,0.15),rgba(150,0,20,0.15))"><div style="width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,#ff2a45,#9a0014);display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 4px 16px rgba(255,0,40,0.4)">🤖</div><div><b id="botTitle">MyType Bot • Red</b><br><span class="small" style="color:#ff6b7f">● Personal • Remembers you • Red</span></div><div class="glass" style="margin-left:auto;padding:6px 12px;border-radius:100px;font-size:11px;cursor:pointer" onclick="go('home')">✕</div></div>
+<div class="glass" style="display:flex;gap:12px;align-items:center;padding:12px;border-radius:18px;margin-bottom:10px;background:linear-gradient(135deg,rgba(255,20,50,0.18),rgba(150,0,20,0.18))"><div style="width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,#ff2a45,#9a0014);display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 4px 16px rgba(255,0,40,0.4)">🔴</div><div><b id="botTitle">Red • Your Assistant</b><br><span class="small" style="color:#ff6b7f">● Personal • Only for you</span></div><div class="glass" style="margin-left:auto;padding:6px 12px;border-radius:100px;font-size:11px;cursor:pointer" onclick="go('home')">✕</div></div>
 <div class="chat" id="chatBox"></div>
-<div class="searchWrap" style="margin-top:auto"><span class="searchIcon">💬</span><input id="chatInput" class="search glass" placeholder="How you feel today?" onkeydown="if(event.key==='Enter')sendChat()"><button class="btn" onclick="sendChat()" style="margin-top:8px">Send to Red Bot</button></div>
+<div class="searchWrap" style="margin-top:auto"><span class="searchIcon">💬</span><input id="chatInput" class="search glass" placeholder="How are you feeling today?" onkeydown="if(event.key==='Enter')sendChat()" autocomplete="off" inputmode="text"><button class="btn" onclick="sendChat()" style="margin-top:8px">Send to Red</button></div>
 </div>
 
-<div id="profile" class="screen"><h2>Profile</h2><div class="card glass"><div style="padding:14px"><p id="pInfo"></p><p class="small" id="pDetails" style="margin-top:6px"></p><button class="btn glass btn-outline" onclick="go('whatsType')" style="margin-top:10px">Change type</button><button class="btn" onclick="go('facts')" style="margin-top:8px">⚠️ Why blood type matters</button><button class="btn glass btn-outline" onclick="go('aiBot')" style="margin-top:8px">🤖 Red Bot</button><button class="btn btn-danger" onclick="logout()" style="margin-top:8px">Log out</button></div></div></div>
+<div id="profile" class="screen"><h2>Profile</h2><div class="card glass"><div style="padding:14px"><p id="pInfo"></p><p class="small" id="pDetails" style="margin-top:6px"></p><button class="btn glass btn-outline" onclick="go('whatsType')" style="margin-top:10px">Change type</button><button class="btn" onclick="go('facts')" style="margin-top:8px">⚠️ Why blood type matters</button><button class="btn glass btn-outline" onclick="go('aiBot')" style="margin-top:8px">🔴 Red Assistant</button><button class="btn btn-danger" onclick="logout()" style="margin-top:8px">Log out</button></div></div></div>
 
-<div class="nav glass glass-strong" id="nav"><div class="navI active" onclick="go('home')">🏠<br>Shop</div><div class="navI" onclick="go('facts')">⚠️<br>Facts</div><div class="navI" onclick="go('aiBot')">🤖<br>Red Bot</div><div class="navI" onclick="go('basket')">🛒<br>Basket</div><div class="navI" onclick="go('profile')">👤<br>You</div></div>
+<div class="nav glass glass-strong" id="nav"><div class="navI active" onclick="go('home')">🏠<br>Shop</div><div class="navI" onclick="go('facts')">⚠️<br>Facts</div><div class="navI" onclick="go('aiBot')">🔴<br>Red</div><div class="navI" onclick="go('basket')">🛒<br>Basket</div><div class="navI" onclick="go('profile')">👤<br>You</div></div>
 </div>
 
-<!-- RED ROBOT FAB -->
 <div class="botFab" id="botFab" onclick="go('aiBot')">
 <div class="botFace">
 <div class="botEyes"><div class="eye"><div class="pupil" id="pupilL"></div></div><div class="eye"><div class="pupil" id="pupilR"></div></div></div>
 <div class="botMouth" id="botMouth"></div>
-<div class="botName">MYTYPE BOT</div>
+<div class="botName">RED</div>
 </div>
 <div class="botDot"></div>
 </div>
@@ -150,9 +143,9 @@ import * as THREE from 'three';
 const canvas=document.getElementById('bg3d');
 const scene=new THREE.Scene();scene.fog=new THREE.Fog(0x06080f,10,20);
 const camera=new THREE.PerspectiveCamera(60,430/900,0.1,100);camera.position.z=8;
-const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});renderer.setSize(430,window.innerHeight);renderer.setPixelRatio(1.5);
+const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});renderer.setSize(430,window.innerHeight);renderer.setPixelRatio(1.2);
 const cells=[];const geo=new THREE.SphereGeometry(0.25,16,16);
-for(let i=0;i<42;i++){const mat=new THREE.MeshStandardMaterial({color:i%3==0?0xff1a3a:i%3==1?0xff5a6a:0x8a0014,emissive:i%3==0?0x44000f:0x220008,roughness:0.25,metalness:0.3,transparent:true,opacity:0.85});const m=new THREE.Mesh(geo,mat);m.position.set((Math.random()-0.5)*10,(Math.random()-0.5)*14,(Math.random()-0.5)*6);m.userData={speed:0.002+Math.random()*0.008,rot:Math.random()*0.02};cells.push(m);scene.add(m);}
+for(let i=0;i<38;i++){const mat=new THREE.MeshStandardMaterial({color:i%3==0?0xff1a3a:i%3==1?0xff5a6a:0x8a0014,emissive:i%3==0?0x44000f:0x220008,roughness:0.25,metalness:0.3,transparent:true,opacity:0.85});const m=new THREE.Mesh(geo,mat);m.position.set((Math.random()-0.5)*10,(Math.random()-0.5)*14,(Math.random()-0.5)*6);m.userData={speed:0.002+Math.random()*0.008,rot:Math.random()*0.02};cells.push(m);scene.add(m);}
 const light=new THREE.PointLight(0xff2a45,2.5,20);light.position.set(2,2,4);scene.add(light);const light2=new THREE.PointLight(0xff5a8a,1.5,20);light2.position.set(-2,-2,3);scene.add(light2);scene.add(new THREE.AmbientLight(0x602030,0.7));
 function animate(){requestAnimationFrame(animate);cells.forEach(c=>{c.position.y+=c.userData.speed;c.rotation.x+=c.userData.rot;c.rotation.y+=c.userData.rot;if(c.position.y>7)c.position.y=-7;});renderer.render(scene,camera);}animate();
 </script>
@@ -171,29 +164,53 @@ let PRODUCTS=[
 {t:"Greek Yogurt • 500g",cat:"Dairy",type:"B",img:"https://images.unsplash.com/photo-1488477181946-64290103bbd6?w=600",price:44.99,weight:"500g",vits:["B12","Calcium","Probiotic"],mins:["Calcium 110mg","Protein 6g/100g"],desc:"Probiotic",why:"B digests dairy well.",best:"B, AB"}
 ];
 let FACTS=[
-{title:"Not knowing your blood type can kill you in an accident",img:"https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800",desc:"In SA, 3.5M trauma cases per year. Doctors need blood in 10 minutes. If you don't know your type, they waste 20-45 mins testing.",risk:"⚠️ Risk: Death from delay. 1 in 3 trauma deaths preventable if type known.",source:"SANBS, WHO Trauma Report",solution:"MyType emergency card shows O+, allergies in 2 seconds."},
-{title:"Rural kids eat same food, but need different iron by blood type",img:"https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800",desc:"O children need 2x more heme iron than A children. Same pap diet = O kids become anemic (61% rural kids anemic).",risk:"👶🏾 Risk: Stunting, brain delay, school failure. 27% stunted children SA.",source:"WHO Anemia, StatsSA",solution:"MyType tells mothers: O child = eggs R42.99, A child = spinach R29.99."},
-{title:"Your blood type changes how you absorb vitamins",img:"https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=800",desc:"A types make 30% less stomach acid → absorb 30% less B12 from meat. O types absorb 2x more iron from red meat.",risk:"📉 Risk: Spending R200 on food you don't absorb.",source:"American Journal Clinical Nutrition",solution:"Shop filtered by blood type."},
-{title:"Mothers who don't know type risk baby's life",img:"https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=800",desc:"15% SA women Rh-. If Rh- mother carries Rh+ baby, needs injection within 72hrs. If she doesn't know, baby can die.",risk:"🤰🏾 Risk: Hemolytic disease 1 in 1000 babies.",source:"Dept Health SA",solution:"MyType flags Rh- mothers, reminds injection."}
+{title:"Not knowing your blood type can kill you",img:"https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800",desc:"In SA, 3.5M trauma cases per year. Doctors need blood in 10 mins.",risk:"⚠️ Risk: Death from delay.",source:"SANBS",solution:"MyType emergency card shows type in 2 secs."},
+{title:"Rural kids need different iron by blood type",img:"https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800",desc:"O kids need 2x more heme iron than A kids. Same pap diet = anemia.",risk:"👶🏾 Risk: Stunting, 61% anemic.",source:"WHO",solution:"MyType tells mothers correct food."},
+{title:"Blood type changes vitamin absorption",img:"https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=800",desc:"A absorbs 30% less B12 from meat. O absorbs 2x more iron.",risk:"📉 Risk: Wasting money on food you don't absorb.",source:"AJCN",solution:"Shop filtered by blood type."}
 ];
 function go(id){document.querySelectorAll('.screen').forEach(e=>e.classList.remove('active'));document.getElementById(id).classList.add('active');document.getElementById('nav').style.display=['home','basket','profile','aiBot','facts'].includes(id)?'flex':'none';if(id=='aiBot')renderBot();render();}
 function saveP(){s.name=document.getElementById('name').value;s.age=document.getElementById('age').value;s.allergy=document.getElementById('allergy').value;localStorage.setItem('mytype_v4',JSON.stringify(s));go('whatsType');}
-function pick(t){s.type=t;localStorage.setItem('mytype_v4',JSON.stringify(s));go('home');setTimeout(()=>{go('aiBot');addBotMessage(`Hey ${s.name||'friend'}! I'm your Red MyType Bot 🔴. You're ${t}. I remember you. Did you eat today?`,false,true);},700);}
+function pick(t){s.type=t;localStorage.setItem('mytype_v4',JSON.stringify(s));go('home');setTimeout(()=>{go('aiBot');addBotMessage(`Hey ${s.name||'there'}! I'm Red 🔴 — your personal assistant. I'm here only for YOU, not facts. I remember your type ${t}, age ${s.age||''}. How are you feeling today? Did you eat?`,false,true);},700);}
 function logout(){if(confirm('Log out?')){localStorage.removeItem('mytype_v4');s={name:"",age:"",allergy:"",type:"",basket:[],botLog:[]};go('s1');}}
 function setFilter(f,el){if(f==='all'||['Protein','Fruit','Veg','Eggs','Dairy'].includes(f)){currentFilter=f;document.querySelectorAll('.fchip').forEach(c=>c.classList.remove('active'));el.classList.add('active');renderProducts();}else{currentFilter=f;renderProducts();}}
-function renderProducts(q=''){let qq=(q||document.getElementById('quickSearch')?.value||'').toLowerCase();let grid=document.getElementById('productGrid');if(!grid)return;let html='';PRODUCTS.forEach((p,i)=>{let ms=!qq||p.t.toLowerCase().includes(qq)||p.cat.toLowerCase().includes(qq)||p.vits.join(' ').toLowerCase().includes(qq);let mf=currentFilter=='all'||p.cat==currentFilter||p.type==currentFilter||p.best.includes(currentFilter);if(ms&&mf){html+=`<div class="product glass" onclick="openProduct(${i})"><div class="typeChip">${p.type} • ${p.cat}</div><img src="${p.img}"><div class="pInfo"><div class="pName">${p.t}</div><div class="pWeight">${p.weight}</div><div style="margin-top:6px">${p.vits.slice(0,3).map(v=>`<span class="miniVit">${v}</span>`).join('')}</div><div class="pPrice">R${p.price.toFixed(2)}</div><button class="addBtn" onclick="event.stopPropagation();addToBasket(${i})">+ Add</button></div></div>`;}});grid.innerHTML=html||`<div class="card glass" style="grid-column:1/-1"><div style="padding:20px"><p class="small">No products</p></div></div>`;}
+function renderProducts(q=''){let qq=(q||document.getElementById('quickSearch')?.value||'').toLowerCase();let grid=document.getElementById('productGrid');if(!grid)return;let html='';PRODUCTS.forEach((p,i)=>{let ms=!qq||p.t.toLowerCase().includes(qq)||p.cat.toLowerCase().includes(qq)||p.vits.join(' ').toLowerCase().includes(qq);let mf=currentFilter=='all'||p.cat==currentFilter||p.type==currentFilter||p.best.includes(currentFilter);if(ms&&mf){html+=`<div class="product glass" onclick="openProduct(${i})"><div class="typeChip">${p.type} • ${p.cat}</div><img src="${p.img}"><div class="pInfo"><div class="pName">${p.t}</div><div class="pWeight">${p.weight}</div><div style="margin-top:6px">${p.vits.slice(0,3).map(v=>`<span class="miniVit">${v}</span>`).join('')}</div><div class="pPrice">R${p.price.toFixed(2)}</div><button class="addBtn" onclick="event.stopPropagation();addToBasket(${i})">+ Add</button></div></div>`;}});grid.innerHTML=html;}
 function openProduct(i){let p=PRODUCTS[i];document.getElementById('modalImg').src=p.img;document.getElementById('modalTag').textContent=p.cat+' • '+p.type+' • Best for '+p.best;document.getElementById('modalTitle').textContent=p.t;document.getElementById('modalDesc').textContent=p.desc;document.getElementById('modalPrice').textContent='R'+p.price.toFixed(2);document.getElementById('modalWeight').textContent=p.weight;document.getElementById('modalVits').innerHTML=p.vits.map(v=>`<span class="miniVit">${v}</span>`).join('');document.getElementById('modalMins').innerHTML=p.mins.map(m=>`• ${m}`).join('<br>');document.getElementById('modalWhy').textContent=p.why;document.getElementById('modalFactExtra').innerHTML='';document.getElementById('modalAddBtn').style.display='block';document.getElementById('modalAddBtn').onclick=()=>{addToBasket(i);closeModal();};document.getElementById('modal').classList.add('show');}
-function openFact(idx){let f=FACTS[idx];document.getElementById('modalImg').src=f.img;document.getElementById('modalTag').textContent='⚠️ DID YOU KNOW • FACT CHECK';document.getElementById('modalTitle').textContent=f.title;document.getElementById('modalDesc').textContent=f.desc;document.getElementById('modalPrice').textContent=f.risk;document.getElementById('modalWeight').textContent='Source: '+f.source;document.getElementById('modalVits').innerHTML='';document.getElementById('modalMins').innerHTML=f.desc;document.getElementById('modalWhy').textContent=f.solution;document.getElementById('modalFactExtra').innerHTML=`<div class="glass" style="padding:12px;border-radius:14px;margin-top:8px"><b style="font-size:11px">✅ MyType Fix:</b><p class="small" style="margin-top:6px;color:white">${f.solution}</p><button class="btn" style="margin-top:10px" onclick="closeModal();go('home')">Shop Correct Food →</button></div>`;document.getElementById('modalAddBtn').style.display='none';document.getElementById('modal').classList.add('show');}
+function openFact(idx){let f=FACTS[idx];document.getElementById('modalImg').src=f.img;document.getElementById('modalTag').textContent='⚠️ DID YOU KNOW';document.getElementById('modalTitle').textContent=f.title;document.getElementById('modalDesc').textContent=f.desc;document.getElementById('modalPrice').textContent=f.risk;document.getElementById('modalWeight').textContent='Source: '+f.source;document.getElementById('modalVits').innerHTML='';document.getElementById('modalMins').innerHTML=f.desc;document.getElementById('modalWhy').textContent=f.solution;document.getElementById('modalFactExtra').innerHTML=`<div class="glass" style="padding:12px;border-radius:14px;margin-top:8px"><b style="font-size:11px">✅ Fix:</b><p class="small" style="margin-top:6px">${f.solution}</p></div>`;document.getElementById('modalAddBtn').style.display='none';document.getElementById('modal').classList.add('show');}
 function closeModal(){document.getElementById('modal').classList.remove('show');document.getElementById('modalAddBtn').style.display='block';}
 function addToBasket(i){s.basket=s.basket||[];s.basket.push(PRODUCTS[i]);localStorage.setItem('mytype_v4',JSON.stringify(s));render();}
 function renderBasket(){let list=document.getElementById('basketList');if(!list)return;let total=0;let html='';(s.basket||[]).forEach((p,idx)=>{total+=p.price;html+=`<div class="card glass" style="display:flex;gap:10px;padding:10px;margin:6px 0"><img src="${p.img}" style="width:50px;height:50px;border-radius:10px;object-fit:cover"><div style="flex:1"><b style="font-size:12px">${p.t}</b><br><span class="small">${p.weight} • R${p.price.toFixed(2)}</span></div><div style="cursor:pointer" onclick="removeBasket(${idx})">✕</div></div>`;});list.innerHTML=html||`<div class="card glass"><div style="padding:20px"><p class="small">Basket empty</p></div></div>`;document.getElementById('basketTotal').textContent='R'+total.toFixed(2);document.getElementById('basketNutrition').textContent=s.basket?.length?`Nutrition: ${[...new Set(s.basket.flatMap(b=>b.vits))].join(', ')} for ${s.type||'you'}`:'';document.getElementById('basketCount').textContent=s.basket?.length||0;}
 function removeBasket(i){s.basket.splice(i,1);localStorage.setItem('mytype_v4',JSON.stringify(s));render();}
 function checkout(){if(!s.basket?.length)return alert('Empty');alert(`Order R${s.basket.reduce((a,b)=>a+b.price,0).toFixed(2)} — MyType delivery`);s.basket=[];localStorage.setItem('mytype_v4',JSON.stringify(s));render();go('home');}
-function renderBot(){let box=document.getElementById('chatBox');if(!box)return;box.innerHTML='';if(!s.botLog?.length){addBotMessage(`Hi ${s.name||'friend'}! I'm your Red MyType Bot 🔴. I remember type ${s.type||''}. I check daily: ate? BP? water? Have you seen Facts? Rural kids suffer when type unknown!`,false,true);setTimeout(()=>{addBotMessage(`Did you know 61% rural kids anemic because O kids need more meat iron, but they eat only pap? That's why MyType matters! Did you eat today?`,false,true,["Yes ate 🥗","No not yet","Show facts","Normal BP"]);},900);}else{s.botLog.forEach(m=>{let d=document.createElement('div');d.className='bubble '+(m.role=='user'?'user':'bot glass');d.innerHTML=m.text+(m.chips?`<div class="qChips">${m.chips.map(c=>`<span class="qChip glass" onclick="quickReply('${c}')">${c}</span>`).join('')}</div>`:'');box.appendChild(d);});}box.scrollTop=box.scrollHeight;}
+// RED - PERSONAL ASSISTANT ONLY - NO FACTS
+function renderBot(){
+let box=document.getElementById('chatBox');if(!box)return;box.innerHTML='';
+if(!s.botLog?.length){
+addBotMessage(`Hi ${s.name||'there'}! I'm Red 🔴 — your personal assistant. I don't do facts, I do YOU.\n\nI remember:\n• Name: ${s.name||'-'}\n• Type: ${s.type||'-'}\n• Age: ${s.age||'-'}\n• Allergies: ${s.allergy||'none'}\n\nI'll check daily:\n• Did you eat today?\n• How's your blood pressure?\n• Did you drink water?\n• How did you sleep?\n• How are you feeling?\n\nHow are you today?`,false,true);
+setTimeout(()=>{addBotMessage(`Quick check-in: Did you eat breakfast? How's your pressure?`,false,true,["Yes, I ate 🥗","No not yet","Normal BP","High BP","Low BP","Tired 😴","Drank water 💧"]);},800);
+}else{
+s.botLog.forEach(m=>{let d=document.createElement('div');d.className='bubble '+(m.role=='user'?'user':'bot glass');d.innerHTML=m.text+(m.chips?`<div class="qChips">${m.chips.map(c=>`<span class="qChip glass" onclick="quickReply('${c}')">${c}</span>`).join('')}</div>`:'');box.appendChild(d);});
+}
+box.scrollTop=box.scrollHeight;
+}
 function addBotMessage(t,isUser,save=true,chips=null){let box=document.getElementById('chatBox');let d=document.createElement('div');d.className='bubble '+(isUser?'user':'bot glass');d.innerHTML=t.replace(/\n/g,'<br>')+(chips?`<div class="qChips">${chips.map(c=>`<span class="qChip glass" onclick="quickReply('${c}')">${c}</span>`).join('')}</div>`:'');box.appendChild(d);box.scrollTop=box.scrollHeight;if(save){s.botLog=s.botLog||[];s.botLog.push({role:isUser?'user':'bot',text:t,chips});localStorage.setItem('mytype_v4',JSON.stringify(s));}}
 function quickReply(t){document.getElementById('chatInput').value=t;sendChat();}
-function sendChat(){let input=document.getElementById('chatInput');let txt=input.value.trim();if(!txt)return;addBotMessage(txt,true);input.value='';setTimeout(()=>{let l=txt.toLowerCase();let reply="Logged! ✅";let chips=["Yes ate","Show facts","Normal BP","High BP","Tired"];if(l.includes('fact')||l.includes('know')){reply="Tap Facts tab ⚠️ — 72% SA don't know type, rural kids 61% anemic. MyType fixes with correct food by blood type.";go('facts');}else if(l.includes('high')){reply=`High BP for ${s.type||''} — try beetroot R24.99, less salt, water.`;}else if(l.includes('ate')){reply=`Nice! Logged for ${s.type||''}. Keep eating right for your blood.`;}else{reply="Got it! Red Bot remembers. Check Facts — knowing blood type can save your life in accident.";}addBotMessage(reply,false,true,chips);},600);}
-function render(){let t=s.type||'Unknown';let hn=document.getElementById('homeName');if(hn)hn.textContent=s.name?'Hi '+s.name.split(' ')[0]:'Welcome';let bt=document.getElementById('badgeType');if(bt)bt.textContent=t+' • MyType';let pi=document.getElementById('pInfo');if(pi)pi.textContent=(s.name||'No name')+' • '+(s.type||'No type');let pd=document.getElementById('pDetails');if(pd)pd.textContent=`Basket: ${s.basket?.length||0} • Age: ${s.age||'-'}`;renderProducts();renderBasket();}
+function sendChat(){
+let input=document.getElementById('chatInput');let txt=input.value.trim();if(!txt)return;
+addBotMessage(txt,true);input.value='';
+setTimeout(()=>{
+let l=txt.toLowerCase();let reply="Got it, logged for you ✅";let chips=["Yes ate 🥗","Normal BP","High BP","Low BP","Tired","Drank water","Feel better"];
+if(l.includes('high')&&l.includes('pressure')||l.includes('high bp')){reply=`Noted — high BP today for you ${s.name||''}. Try: sit, breathe, 500ml water, less salt. Did you sleep badly? Tell me your sleep.`;chips=["Slept badly","Slept well","Still high","Normal now"];}
+else if(l.includes('low')&&l.includes('pressure')){reply=`Low BP — lie down, water + a bit of salt, have ${s.type=='O'?'lamb or eggs':'yogurt or eggs'} soon. How do you feel now?`;chips=["Feel better","Still dizzy","Ate something"];}
+else if(l.includes('tired')||l.includes('dizzy')||l.includes('fatigue')){reply=`You feel ${l.includes('dizzy')?'dizzy':'tired'} — I'm here. Could be low iron, low water, or poor sleep. For your type ${s.type||''}, I suggest ${s.type=='O'?'eggs or lamb':'spinach or yogurt'} and water. How much water did you drink?`;chips=["Drank water","No water yet","Feel better","Check BP"];}
+else if((l.includes('no')&&l.includes('eat'))||l.includes('not ate')||l.includes('didn\'t eat')){reply=`You haven't eaten yet ${s.name||''}? Please eat soon — your blood type ${s.type||''} needs ${s.type=='O'?'protein':'something light like yogurt or spinach'}. Want me to add to basket?`;chips=["Add eggs R42.99","Add spinach R29.99","I ate now"];}
+else if(l.includes('ate')||l.includes('yes')&&l.includes('eat')){reply=`Great you ate! 🎉 Logged. Next: water check — did you drink enough? And how's your pressure today?`;chips=["Drank water","Normal BP","High BP","Tired"];}
+else if(l.includes('water')){reply=`Water logged! 💧 Aim 2L today. Good for your ${s.type||''} blood flow. How did you sleep?`;chips=["Slept well","Slept badly","6 hours","Less than 6h"];}
+else if(l.includes('sleep')){reply=`Sleep logged. Less than 6h raises BP and hunger. Try 7-8h tonight. How's your mood/stress 1-10?`;chips=["Stress 2","Stress 7","Feel calm","Anxious"];}
+else{reply=`Thanks for telling me, ${s.name||'friend'}. I'm Red, your personal assistant — I keep track of your eating, BP, water, sleep, mood. Tell me: did you eat, drink water, check BP today?`;chips=["Yes ate","Normal BP","Drank water","Tired"];}
+addBotMessage(reply,false,true,chips);
+},600);
+}
+function render(){let t=s.type||'Unknown';let hn=document.getElementById('homeName');if(hn)hn.textContent=s.name?'Hi '+s.name.split(' ')[0]:'Welcome';let bt=document.getElementById('badgeType');if(bt)bt.textContent=t+' • MyType';let pi=document.getElementById('pInfo');if(pi)pi.textContent=(s.name||'No name')+' • '+(s.type||'No type');let pd=document.getElementById('pDetails');if(pd)pd.textContent=`Basket: ${s.basket?.length||0} • Age: ${s.age||'-'} • Allergy: ${s.allergy||'none'}`;renderProducts();renderBasket();}
 document.addEventListener('mousemove',(e)=>{let pupils=[document.getElementById('pupilL'),document.getElementById('pupilR')];if(!pupils[0])return;let fab=document.getElementById('botFab').getBoundingClientRect();let cx=fab.left+37,cy=fab.top+37;let dx=(e.clientX-cx)/30,dy=(e.clientY-cy)/30;pupils.forEach(p=>{p.style.left=(2+Math.max(-3,Math.min(3,dx)))+'px';p.style.top=(2+Math.max(-3,Math.min(3,dy)))+'px';});});
 render();if(s.name&&s.type)go('home');else go('s1');
 </script>
