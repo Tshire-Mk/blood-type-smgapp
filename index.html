@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>MyType • Know your type • Know your food • Red</title>
+<title>MyType • Red • Know your type • Know your food</title>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js"}}</script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;800&display=swap');
@@ -18,26 +18,26 @@ body{background:#06080f;color:white;display:flex;justify-content:center;overflow
 .logo{font-weight:800;font-size:18px;display:flex;gap:8px;align-items:center}
 .logo span{background:linear-gradient(135deg,#ff5a6a,#8aa7ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .basket{padding:8px 14px;border-radius:100px;font-size:12px;font-weight:800;cursor:pointer}
-.screen{display:none;padding:0 12px 110px 12px;flex:1;overflow:auto;position:relative;z-index:2;-webkit-overflow-scrolling:touch}
+.screen{display:none;padding:0 12px 110px 12px;flex:1;overflow:auto;position:relative;z-index:2}
 .screen.active{display:flex;flex-direction:column}
 .card{border-radius:22px;overflow:hidden;margin:10px 0;cursor:pointer}
-.search{width:100%;padding:14px 16px 14px 40px;border-radius:16px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.12);color:white;font-size:16px;outline:none;backdrop-filter:blur(20px)} /* 16px prevents iOS zoom */
+.search{width:100%;padding:14px 16px 14px 40px;border-radius:16px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.12);color:white;font-size:16px;outline:none}
 .searchWrap{position:relative;margin:10px 0}
 .searchIcon{position:absolute;left:14px;top:50%;transform:translateY(-50%);opacity:0.6}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.product{border-radius:22px;overflow:hidden;position:relative;display:flex;flex-direction:column}
-.product img{width:100%;height:128px;object-fit:cover;background:white}
+.product{border-radius:22px;overflow:hidden;position:relative;display:flex;flex-direction:column;background:#141a30}
+.product img{width:100%;height:132px;object-fit:cover;background:#1e2545;display:block}
 .pInfo{padding:10px}
-.pName{font-size:12px;font-weight:800;line-height:1.2;height:30px;overflow:hidden}
+.pName{font-size:12px;font-weight:800;line-height:1.2;height:32px;overflow:hidden}
 .pPrice{font-size:16px;font-weight:800;margin-top:6px}
 .pWeight{font-size:9px;opacity:0.5}
 .miniVit{font-size:8px;font-weight:800;padding:4px 6px;border-radius:100px;background:rgba(255,255,255,0.12);margin:2px;display:inline-block}
 .addBtn{margin-top:8px;border:none;padding:9px;border-radius:12px;font-weight:800;font-size:12px;cursor:pointer;width:100%;color:white;background:linear-gradient(135deg,#ff2a45,#ff5a8a)}
-.typeChip{position:absolute;top:8px;left:8px;padding:4px 8px;border-radius:100px;font-size:9px;font-weight:800;background:rgba(0,0,0,0.4);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.2)}
+.typeChip{position:absolute;top:8px;left:8px;padding:4px 8px;border-radius:100px;font-size:9px;font-weight:800;background:rgba(0,0,0,0.55);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.2)}
 .filterRow{display:flex;gap:6px;overflow:auto;padding:8px 0}
 .fchip{white-space:nowrap;padding:8px 12px;border-radius:100px;font-size:11px;font-weight:700;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);cursor:pointer}
 .fchip.active{background:white;color:black}
-.input{width:100%;padding:14px;border-radius:14px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.12);color:white;margin:6px 0;font-size:16px} /* 16px = no zoom */
+.input{width:100%;padding:14px;border-radius:14px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.12);color:white;margin:6px 0;font-size:16px}
 .btn{width:100%;border:none;padding:14px;border-radius:100px;font-weight:800;margin-top:10px;cursor:pointer;color:white;background:linear-gradient(135deg,#ff2a45,#ff5a8a);font-size:16px}
 .btn-outline{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15)}
 .btn-danger{background:rgba(255,59,79,0.2);border:1px solid rgba(255,59,79,0.3);color:#ff8a9b}
@@ -53,16 +53,34 @@ body{background:#06080f;color:white;display:flex;justify-content:center;overflow
 .small{font-size:12px;opacity:0.65;line-height:1.45}
 .typeGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .typeCard{border-radius:16px;padding:14px;text-align:center;cursor:pointer}
-/* RED ROBOT - NAME RED */
-.botFab{position:fixed;bottom:92px;right:16px;width:74px;height:74px;border-radius:24px;background:linear-gradient(135deg,rgba(255,20,50,0.98),rgba(150,0,20,0.98));backdrop-filter:blur(40px) saturate(200%);border:1px solid rgba(255,255,255,0.3);border-top:1px solid rgba(255,255,255,0.6);box-shadow:0 12px 32px rgba(255,0,40,0.55), inset 0 1px 0 rgba(255,255,255,0.6);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:25;animation:botFloat 3s ease-in-out infinite}
-@keyframes botFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+
+/* RED - WAVING + EXPRESSIONS */
+.botFab{position:fixed;bottom:92px;right:16px;width:78px;height:78px;border-radius:26px;background:linear-gradient(135deg,rgba(255,20,50,0.98),rgba(150,0,20,0.98));backdrop-filter:blur(40px) saturate(200%);border:1px solid rgba(255,255,255,0.3);border-top:1px solid rgba(255,255,255,0.6);box-shadow:0 12px 32px rgba(255,0,40,0.55), inset 0 1px 0 rgba(255,255,255,0.6);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:25;transition:all 0.3s}
+.botFab.wave{animation:redWave 0.6s ease-in-out 3}
+@keyframes redWave{0%,100%{transform:rotate(0) scale(1)}25%{transform:rotate(-12deg) scale(1.1) translateY(-6px)}50%{transform:rotate(12deg) scale(1.1) translateY(-6px)}75%{transform:rotate(-8deg) scale(1.05)}}
 .botFace{width:100%;height:100%;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.botEyes{display:flex;gap:14px;margin-bottom:5px}
-.eye{width:14px;height:14px;background:white;border-radius:100px;position:relative;box-shadow:0 0 14px rgba(255,255,255,0.9)}
-.pupil{width:7px;height:7px;background:#7a000f;border-radius:100px;position:absolute;top:2px;left:2px;transition:all 0.15s}
-.botMouth{width:22px;height:3px;background:rgba(0,0,0,0.7);border-radius:100px;margin-top:2px}
+.botEyes{display:flex;gap:16px;margin-bottom:6px}
+.eye{width:16px;height:16px;background:white;border-radius:100px;position:relative;box-shadow:0 0 14px rgba(255,255,255,0.9);overflow:hidden;transition:all 0.25s}
+.eye.blink{height:2px!important;margin-top:7px}
+.pupil{width:8px;height:8px;background:#7a000f;border-radius:100px;position:absolute;top:2px;left:2px;transition:all 0.15s}
+.pupil.happy{width:10px;height:4px;top:6px;border-radius:10px 10px 0 0}
+.pupil.sad{top:6px}
+.botMouth{width:24px;height:4px;background:rgba(0,0,0,0.75);border-radius:100px;margin-top:2px;transition:all 0.3s}
+.botMouth.smile{height:12px;width:20px;border-radius:0 0 12px 12px;background:rgba(0,0,0,0.8);border-top:2px solid rgba(255,255,255,0.2)}
+.botMouth.sad{height:3px;width:18px;transform:rotate(180deg);border-radius:12px 12px 0 0;margin-top:8px}
+.botMouth.worried{width:14px;height:14px;border-radius:100px;border:3px solid rgba(0,0,0,0.7);border-color:transparent rgba(0,0,0,0.7) rgba(0,0,0,0.7) transparent;transform:rotate(45deg)}
+.botMouth.talk{animation:talk 0.18s infinite}
+@keyframes talk{0%,100%{height:4px;width:22px}50%{height:10px;width:16px;border-radius:0 0 8px 8px}}
+.botHand{position:absolute;right:-8px;top:18px;font-size:18px;opacity:0;transition:all 0.3s}
+.botHand.wave{opacity:1;animation:handWave 0.5s ease-in-out 4}
+@keyframes handWave{0%,100%{transform:rotate(0)}50%{transform:rotate(25deg)}}
 .botDot{position:absolute;top:-5px;right:-5px;width:16px;height:16px;background:#00e5a8;border-radius:100px;border:3px solid #06080f}
 .botName{position:absolute;bottom:-20px;font-size:9px;font-weight:800;letter-spacing:1px;background:rgba(150,0,20,0.95);color:white;padding:3px 8px;border-radius:100px;border:1px solid rgba(255,255,255,0.2)}
+.botEyebrow{position:absolute;top:-6px;left:0;right:0;height:4px;display:flex;justify-content:space-between;opacity:0;transition:all 0.3s}
+.botEyebrow.show{opacity:1}
+.brow{width:14px;height:4px;background:rgba(0,0,0,0.6);border-radius:100px}
+.brow.sad{transform:rotate(-20deg)}.brow.sad:last-child{transform:rotate(20deg)}
+.brow.worried{transform:rotate(20deg)}.brow.worried:last-child{transform:rotate(-20deg)}
 .chat{flex:1;overflow:auto;display:flex;flex-direction:column;gap:10px;padding:6px 0}
 .bubble{max-width:82%;padding:12px 14px;border-radius:18px;font-size:13px;line-height:1.4;backdrop-filter:blur(20px)}
 .bubble.bot{align-self:flex-start;border-bottom-left-radius:6px}
@@ -74,9 +92,8 @@ body{background:#06080f;color:white;display:flex;justify-content:center;overflow
 .factOverlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.9) 0%,rgba(0,0,0,0.4) 45%,transparent 85%)}
 .factContent{position:absolute;bottom:0;left:0;right:0;padding:14px}
 .factTag{padding:5px 10px;border-radius:100px;font-size:9px;font-weight:800;display:inline-block;margin-bottom:8px;background:linear-gradient(135deg,#ff2a45,#ff5a8a);color:white}
-/* LOGIN HIGHER */
-#s1{justify-content:flex-start;padding-top:8px}
-#s1.heroTop{padding:12px 0 8px 0}
+#s1{justify-content:flex-start;padding-top:6px}
+.lockOverlay{position:absolute;inset:0;background:rgba(6,8,15,0.85);backdrop-filter:blur(20px);z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;border-radius:22px}
 </style>
 </head>
 <body>
@@ -85,58 +102,55 @@ body{background:#06080f;color:white;display:flex;justify-content:center;overflow
 <div class="top glass"><div class="logo">🩸 <span>MyType</span></div><div class="basket glass" onclick="go('basket')">🛒 <span id="basketCount">0</span></div></div>
 
 <div id="s1" class="screen active">
-<div class="heroTop" style="text-align:center">
+<div style="text-align:center;padding:10px 0 8px 0">
 <div class="glass" style="width:80px;height:80px;border-radius:24px;display:flex;align-items:center;justify-content:center;font-size:36px;margin:0 auto 10px auto">🩸</div>
-<div class="glass" style="display:inline-block;padding:8px 18px;border-radius:100px;font-size:12px;font-weight:800;letter-spacing:0.3px">Know your type • Know your food</div>
+<div class="glass" style="display:inline-block;padding:8px 18px;border-radius:100px;font-size:12px;font-weight:800">Know your type • Know your food</div>
 <h1 style="margin-top:10px;font-size:26px;line-height:0.95">Know your type.<br>Save a life.<br><span style="background:linear-gradient(90deg,#ff5a6a,#8aa7ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Feed your blood.</span></h1>
 </div>
-<div class="card glass" onclick="go('facts')" style="margin-top:12px"><img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800" style="width:100%;height:140px;object-fit:cover"><div style="padding:10px"><span style="padding:5px 10px;border-radius:100px;background:linear-gradient(135deg,#ff2a45,#ff5a8a);font-size:10px;font-weight:800">⚠️ DID YOU KNOW?</span><h3 style="margin-top:6px;font-size:15px">72% don't know their blood type</h3><p class="small">Tap to see risks</p></div></div>
-<div class="card glass" onclick="go('s2')"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800" style="width:100%;height:130px;object-fit:cover"><div style="padding:10px"><h3 style="font-size:14px">Grilled Lamb + Rosemary Greens</h3><p class="small">High iron • O warrior fuel</p></div></div>
+<div class="card glass" onclick="go('facts')"><img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800" style="width:100%;height:130px;object-fit:cover"><div style="padding:10px"><span style="padding:5px 10px;border-radius:100px;background:linear-gradient(135deg,#ff2a45,#ff5a8a);font-size:10px;font-weight:800">⚠️ DID YOU KNOW?</span><h3 style="margin-top:6px;font-size:14px">72% don't know their blood type</h3></div></div>
+<div class="card glass" onclick="go('s2')"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800" style="width:100%;height:120px;object-fit:cover"><div style="padding:10px"><h3 style="font-size:14px">Grilled Lamb + Rosemary Greens</h3><p class="small">High iron • O fuel</p></div></div>
 <button class="btn" onclick="go('s2')">Create Profile → Meet Red</button>
 </div>
 
 <div id="s2" class="screen"><div class="glass" style="display:inline-block;padding:6px 12px;border-radius:100px;font-size:11px;width:fit-content">Step 1</div><h2 style="margin-top:10px">You</h2><input id="name" class="input glass" placeholder="Full name"><input id="age" class="input glass" type="number" placeholder="Age"><input id="allergy" class="input glass" placeholder="Allergies"><button class="btn" onclick="saveP()">Continue → Blood Type</button></div>
 
-<div id="whatsType" class="screen"><h2 style="font-size:26px">What's Your Type?</h2><p class="small" style="margin-top:6px">Select to unlock shop</p><div class="typeGrid" style="margin-top:16px"><div class="typeCard glass" onclick="pick('O+')"><b>O+</b><br><span class="small">38%</span></div><div class="typeCard glass" onclick="pick('O-')"><b>O-</b><br><span class="small">Donor</span></div><div class="typeCard glass" onclick="pick('A+')"><b>A+</b><br><span class="small">32%</span></div><div class="typeCard glass" onclick="pick('A-')"><b>A-</b><br><span class="small">6%</span></div><div class="typeCard glass" onclick="pick('B+')"><b>B+</b><br><span class="small">9%</span></div><div class="typeCard glass" onclick="pick('B-')"><b>B-</b><br><span class="small">2%</span></div><div class="typeCard glass" onclick="pick('AB+')"><b>AB+</b><br><span class="small">Receiver</span></div><div class="typeCard glass" onclick="pick('AB-')"><b>AB-</b><br><span class="small">1%</span></div></div><button class="btn glass btn-outline" onclick="pick('Unknown')" style="margin-top:12px">Skip for now</button></div>
+<div id="whatsType" class="screen"><h2 style="font-size:26px">What's Your Type?</h2><div class="typeGrid" style="margin-top:16px"><div class="typeCard glass" onclick="pick('O+')"><b>O+</b></div><div class="typeCard glass" onclick="pick('O-')"><b>O-</b></div><div class="typeCard glass" onclick="pick('A+')"><b>A+</b></div><div class="typeCard glass" onclick="pick('A-')"><b>A-</b></div><div class="typeCard glass" onclick="pick('B+')"><b>B+</b></div><div class="typeCard glass" onclick="pick('B-')"><b>B-</b></div><div class="typeCard glass" onclick="pick('AB+')"><b>AB+</b></div><div class="typeCard glass" onclick="pick('AB-')"><b>AB-</b></div></div><button class="btn glass btn-outline" onclick="pick('Unknown')" style="margin-top:12px">Skip for now</button></div>
 
-<div id="facts" class="screen">
-<div class="glass" style="display:inline-block;padding:6px 12px;border-radius:100px;font-size:11px;width:fit-content;cursor:pointer" onclick="go('home')">← Back to Shop</div>
-<h2 style="margin-top:12px;font-size:24px;line-height:0.95">Did You Know?<br><span style="background:linear-gradient(90deg,#ff7ab6,#8aa7ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Real Risks</span></h2>
-<div class="factCard glass" onclick="openFact(0)"><img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800"><div class="factOverlay"></div><div class="factContent"><span class="factTag">⚠️ EMERGENCY</span><h3 style="font-size:16px">Not knowing your blood type can kill you</h3><p class="small" style="color:white;opacity:0.85;margin-top:4px">Doctors need blood in 10 mins.</p></div></div>
-<div class="factCard glass" onclick="openFact(1)"><img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800"><div class="factOverlay"></div><div class="factContent"><span class="factTag">👶🏾 RURAL CHILDREN</span><h3 style="font-size:16px">Rural kids need different iron by blood type</h3><p class="small" style="color:white;opacity:0.85;margin-top:4px">O kids need 2x more heme iron.</p></div></div>
-<div class="factCard glass" onclick="openFact(2)"><img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=800"><div class="factOverlay"></div><div class="factContent"><span class="factTag">🩸 VITAMINS</span><h3 style="font-size:16px">Blood type changes vitamin absorption</h3><p class="small" style="color:white;opacity:0.85;margin-top:4px">A absorbs 30% less B12.</p></div></div>
-</div>
+<div id="facts" class="screen"><div class="glass" style="display:inline-block;padding:6px 12px;border-radius:100px;font-size:11px;width:fit-content;cursor:pointer" onclick="go('home')">← Shop</div><h2 style="margin-top:12px;font-size:24px">Did You Know?</h2><div class="factCard glass" onclick="openFact(0)"><img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800"><div class="factOverlay"></div><div class="factContent"><span class="factTag">⚠️ EMERGENCY</span><h3 style="font-size:16px">Not knowing blood type can kill</h3></div></div><div class="factCard glass" onclick="openFact(1)"><img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800"><div class="factOverlay"></div><div class="factContent"><span class="factTag">👶🏾 RURAL CHILDREN</span><h3 style="font-size:16px">Rural kids need different iron</h3></div></div></div>
 
 <div id="home" class="screen">
 <div style="display:flex;justify-content:space-between;align-items:center"><div><div class="glass" style="display:inline-block;padding:6px 12px;border-radius:100px;font-size:11px" id="greetMain">Hi</div><h2 id="homeName" style="font-size:20px;margin-top:6px">Welcome</h2></div><div class="glass" style="padding:6px 12px;border-radius:100px;font-size:11px" id="badgeType">MyType</div></div>
 <div class="searchWrap"><span class="searchIcon">🔍</span><input id="quickSearch" class="search glass" placeholder="Search eggs, spinach, iron..." oninput="renderProducts(this.value.toLowerCase())"></div>
-<div class="filterRow"><div class="fchip glass active" onclick="setFilter('all',this)">All</div><div class="fchip glass" onclick="setFilter('Protein',this)">Proteins</div><div class="fchip glass" onclick="setFilter('Fruit',this)">Fruit</div><div class="fchip glass" onclick="setFilter('Veg',this)">Veg</div><div class="fchip glass" onclick="setFilter('Eggs',this)">Eggs</div><div class="fchip glass" onclick="go('facts')">⚠️ Facts</div></div>
+<div class="filterRow"><div class="fchip glass active" onclick="setFilter('all',this)">All</div><div class="fchip glass" onclick="setFilter('Protein',this)">Proteins</div><div class="fchip glass" onclick="setFilter('Fruit',this)">Fruit</div><div class="fchip glass" onclick="setFilter('Veg',this)">Veg</div><div class="fchip glass" onclick="setFilter('Eggs',this)">Eggs</div><div class="fchip glass" onclick="setFilter('Dairy',this)">Dairy</div><div class="fchip glass" onclick="go('facts')">⚠️ Facts</div></div>
 <div class="grid" id="productGrid"></div>
 </div>
 
 <div id="basket" class="screen"><div class="glass" style="display:inline-block;padding:6px 12px;border-radius:100px;font-size:11px;width:fit-content;cursor:pointer" onclick="go('home')">← Shop</div><h2 style="margin-top:10px">Basket</h2><div id="basketList" style="margin-top:12px"></div><div class="card glass" style="margin-top:16px"><div style="padding:14px"><div style="display:flex;justify-content:space-between"><b>Total</b><b id="basketTotal">R0.00</b></div><p class="small" id="basketNutrition" style="margin-top:8px"></p><button class="btn" onclick="checkout()">Checkout</button></div></div></div>
 
 <div id="aiBot" class="screen">
-<div class="glass" style="display:flex;gap:12px;align-items:center;padding:12px;border-radius:18px;margin-bottom:10px;background:linear-gradient(135deg,rgba(255,20,50,0.18),rgba(150,0,20,0.18))"><div style="width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,#ff2a45,#9a0014);display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 4px 16px rgba(255,0,40,0.4)">🔴</div><div><b id="botTitle">Red • Your Assistant</b><br><span class="small" style="color:#ff6b7f">● Personal • Only for you</span></div><div class="glass" style="margin-left:auto;padding:6px 12px;border-radius:100px;font-size:11px;cursor:pointer" onclick="go('home')">✕</div></div>
-<div class="chat" id="chatBox"></div>
-<div class="searchWrap" style="margin-top:auto"><span class="searchIcon">💬</span><input id="chatInput" class="search glass" placeholder="How are you feeling today?" onkeydown="if(event.key==='Enter')sendChat()" autocomplete="off" inputmode="text"><button class="btn" onclick="sendChat()" style="margin-top:8px">Send to Red</button></div>
+<div class="glass" style="display:flex;gap:12px;align-items:center;padding:12px;border-radius:18px;margin-bottom:10px;background:linear-gradient(135deg,rgba(255,20,50,0.18),rgba(150,0,20,0.18))"><div style="width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,#ff2a45,#9a0014);display:flex;align-items:center;justify-content:center;font-size:20px">🔴</div><div><b id="botTitle">Red • Your Assistant</b><br><span class="small" id="botMood" style="color:#ff6b7f">● Happy • Ready</span></div><div class="glass" style="margin-left:auto;padding:6px 12px;border-radius:100px;font-size:11px;cursor:pointer" onclick="go('home')">✕</div></div>
+<div class="chat" id="chatBox" style="position:relative"></div>
+<div class="searchWrap" style="margin-top:auto"><span class="searchIcon">💬</span><input id="chatInput" class="search glass" placeholder="Tell Red how you feel..." onkeydown="if(event.key==='Enter')sendChat()" autocomplete="off"><button class="btn" onclick="sendChat()" style="margin-top:8px">Send to Red</button></div>
 </div>
 
-<div id="profile" class="screen"><h2>Profile</h2><div class="card glass"><div style="padding:14px"><p id="pInfo"></p><p class="small" id="pDetails" style="margin-top:6px"></p><button class="btn glass btn-outline" onclick="go('whatsType')" style="margin-top:10px">Change type</button><button class="btn" onclick="go('facts')" style="margin-top:8px">⚠️ Why blood type matters</button><button class="btn glass btn-outline" onclick="go('aiBot')" style="margin-top:8px">🔴 Red Assistant</button><button class="btn btn-danger" onclick="logout()" style="margin-top:8px">Log out</button></div></div></div>
+<div id="profile" class="screen"><h2>Profile</h2><div class="card glass"><div style="padding:14px"><p id="pInfo"></p><p class="small" id="pDetails" style="margin-top:6px"></p><button class="btn glass btn-outline" onclick="go('whatsType')" style="margin-top:10px">Change type</button><button class="btn" onclick="go('facts')" style="margin-top:8px">⚠️ Facts</button><button class="btn glass btn-outline" onclick="go('aiBot')" style="margin-top:8px">🔴 Red</button><button class="btn btn-danger" onclick="logout()" style="margin-top:8px">Log out</button></div></div></div>
 
 <div class="nav glass glass-strong" id="nav"><div class="navI active" onclick="go('home')">🏠<br>Shop</div><div class="navI" onclick="go('facts')">⚠️<br>Facts</div><div class="navI" onclick="go('aiBot')">🔴<br>Red</div><div class="navI" onclick="go('basket')">🛒<br>Basket</div><div class="navI" onclick="go('profile')">👤<br>You</div></div>
 </div>
 
+<!-- RED ROBOT WITH WAVE HAND -->
 <div class="botFab" id="botFab" onclick="go('aiBot')">
 <div class="botFace">
-<div class="botEyes"><div class="eye"><div class="pupil" id="pupilL"></div></div><div class="eye"><div class="pupil" id="pupilR"></div></div></div>
+<div class="botEyebrow" id="botEyebrow"><div class="brow"></div><div class="brow"></div></div>
+<div class="botEyes"><div class="eye" id="eyeL"><div class="pupil" id="pupilL"></div></div><div class="eye" id="eyeR"><div class="pupil" id="pupilR"></div></div></div>
 <div class="botMouth" id="botMouth"></div>
+<div class="botHand" id="botHand">👋</div>
 <div class="botName">RED</div>
 </div>
 <div class="botDot"></div>
 </div>
 
-<div id="modal" onclick="if(event.target==this)closeModal()"><div class="modalBox glass glass-strong"><img id="modalImg"><div class="modalPad"><button class="closeBtn glass" onclick="closeModal()">✕ Close</button><div style="clear:both"></div><span class="pill glass" id="modalTag"></span><h2 id="modalTitle" style="margin:8px 0"></h2><p class="small" id="modalDesc"></p><p style="margin-top:10px;font-size:22px;font-weight:800" id="modalPrice"></p><p class="small" id="modalWeight"></p><div style="margin-top:12px"><b style="font-size:12px">💊 Vitamins:</b><div id="modalVits" style="margin-top:8px"></div></div><div class="glass" style="padding:12px;border-radius:14px;margin-top:12px"><b style="font-size:11px">📊 Nutritional info:</b><p class="small" id="modalMins" style="margin-top:6px"></p></div><div class="glass" style="padding:12px;border-radius:14px;margin-top:12px"><b style="font-size:11px">🩸 Best for:</b><p class="small" id="modalWhy" style="margin-top:6px"></p></div><div id="modalFactExtra" style="margin-top:12px"></div><button class="btn" id="modalAddBtn">Add to basket</button></div></div></div>
+<div id="modal" onclick="if(event.target==this)closeModal()"><div class="modalBox glass glass-strong"><img id="modalImg" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800'"><div class="modalPad"><button class="closeBtn glass" onclick="closeModal()">✕ Close</button><div style="clear:both"></div><span class="pill glass" id="modalTag"></span><h2 id="modalTitle" style="margin:8px 0"></h2><p class="small" id="modalDesc"></p><p style="margin-top:10px;font-size:22px;font-weight:800" id="modalPrice"></p><p class="small" id="modalWeight"></p><div style="margin-top:12px"><b style="font-size:12px">💊 Vitamins:</b><div id="modalVits" style="margin-top:8px"></div></div><div class="glass" style="padding:12px;border-radius:14px;margin-top:12px"><b style="font-size:11px">📊 Nutritional info:</b><p class="small" id="modalMins" style="margin-top:6px"></p></div><div class="glass" style="padding:12px;border-radius:14px;margin-top:12px"><b style="font-size:11px">🩸 Best for:</b><p class="small" id="modalWhy" style="margin-top:6px"></p></div><div id="modalFactExtra" style="margin-top:12px"></div><button class="btn" id="modalAddBtn">Add to basket</button></div></div></div>
 
 <script type="module">
 import * as THREE from 'three';
@@ -151,68 +165,167 @@ function animate(){requestAnimationFrame(animate);cells.forEach(c=>{c.position.y
 </script>
 
 <script>
-let s=JSON.parse(localStorage.getItem('mytype_v4')||'{"name":"","age":"","allergy":"","type":"","basket":[],"botLog":[]}');
+let s=JSON.parse(localStorage.getItem('mytype_v4')||'{"name":"","age":"","allergy":"","type":"","basket":[],"botLog":[],"botState":{"ate":null,"bp":null,"water":null,"sleep":null,"mood":null,"lastQ":null,"streak":0}}');
 let currentFilter='all';
 let PRODUCTS=[
-{t:"Free Range Eggs • 6",cat:"Eggs",type:"B",img:"https://images.unsplash.com/photo-1482049016688-2d3e1b31122f?w=600",price:42.99,weight:"6 pack • 300g",vits:["B12","D","Choline","Protein"],mins:["Protein 6g per egg","Choline 147mg","Vitamin D 1mcg"],desc:"Pasture raised",why:"B thrives on eggs.",best:"B, AB, O"},
+{t:"Free Range Eggs • 6",cat:"Eggs",type:"B",img:"https://images.unsplash.com/photo-1582722872445-44dc5f7e531c?w=600",price:42.99,weight:"6 pack • 300g",vits:["B12","D","Choline","Protein"],mins:["Protein 6g per egg","Choline 147mg","Vitamin D 1mcg"],desc:"Pasture raised, golden yolk",why:"B thrives on eggs.",best:"B, AB, O"},
 {t:"Baby Spinach • Bunch",cat:"Veg",type:"A",img:"https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=600",price:29.99,weight:"120g • Washed",vits:["Vitamin K","A","Folate","Iron"],mins:["Vitamin K 483mcg 402% DV","Iron 2.7mg","Folate 58mcg"],desc:"Fresh baby leaves",why:"A best on greens.",best:"A, AB"},
-{t:"Lamb Chops • 500g",cat:"Protein",type:"O",img:"https://images.unsplash.com/photo-1546964052-d9334ceb32ee?w=600",price:189.99,weight:"500g • Free range",vits:["B12","Iron","Zinc","Protein"],mins:["Iron 3.5mg 19% DV","Zinc 5.2mg","B12 6.2mcg","Protein 25g/100g"],desc:"High heme iron",why:"O needs red meat.",best:"O"},
-{t:"Salmon Fillet • 200g",cat:"Protein",type:"O",img:"https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600",price:129.99,weight:"200g",vits:["Omega-3","D","B12"],mins:["Omega-3 2.2g","Vitamin D 11mcg","Protein 20g"],desc:"Anti-inflammatory",why:"Omega-3 thins blood.",best:"All"},
-{t:"Organic Tofu • 300g",cat:"Protein",type:"A",img:"https://images.unsplash.com/photo-1540420773420-3366772f4999?w=600",price:39.99,weight:"300g",vits:["Protein","Calcium","Iron"],mins:["Protein 8g","Calcium 130mg","Iron 1.8mg"],desc:"Calm protein for A",why:"A ideal tofu.",best:"A, AB"},
+{t:"Lamb Chops • 500g",cat:"Protein",type:"O",img:"https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=600",price:189.99,weight:"500g • Free range",vits:["B12","Iron","Zinc","Protein"],mins:["Iron 3.5mg 19% DV","Zinc 5.2mg","B12 6.2mcg","Protein 25g/100g"],desc:"Free range lamb",why:"O needs red meat.",best:"O"},
+{t:"Salmon Fillet • 200g",cat:"Protein",type:"O",img:"https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=600",price:129.99,weight:"200g",vits:["Omega-3","D","B12"],mins:["Omega-3 2.2g","Vitamin D 11mcg","Protein 20g"],desc:"Fresh Atlantic salmon",why:"Omega-3 thins blood.",best:"All"},
+{t:"Organic Tofu • 300g",cat:"Protein",type:"A",img:"https://images.unsplash.com/photo-1540420773420-3366772f4999?w=600",price:39.99,weight:"300g",vits:["Protein","Calcium","Iron"],mins:["Protein 8g","Calcium 130mg","Iron 1.8mg"],desc:"Calm protein",why:"A ideal tofu.",best:"A, AB"},
 {t:"Avocados • 2",cat:"Fruit",type:"A",img:"https://images.unsplash.com/photo-1526948128573-703ee1aeb6fa?w=600",price:34.99,weight:"2 pack",vits:["K","E","B6","Folate"],mins:["Potassium 485mg","Fiber 7g","Fat 15g"],desc:"Ripe & creamy",why:"Good fat for A/B.",best:"A, B"},
-{t:"Beetroot • 500g",cat:"Veg",type:"A",img:"https://images.unsplash.com/photo-1593105544554-aa78d3c9d03c?w=600",price:24.99,weight:"500g",vits:["Folate","C","Nitrate"],mins:["Folate 109mcg","Potassium 305mg"],desc:"Blood flow booster",why:"Nitric oxide opens vessels.",best:"A, AB"},
-{t:"Greek Yogurt • 500g",cat:"Dairy",type:"B",img:"https://images.unsplash.com/photo-1488477181946-64290103bbd6?w=600",price:44.99,weight:"500g",vits:["B12","Calcium","Probiotic"],mins:["Calcium 110mg","Protein 6g/100g"],desc:"Probiotic",why:"B digests dairy well.",best:"B, AB"}
+{t:"Beetroot • 500g",cat:"Veg",type:"A",img:"https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=600",price:24.99,weight:"500g",vits:["Folate","C","Nitrate"],mins:["Folate 109mcg","Potassium 305mg"],desc:"Blood flow booster",why:"Nitric oxide opens vessels.",best:"A, AB"},
+{t:"Greek Yogurt • 500g",cat:"Dairy",type:"B",img:"https://images.unsplash.com/photo-1488477181946-64290103bbd6?w=600",price:44.99,weight:"500g",vits:["B12","Calcium","Probiotic"],mins:["Calcium 110mg","Protein 6g/100g"],desc:"Plain probiotic",why:"B digests dairy well.",best:"B, AB"},
+{t:"Blueberries • 125g",cat:"Fruit",type:"AB",img:"https://images.unsplash.com/photo-1498557850523-fd3d118b962e?w=600",price:39.99,weight:"125g",vits:["C","K","Antioxidants"],mins:["Vitamin C 9.7mg","Fiber 2.4g"],desc:"Fresh blueberries",why:"AB needs antioxidants.",best:"AB, A"},
+{t:"Chicken Breast • 500g",cat:"Protein",type:"O",img:"https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=600",price:89.99,weight:"500g",vits:["B6","B3","Protein"],mins:["Protein 31g/100g","B6 0.6mg"],desc:"Free range fillets",why:"Lean O protein.",best:"O, B"}
 ];
-let FACTS=[
-{title:"Not knowing your blood type can kill you",img:"https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800",desc:"In SA, 3.5M trauma cases per year. Doctors need blood in 10 mins.",risk:"⚠️ Risk: Death from delay.",source:"SANBS",solution:"MyType emergency card shows type in 2 secs."},
-{title:"Rural kids need different iron by blood type",img:"https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800",desc:"O kids need 2x more heme iron than A kids. Same pap diet = anemia.",risk:"👶🏾 Risk: Stunting, 61% anemic.",source:"WHO",solution:"MyType tells mothers correct food."},
-{title:"Blood type changes vitamin absorption",img:"https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=800",desc:"A absorbs 30% less B12 from meat. O absorbs 2x more iron.",risk:"📉 Risk: Wasting money on food you don't absorb.",source:"AJCN",solution:"Shop filtered by blood type."}
-];
-function go(id){document.querySelectorAll('.screen').forEach(e=>e.classList.remove('active'));document.getElementById(id).classList.add('active');document.getElementById('nav').style.display=['home','basket','profile','aiBot','facts'].includes(id)?'flex':'none';if(id=='aiBot')renderBot();render();}
-function saveP(){s.name=document.getElementById('name').value;s.age=document.getElementById('age').value;s.allergy=document.getElementById('allergy').value;localStorage.setItem('mytype_v4',JSON.stringify(s));go('whatsType');}
-function pick(t){s.type=t;localStorage.setItem('mytype_v4',JSON.stringify(s));go('home');setTimeout(()=>{go('aiBot');addBotMessage(`Hey ${s.name||'there'}! I'm Red 🔴 — your personal assistant. I'm here only for YOU, not facts. I remember your type ${t}, age ${s.age||''}. How are you feeling today? Did you eat?`,false,true);},700);}
-function logout(){if(confirm('Log out?')){localStorage.removeItem('mytype_v4');s={name:"",age:"",allergy:"",type:"",basket:[],botLog:[]};go('s1');}}
-function setFilter(f,el){if(f==='all'||['Protein','Fruit','Veg','Eggs','Dairy'].includes(f)){currentFilter=f;document.querySelectorAll('.fchip').forEach(c=>c.classList.remove('active'));el.classList.add('active');renderProducts();}else{currentFilter=f;renderProducts();}}
-function renderProducts(q=''){let qq=(q||document.getElementById('quickSearch')?.value||'').toLowerCase();let grid=document.getElementById('productGrid');if(!grid)return;let html='';PRODUCTS.forEach((p,i)=>{let ms=!qq||p.t.toLowerCase().includes(qq)||p.cat.toLowerCase().includes(qq)||p.vits.join(' ').toLowerCase().includes(qq);let mf=currentFilter=='all'||p.cat==currentFilter||p.type==currentFilter||p.best.includes(currentFilter);if(ms&&mf){html+=`<div class="product glass" onclick="openProduct(${i})"><div class="typeChip">${p.type} • ${p.cat}</div><img src="${p.img}"><div class="pInfo"><div class="pName">${p.t}</div><div class="pWeight">${p.weight}</div><div style="margin-top:6px">${p.vits.slice(0,3).map(v=>`<span class="miniVit">${v}</span>`).join('')}</div><div class="pPrice">R${p.price.toFixed(2)}</div><button class="addBtn" onclick="event.stopPropagation();addToBasket(${i})">+ Add</button></div></div>`;}});grid.innerHTML=html;}
-function openProduct(i){let p=PRODUCTS[i];document.getElementById('modalImg').src=p.img;document.getElementById('modalTag').textContent=p.cat+' • '+p.type+' • Best for '+p.best;document.getElementById('modalTitle').textContent=p.t;document.getElementById('modalDesc').textContent=p.desc;document.getElementById('modalPrice').textContent='R'+p.price.toFixed(2);document.getElementById('modalWeight').textContent=p.weight;document.getElementById('modalVits').innerHTML=p.vits.map(v=>`<span class="miniVit">${v}</span>`).join('');document.getElementById('modalMins').innerHTML=p.mins.map(m=>`• ${m}`).join('<br>');document.getElementById('modalWhy').textContent=p.why;document.getElementById('modalFactExtra').innerHTML='';document.getElementById('modalAddBtn').style.display='block';document.getElementById('modalAddBtn').onclick=()=>{addToBasket(i);closeModal();};document.getElementById('modal').classList.add('show');}
-function openFact(idx){let f=FACTS[idx];document.getElementById('modalImg').src=f.img;document.getElementById('modalTag').textContent='⚠️ DID YOU KNOW';document.getElementById('modalTitle').textContent=f.title;document.getElementById('modalDesc').textContent=f.desc;document.getElementById('modalPrice').textContent=f.risk;document.getElementById('modalWeight').textContent='Source: '+f.source;document.getElementById('modalVits').innerHTML='';document.getElementById('modalMins').innerHTML=f.desc;document.getElementById('modalWhy').textContent=f.solution;document.getElementById('modalFactExtra').innerHTML=`<div class="glass" style="padding:12px;border-radius:14px;margin-top:8px"><b style="font-size:11px">✅ Fix:</b><p class="small" style="margin-top:6px">${f.solution}</p></div>`;document.getElementById('modalAddBtn').style.display='none';document.getElementById('modal').classList.add('show');}
+let FACTS=[{title:"Not knowing blood type can kill",img:"https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800",desc:"3.5M trauma cases/year.",risk:"⚠️ Risk: Death from delay.",source:"SANBS",solution:"MyType card shows type in 2 secs."},{title:"Rural kids need different iron",img:"https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800",desc:"O kids need 2x more heme iron.",risk:"👶🏾 Risk: 61% anemic.",source:"WHO",solution:"Correct food by type."}];
+
+function go(id){
+ // RED DOES NOT WORK WITHOUT LOGIN
+ if((id==='aiBot') && (!s.name ||!s.type)){
+   alert('🔴 Red says: Hey! I need to know who you are first. Please create your profile — I only work after you log in, so I can remember you personally!');
+   document.querySelectorAll('.screen').forEach(e=>e.classList.remove('active'));
+   document.getElementById('s1').classList.add('active');
+   return;
+ }
+ document.querySelectorAll('.screen').forEach(e=>e.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ document.getElementById('nav').style.display=['home','basket','profile','aiBot','facts'].includes(id)?'flex':'none';
+ if(id=='aiBot')renderBot();
+ render();
+}
+function saveP(){s.name=document.getElementById('name').value.trim();s.age=document.getElementById('age').value;s.allergy=document.getElementById('allergy').value;if(!s.name){alert('Enter name — Red needs to know you');return;}localStorage.setItem('mytype_v4',JSON.stringify(s));go('whatsType');}
+function pick(t){
+ s.type=t; s.botState=s.botState||{}; s.botState.streak=(s.botState.streak||0)+1;
+ localStorage.setItem('mytype_v4',JSON.stringify(s));
+ go('home');
+ // RED WAVES RIGHT AFTER LOGIN + TELLS WHO HE IS
+ setTimeout(()=>{
+   const fab=document.getElementById('botFab');
+   fab.classList.add('wave');
+   document.getElementById('botHand').classList.add('wave');
+   setRedExpression('happy');
+   setTimeout(()=>{fab.classList.remove('wave');document.getElementById('botHand').classList.remove('wave');},2000);
+   go('aiBot');
+   setRedExpression('happy');
+   addBotMessage(`👋 *waves* Hi ${s.name}! I'm Red 🔴\n\nI'm your personal health buddy — I live in this app only for YOU.\n\nI remember:\n• Your name is ${s.name}\n• Your blood type is ${t}\n• Age ${s.age||''} ${s.allergy?', allergy '+s.allergy:''}\n\nI won't ask same questions twice. I ask follow-ups based on your answers and I remember day-to-day.\n\nMy job:\n• Check if you ate today 🥗\n• Check blood pressure 🩺\n• Check water 💧, sleep 😴, mood\n• Help you shop correct food for ${t}\n\nHow are you feeling right now?`,false,true,["I'm good 😊","A bit tired 😴","Didn't eat yet","BP high","BP normal","Happy!"]);
+   setRedExpression('happy');
+ },600);
+}
+function logout(){if(confirm('Log out? Red will forget you.')){localStorage.removeItem('mytype_v4');s={name:"",age:"",allergy:"",type:"",basket:[],botLog:[],botState:{}};go('s1');}}
+function setFilter(f,el){currentFilter=f;document.querySelectorAll('.fchip').forEach(c=>c.classList.remove('active'));el.classList.add('active');renderProducts();}
+function renderProducts(q=''){let qq=(q||document.getElementById('quickSearch')?.value||'').toLowerCase();let grid=document.getElementById('productGrid');if(!grid)return;let html='';PRODUCTS.forEach((p,i)=>{let ms=!qq||p.t.toLowerCase().includes(qq)||p.cat.toLowerCase().includes(qq);let mf=currentFilter=='all'||p.cat==currentFilter||p.type==currentFilter||p.best.includes(currentFilter);if(ms&&mf){html+=`<div class="product glass" onclick="openProduct(${i})"><div class="typeChip">${p.type} • ${p.cat}</div><img src="${p.img}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600'"><div class="pInfo"><div class="pName">${p.t}</div><div class="pWeight">${p.weight}</div><div style="margin-top:6px">${p.vits.slice(0,3).map(v=>`<span class="miniVit">${v}</span>`).join('')}</div><div class="pPrice">R${p.price.toFixed(2)}</div><button class="addBtn" onclick="event.stopPropagation();addToBasket(${i})">+ Add</button></div></div>`;}});grid.innerHTML=html;}
+function openProduct(i){let p=PRODUCTS[i];document.getElementById('modalImg').src=p.img;document.getElementById('modalTag').textContent=p.cat+' • '+p.type+' • Best for '+p.best;document.getElementById('modalTitle').textContent=p.t;document.getElementById('modalDesc').textContent=p.desc;document.getElementById('modalPrice').textContent='R'+p.price.toFixed(2);document.getElementById('modalWeight').textContent=p.weight;document.getElementById('modalVits').innerHTML=p.vits.map(v=>`<span class="miniVit">${v}</span>`).join('');document.getElementById('modalMins').innerHTML=p.mins.map(m=>`• ${m}`).join('<br>');document.getElementById('modalWhy').textContent=p.why;document.getElementById('modalAddBtn').style.display='block';document.getElementById('modalAddBtn').onclick=()=>{addToBasket(i);closeModal();};document.getElementById('modal').classList.add('show');}
+function openFact(idx){let f=FACTS[idx];document.getElementById('modalImg').src=f.img;document.getElementById('modalTag').textContent='⚠️ DID YOU KNOW';document.getElementById('modalTitle').textContent=f.title;document.getElementById('modalDesc').textContent=f.desc;document.getElementById('modalPrice').textContent=f.risk;document.getElementById('modalWeight').textContent='Source: '+f.source;document.getElementById('modalMins').innerHTML=f.desc;document.getElementById('modalWhy').textContent=f.solution;document.getElementById('modalAddBtn').style.display='none';document.getElementById('modal').classList.add('show');}
 function closeModal(){document.getElementById('modal').classList.remove('show');document.getElementById('modalAddBtn').style.display='block';}
-function addToBasket(i){s.basket=s.basket||[];s.basket.push(PRODUCTS[i]);localStorage.setItem('mytype_v4',JSON.stringify(s));render();}
-function renderBasket(){let list=document.getElementById('basketList');if(!list)return;let total=0;let html='';(s.basket||[]).forEach((p,idx)=>{total+=p.price;html+=`<div class="card glass" style="display:flex;gap:10px;padding:10px;margin:6px 0"><img src="${p.img}" style="width:50px;height:50px;border-radius:10px;object-fit:cover"><div style="flex:1"><b style="font-size:12px">${p.t}</b><br><span class="small">${p.weight} • R${p.price.toFixed(2)}</span></div><div style="cursor:pointer" onclick="removeBasket(${idx})">✕</div></div>`;});list.innerHTML=html||`<div class="card glass"><div style="padding:20px"><p class="small">Basket empty</p></div></div>`;document.getElementById('basketTotal').textContent='R'+total.toFixed(2);document.getElementById('basketNutrition').textContent=s.basket?.length?`Nutrition: ${[...new Set(s.basket.flatMap(b=>b.vits))].join(', ')} for ${s.type||'you'}`:'';document.getElementById('basketCount').textContent=s.basket?.length||0;}
+function addToBasket(i){s.basket=s.basket||[];s.basket.push(PRODUCTS[i]);localStorage.setItem('mytype_v4',JSON.stringify(s));render();setRedExpression('happy');}
+function renderBasket(){let list=document.getElementById('basketList');if(!list)return;let total=0;let html='';(s.basket||[]).forEach((p,idx)=>{total+=p.price;html+=`<div class="card glass" style="display:flex;gap:10px;padding:10px;margin:6px 0"><img src="${p.img}" style="width:50px;height:50px;border-radius:10px;object-fit:cover"><div style="flex:1"><b style="font-size:12px">${p.t}</b><br><span class="small">${p.weight} • R${p.price.toFixed(2)}</span></div><div style="cursor:pointer" onclick="removeBasket(${idx})">✕</div></div>`;});list.innerHTML=html||`<div class="card glass"><div style="padding:20px"><p class="small">Basket empty</p></div></div>`;document.getElementById('basketTotal').textContent='R'+total.toFixed(2);document.getElementById('basketNutrition').textContent=s.basket?.length?`Nutrition: ${[...new Set(s.basket.flatMap(b=>b.vits))].join(', ')}`:'';document.getElementById('basketCount').textContent=s.basket?.length||0;}
 function removeBasket(i){s.basket.splice(i,1);localStorage.setItem('mytype_v4',JSON.stringify(s));render();}
-function checkout(){if(!s.basket?.length)return alert('Empty');alert(`Order R${s.basket.reduce((a,b)=>a+b.price,0).toFixed(2)} — MyType delivery`);s.basket=[];localStorage.setItem('mytype_v4',JSON.stringify(s));render();go('home');}
-// RED - PERSONAL ASSISTANT ONLY - NO FACTS
+function checkout(){if(!s.basket?.length)return alert('Empty');alert(`Order R${s.basket.reduce((a,b)=>a+b.price,0).toFixed(2)}`);s.basket=[];localStorage.setItem('mytype_v4',JSON.stringify(s));render();go('home');}
+
+function setRedExpression(mood){
+let mouth=document.getElementById('botMouth');let eyeL=document.getElementById('eyeL');let eyeR=document.getElementById('eyeR');let pupilL=document.getElementById('pupilL');let pupilR=document.getElementById('pupilR');let eyebrow=document.getElementById('botEyebrow');let moodText=document.getElementById('botMood');
+if(!mouth) return;
+mouth.className='botMouth'; eyeL.className='eye'; eyeR.className='eye'; pupilL.className='pupil'; pupilR.className='pupil'; eyebrow.className='botEyebrow';
+if(mood==='happy'){mouth.classList.add('smile'); pupilL.classList.add('happy'); pupilR.classList.add('happy'); if(moodText)moodText.textContent='● Happy • Caring for you';}
+else if(mood==='sad'){mouth.classList.add('sad'); pupilL.classList.add('sad'); pupilR.classList.add('sad'); eyebrow.classList.add('show'); eyebrow.innerHTML='<div class="brow sad"></div><div class="brow sad"></div>'; if(moodText)moodText.textContent='● Sad • Worried about you';}
+else if(mood==='worried'){mouth.classList.add('worried'); eyebrow.classList.add('show'); eyebrow.innerHTML='<div class="brow worried"></div><div class="brow worried"></div>'; if(moodText)moodText.textContent='● Worried • Tell me more';}
+else if(mood==='talk'){mouth.classList.add('talk');}
+}
+function blinkRed(){let eyes=[document.getElementById('eyeL'),document.getElementById('eyeR')];eyes.forEach(e=>{if(e)e.classList.add('blink');});setTimeout(()=>{eyes.forEach(e=>{if(e)e.classList.remove('blink');});},180);}
+setInterval(blinkRed, 2600+Math.random()*1400);
+
 function renderBot(){
-let box=document.getElementById('chatBox');if(!box)return;box.innerHTML='';
+let box=document.getElementById('chatBox');if(!box)return;
+// BLOCK IF NOT LOGGED IN
+if(!s.name||!s.type){
+box.innerHTML=`<div class="lockOverlay glass"><div style="font-size:48px">🔒</div><h3 style="margin-top:12px">Red is locked</h3><p class="small" style="margin-top:8px">Red only works after you log in — he needs to know your name, age, blood type to be personal.<br><br>Please create profile first.</p><button class="btn" onclick="go('s1')" style="margin-top:16px">Create Profile → Unlock Red</button></div>`;
+return;
+}
+box.innerHTML='';
+s.botState=s.botState||{};
 if(!s.botLog?.length){
-addBotMessage(`Hi ${s.name||'there'}! I'm Red 🔴 — your personal assistant. I don't do facts, I do YOU.\n\nI remember:\n• Name: ${s.name||'-'}\n• Type: ${s.type||'-'}\n• Age: ${s.age||'-'}\n• Allergies: ${s.allergy||'none'}\n\nI'll check daily:\n• Did you eat today?\n• How's your blood pressure?\n• Did you drink water?\n• How did you sleep?\n• How are you feeling?\n\nHow are you today?`,false,true);
-setTimeout(()=>{addBotMessage(`Quick check-in: Did you eat breakfast? How's your pressure?`,false,true,["Yes, I ate 🥗","No not yet","Normal BP","High BP","Low BP","Tired 😴","Drank water 💧"]);},800);
+addBotMessage(`Hi ${s.name}! I'm Red 🔴 — waving at you! 👋\n\nI'm your personal assistant, not a fact checker. I live only for you.\n\nI remember day-to-day: yesterday you were ${s.botState.mood||'unknown'}, today I'll check again.\n\nQuick: How are you right now?`,false,true);
+setTimeout(()=>{addBotMessage(`Pick one so I can follow up:`,false,true,["I'm good 😊","A bit tired 😴","Didn't eat yet","BP high","BP normal","Happy!","Stressed"]);setRedExpression('happy');},600);
 }else{
 s.botLog.forEach(m=>{let d=document.createElement('div');d.className='bubble '+(m.role=='user'?'user':'bot glass');d.innerHTML=m.text+(m.chips?`<div class="qChips">${m.chips.map(c=>`<span class="qChip glass" onclick="quickReply('${c}')">${c}</span>`).join('')}</div>`:'');box.appendChild(d);});
+setRedExpression('happy');
 }
 box.scrollTop=box.scrollHeight;
 }
 function addBotMessage(t,isUser,save=true,chips=null){let box=document.getElementById('chatBox');let d=document.createElement('div');d.className='bubble '+(isUser?'user':'bot glass');d.innerHTML=t.replace(/\n/g,'<br>')+(chips?`<div class="qChips">${chips.map(c=>`<span class="qChip glass" onclick="quickReply('${c}')">${c}</span>`).join('')}</div>`:'');box.appendChild(d);box.scrollTop=box.scrollHeight;if(save){s.botLog=s.botLog||[];s.botLog.push({role:isUser?'user':'bot',text:t,chips});localStorage.setItem('mytype_v4',JSON.stringify(s));}}
 function quickReply(t){document.getElementById('chatInput').value=t;sendChat();}
+
 function sendChat(){
 let input=document.getElementById('chatInput');let txt=input.value.trim();if(!txt)return;
+if(!s.name||!s.type){alert('Red: Please log in first!');go('s1');return;}
+s.botState=s.botState||{};
 addBotMessage(txt,true);input.value='';
+setRedExpression('talk');
 setTimeout(()=>{
-let l=txt.toLowerCase();let reply="Got it, logged for you ✅";let chips=["Yes ate 🥗","Normal BP","High BP","Low BP","Tired","Drank water","Feel better"];
-if(l.includes('high')&&l.includes('pressure')||l.includes('high bp')){reply=`Noted — high BP today for you ${s.name||''}. Try: sit, breathe, 500ml water, less salt. Did you sleep badly? Tell me your sleep.`;chips=["Slept badly","Slept well","Still high","Normal now"];}
-else if(l.includes('low')&&l.includes('pressure')){reply=`Low BP — lie down, water + a bit of salt, have ${s.type=='O'?'lamb or eggs':'yogurt or eggs'} soon. How do you feel now?`;chips=["Feel better","Still dizzy","Ate something"];}
-else if(l.includes('tired')||l.includes('dizzy')||l.includes('fatigue')){reply=`You feel ${l.includes('dizzy')?'dizzy':'tired'} — I'm here. Could be low iron, low water, or poor sleep. For your type ${s.type||''}, I suggest ${s.type=='O'?'eggs or lamb':'spinach or yogurt'} and water. How much water did you drink?`;chips=["Drank water","No water yet","Feel better","Check BP"];}
-else if((l.includes('no')&&l.includes('eat'))||l.includes('not ate')||l.includes('didn\'t eat')){reply=`You haven't eaten yet ${s.name||''}? Please eat soon — your blood type ${s.type||''} needs ${s.type=='O'?'protein':'something light like yogurt or spinach'}. Want me to add to basket?`;chips=["Add eggs R42.99","Add spinach R29.99","I ate now"];}
-else if(l.includes('ate')||l.includes('yes')&&l.includes('eat')){reply=`Great you ate! 🎉 Logged. Next: water check — did you drink enough? And how's your pressure today?`;chips=["Drank water","Normal BP","High BP","Tired"];}
-else if(l.includes('water')){reply=`Water logged! 💧 Aim 2L today. Good for your ${s.type||''} blood flow. How did you sleep?`;chips=["Slept well","Slept badly","6 hours","Less than 6h"];}
-else if(l.includes('sleep')){reply=`Sleep logged. Less than 6h raises BP and hunger. Try 7-8h tonight. How's your mood/stress 1-10?`;chips=["Stress 2","Stress 7","Feel calm","Anxious"];}
-else{reply=`Thanks for telling me, ${s.name||'friend'}. I'm Red, your personal assistant — I keep track of your eating, BP, water, sleep, mood. Tell me: did you eat, drink water, check BP today?`;chips=["Yes ate","Normal BP","Drank water","Tired"];}
-addBotMessage(reply,false,true,chips);
-},600);
+let l=txt.toLowerCase(); let reply=""; let chips=[];
+if(l.includes('good')||l.includes('happy')||l.includes('great')||l.includes('fine')||l.includes('😊')){
+s.botState.mood='good'; setRedExpression('happy');
+if(s.botState.ate!=='yes'){reply=`You feel good, ${s.name}! Love that! 😊\n\nFollow-up: That's great — since you feel good, did you eat well today? Good mood often comes from good food. What did you eat?`; chips=["Ate protein 🥩","Ate veg 🥬","Ate light","Didn't eat yet"];}
+else{reply=`Happy mood logged! Since you ate and feel good, let's keep it: did you drink water today? Water keeps happy energy.`; chips=["Drank water 💧","No water yet","Energy high","Slept well"];}
 }
+else if(l.includes('tired')||l.includes('dizzy')||l.includes('weak')||l.includes('fatigue')||l.includes('😴')){
+s.botState.mood='tired'; setRedExpression('sad');
+reply=`You feel ${l.includes('dizzy')?'dizzy':'tired'} — I see that, ${s.name}. 😟 Yesterday you were ${s.botState.sleep||'unknown'} sleep.\n\nFollow-up 1: Is it body tired or head dizzy? Follow-up 2: When did it start — this morning or yesterday? Follow-up 3: For your ${s.type}, low iron causes this — did you eat iron today like eggs or spinach? And water?`;
+chips=["Body tired","Head dizzy","Started today","Started yesterday","No iron yet","Drank water","No water"];
+}
+else if(l.includes('didn\'t eat')||l.includes('did not eat')||l.includes('not eat')||l.includes('haven\'t eaten')||l.includes('no food')){
+s.botState.ate='no'; setRedExpression('worried');
+reply=`You haven't eaten 😟 I'm worried.\n\nFollow-up 1: Why — no appetite, busy, no food? Follow-up 2: How many hours since last meal? For ${s.type}, you need ${s.type=='O'?'protein':'light food'} now. Can I add eggs R42.99 or spinach R29.99 to basket?`;
+chips=["No appetite","Busy","No food at home","Add eggs","Add spinach","Hours ago?","Ate now"];
+}
+else if(l.includes('ate')&&!l.includes('not')){
+s.botState.ate='yes'; setRedExpression('happy');
+let prevAte=s.botState.lastMeal||'unknown';
+reply=`Great you ate! 🎉 Last time you ate ${prevAte}. What did you eat this time?\n\nFollow-up 1: Was it protein or veg? Follow-up 2: Do you feel energized now or still tired? Follow-up 3: Did you drink water with it?`;
+s.botState.lastMeal=txt; chips=["Protein","Veg","Still tired","Energized","Drank water","No water"];
+}
+else if(l.includes('high')&&(l.includes('bp')||l.includes('pressure'))){
+s.botState.bp='high'; setRedExpression('worried');
+reply=`High BP ⚠️ — worried about you, ${s.name}.\n\nFollow-up 1: When did it spike — morning or now? Follow-up 2: Did you eat salty food? Follow-up 3: How many hours sleep last night? Sit, breathe, 500ml water now, tell me after.`;
+chips=["Morning spike","Just now","Salty food","Slept <6h","Slept well","Drank water","Still high","Normal now"];
+}
+else if(l.includes('low')&&(l.includes('bp')||l.includes('pressure'))){
+s.botState.bp='low'; setRedExpression('sad');
+reply=`Low BP — might feel dizzy standing 😔\n\nFollow-up 1: Dizzy when you stand? Follow-up 2: Water today? Follow-up 3: Did you eat? Lie down, legs up, sip water + pinch salt.`;
+chips=["Dizzy standing","No dizziness","Drank water","No water","Ate","Didn't eat","Feel better"];
+}
+else if(l.includes('normal')&&(l.includes('bp')||l.includes('pressure'))){
+s.botState.bp='normal'; setRedExpression('happy');
+reply=`Normal BP — excellent! 🙌 You were ${s.botState.bp||'unknown'} before.\n\nFollow-up: Since BP is good, let's keep it: water check — did you drink 1L? And sleep — how did you sleep? Those keep BP normal.`;
+chips=["Drank 1L","No water","Slept well","Slept badly","Feel good"];
+}
+else if(l.includes('water')||l.includes('drank')){
+if(l.includes('no')){s.botState.water='no'; setRedExpression('worried'); reply=`No water yet? 💧 Dehydration = high BP + tired.\n\nFollow-up: Hours since last water? Try 500ml now, then tell me if headache or tiredness improves.`; chips=["Drank 500ml now","Still no","Headache","Feel better"];}
+else{s.botState.water='yes'; setRedExpression('happy'); reply=`Water logged! 💧 Good.\n\nFollow-up: Since you drank, do you feel better energy? And did you eat with water?`; chips=["Energy better","Still tired","Ate with water","No food"];}
+}
+else if(l.includes('sleep')||l.includes('slept')){
+s.botState.sleep=l.includes('bad')||l.includes('less')?'bad':'good';
+if(s.botState.sleep==='bad'){setRedExpression('sad'); reply=`Bad sleep 😴 — affects everything, you told me before you were ${s.botState.mood||'tired'}.\n\nFollow-up 1: What time did you sleep? Follow-up 2: Stress, noise, phone? Try 7-8h tonight. Follow-up 3: How do you feel now because of it?`; chips=["Stress","Noise","Phone late","Tired now","Anxious","Slept 4h","Slept 5h"];}
+else{setRedExpression('happy'); reply=`Good sleep! 🎉 Helps ${s.type} blood.\n\nFollow-up: With good sleep, how's mood 1-10? And did you eat breakfast after?`; chips=["Mood 8","Mood 5","Mood 3","Ate breakfast","No breakfast"];}
+}
+else{
+setRedExpression('happy');
+if(!s.botState.ate){reply=`Thanks ${s.name}. I remember: Ate=${s.botState.ate||'?'}, BP=${s.botState.bp||'?'}, Water=${s.botState.water||'?'}, Sleep=${s.botState.sleep||'?'}.\n\nFollow-up: Did you eat today?`; chips=["I ate 🥗","Didn't eat","BP normal","BP high","Drank water","Slept badly"];}
+else if(s.botState.bp===null){reply=`You ate — good. Follow-up: BP today?`; chips=["Normal BP","High BP","Low BP","Don't know"];}
+else if(s.botState.water===null){reply=`Ate + BP ${s.botState.bp||'normal'}. Follow-up: water today?`; chips=["Drank water 💧","No water yet"];}
+else{reply=`You're doing well: ate=${s.botState.ate}, BP=${s.botState.bp}, water=${s.botState.water}. Follow-up: sleep last night?`; chips=["Slept well","Slept badly","6 hours","<6 hours"];}
+}
+addBotMessage(reply,false,true,chips);
+setTimeout(()=>{let m=document.getElementById('botMouth');if(m)m.className='botMouth';},900);
+localStorage.setItem('mytype_v4',JSON.stringify(s));
+},700);
+}
+
 function render(){let t=s.type||'Unknown';let hn=document.getElementById('homeName');if(hn)hn.textContent=s.name?'Hi '+s.name.split(' ')[0]:'Welcome';let bt=document.getElementById('badgeType');if(bt)bt.textContent=t+' • MyType';let pi=document.getElementById('pInfo');if(pi)pi.textContent=(s.name||'No name')+' • '+(s.type||'No type');let pd=document.getElementById('pDetails');if(pd)pd.textContent=`Basket: ${s.basket?.length||0} • Age: ${s.age||'-'} • Allergy: ${s.allergy||'none'}`;renderProducts();renderBasket();}
-document.addEventListener('mousemove',(e)=>{let pupils=[document.getElementById('pupilL'),document.getElementById('pupilR')];if(!pupils[0])return;let fab=document.getElementById('botFab').getBoundingClientRect();let cx=fab.left+37,cy=fab.top+37;let dx=(e.clientX-cx)/30,dy=(e.clientY-cy)/30;pupils.forEach(p=>{p.style.left=(2+Math.max(-3,Math.min(3,dx)))+'px';p.style.top=(2+Math.max(-3,Math.min(3,dy)))+'px';});});
-render();if(s.name&&s.type)go('home');else go('s1');
+document.addEventListener('mousemove',(e)=>{let pupils=[document.getElementById('pupilL'),document.getElementById('pupilR')];if(!pupils[0])return;let fab=document.getElementById('botFab').getBoundingClientRect();let cx=fab.left+39,cy=fab.top+39;let dx=(e.clientX-cx)/30,dy=(e.clientY-cy)/30;pupils.forEach(p=>{p.style.left=(2+Math.max(-3,Math.min(3,dx)))+'px';p.style.top=(2+Math.max(-3,Math.min(3,dy)))+'px';});});
+render();if(s.name&&s.type){go('home');}else{go('s1');document.getElementById('nav').style.display='none';}
 </script>
 </body>
 </html>
