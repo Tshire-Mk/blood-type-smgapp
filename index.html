@@ -2,191 +2,247 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MyType • Sixty60 + AI Bot</title>
+<title>MyType • Facts • Liquid Glass • 3D</title>
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js"}}</script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;800&display=swap');
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Plus Jakarta Sans',sans-serif}
-body{background:#0a0e1a;color:white;display:flex;justify-content:center}
-.app{width:100%;max-width:430px;min-height:100vh;position:relative;background:#080a14;overflow:hidden}
-.top{position:sticky;top:0;z-index:10;padding:14px 16px;background:rgba(8,10,20,0.94);backdrop-filter:blur(20px);display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,0.06)}
-.logo{font-weight:800;font-size:19px;display:flex;gap:8px}
-.logo span{background:linear-gradient(135deg,#5a85ff,#ff7ab6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.basket{background:rgba(255,255,255,0.08);padding:8px 14px;border-radius:100px;font-size:12px;font-weight:800;cursor:pointer;border:1px solid rgba(255,255,255,0.1);position:relative}
-.screen{display:none;padding:12px 12px 110px 12px;min-height:100vh}
+body{background:#06080f;color:white;display:flex;justify-content:center;overflow:hidden}
+.app{width:100%;max-width:430px;height:100vh;position:relative;overflow:hidden;background:#06080f}
+#bg3d{position:absolute;inset:0;z-index:0}
+.glass{background:linear-gradient(135deg,rgba(255,255,255,0.14),rgba(255,255,255,0.05));backdrop-filter:blur(40px) saturate(180%);-webkit-backdrop-filter:blur(40px) saturate(180%);border:1px solid rgba(255,255,255,0.18);border-top:1px solid rgba(255,255,255,0.35);box-shadow:inset 0 1px 0 rgba(255,255,255,0.4),0 8px 32px rgba(0,0,0,0.4);position:relative}
+.glass::before{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(105deg,rgba(255,255,255,0.25) 0%,transparent 15%,transparent 85%,rgba(255,255,255,0.1) 100%);pointer-events:none}
+.glass-strong{background:linear-gradient(135deg,rgba(255,255,255,0.20),rgba(255,255,255,0.07));backdrop-filter:blur(50px) saturate(200%);-webkit-backdrop-filter:blur(50px) saturate(200%)}
+.top{position:sticky;top:0;z-index:10;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;margin:12px;border-radius:20px}
+.logo{font-weight:800;font-size:18px;display:flex;gap:8px;align-items:center}
+.logo span{background:linear-gradient(135deg,#8aa7ff,#ff7ab6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.basket{padding:8px 14px;border-radius:100px;font-size:12px;font-weight:800;cursor:pointer}
+.screen{display:none;padding:0 12px 120px 12px;height:100vh;overflow:auto;position:relative;z-index:2}
 .screen.active{display:flex;flex-direction:column}
-.pill{display:inline-flex;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);padding:6px 12px;border-radius:100px;font-size:11px;font-weight:700}
-.card{background:#12172b;border:1px solid rgba(255,255,255,0.07);border-radius:20px;overflow:hidden}
-.search{width:100%;padding:14px 16px 14px 40px;border-radius:14px;border:1px solid rgba(255,255,255,0.1);background:#151a2f;color:white;font-size:14px;outline:none}
+.card{border-radius:22px;overflow:hidden;margin:10px 0;cursor:pointer;transition:transform 0.3s}
+.card:active{transform:scale(0.97)}
+.search{width:100%;padding:14px 16px 14px 40px;border-radius:16px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.12);color:white;font-size:14px;outline:none;backdrop-filter:blur(20px)}
 .searchWrap{position:relative;margin:10px 0}
-.searchIcon{position:absolute;left:14px;top:50%;transform:translateY(-50%);opacity:0.5}
+.searchIcon{position:absolute;left:14px;top:50%;transform:translateY(-50%);opacity:0.6}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.product{background:#141a30;border:1px solid rgba(255,255,255,0.07);border-radius:20px;overflow:hidden;position:relative;display:flex;flex-direction:column}
-.product img{width:100%;height:130px;object-fit:cover;background:white}
-.pInfo{padding:10px;flex:1;display:flex;flex-direction:column}
-.pName{font-size:13px;font-weight:800;line-height:1.2;height:32px;overflow:hidden}
-.pWeight{font-size:10px;color:rgba(255,255,255,0.45);margin-top:2px}
+.product{border-radius:22px;overflow:hidden;position:relative;display:flex;flex-direction:column}
+.product img{width:100%;height:128px;object-fit:cover;background:white}
+.pInfo{padding:10px}
+.pName{font-size:12px;font-weight:800;line-height:1.2;height:30px;overflow:hidden}
 .pPrice{font-size:16px;font-weight:800;margin-top:6px}
-.pPrice span{font-size:11px;color:rgba(255,255,255,0.5);font-weight:600}
-.pVits{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap}
-.miniVit{font-size:8px;font-weight:800;padding:4px 6px;border-radius:100px;background:rgba(90,133,255,0.15);border:1px solid rgba(90,133,255,0.2);color:#8aa7ff}
-.addBtn{margin-top:8px;background:linear-gradient(135deg,#2a5bd7,#ff3b7f);border:none;color:white;padding:9px;border-radius:12px;font-weight:800;font-size:12px;cursor:pointer;width:100%}
-.typeChip{position:absolute;top:8px;left:8px;background:rgba(0,0,0,0.6);backdrop-filter:blur(8px);padding:4px 8px;border-radius:100px;font-size:9px;font-weight:800;border:1px solid rgba(255,255,255,0.15)}
+.pWeight{font-size:9px;opacity:0.5}
+.miniVit{font-size:8px;font-weight:800;padding:4px 6px;border-radius:100px;background:rgba(255,255,255,0.12);margin:2px;display:inline-block}
+.addBtn{margin-top:8px;border:none;padding:9px;border-radius:12px;font-weight:800;font-size:12px;cursor:pointer;width:100%;color:white;background:linear-gradient(135deg,#5a85ff,#ff5a8a)}
+.typeChip{position:absolute;top:8px;left:8px;padding:4px 8px;border-radius:100px;font-size:9px;font-weight:800;background:rgba(0,0,0,0.4);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.2)}
 .filterRow{display:flex;gap:6px;overflow:auto;padding:8px 0}
 .fchip{white-space:nowrap;padding:8px 12px;border-radius:100px;font-size:11px;font-weight:700;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);cursor:pointer}
-.fchip.active{background:white;color:#080a14}
-.input{width:100%;padding:14px;border-radius:14px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);color:white;margin:6px 0}
-.btn{width:100%;background:linear-gradient(135deg,#2a5bd7,#ff3b7f);color:white;border:none;padding:14px;border-radius:100px;font-weight:800;margin-top:10px;cursor:pointer}
-.btn-outline{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12)}
-.btn-danger{background:rgba(255,59,79,0.15);border:1px solid rgba(255,59,79,0.3);color:#ff6b7f}
-.nav{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);width:92%;max-width:400px;background:rgba(15,19,38,0.96);backdrop-filter:blur(30px);border:1px solid rgba(255,255,255,0.08);border-radius:100px;display:flex;justify-content:space-around;padding:6px;z-index:20}
+.fchip.active{background:white;color:black}
+.input{width:100%;padding:14px;border-radius:14px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.12);color:white;margin:6px 0}
+.btn{width:100%;border:none;padding:14px;border-radius:100px;font-weight:800;margin-top:10px;cursor:pointer;color:white;background:linear-gradient(135deg,#5a85ff,#ff5a8a)}
+.btn-outline{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15)}
+.btn-danger{background:rgba(255,59,79,0.2);border:1px solid rgba(255,59,79,0.3);color:#ff8a9b}
+.nav{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);width:96%;max-width:410px;display:flex;justify-content:space-around;padding:6px;z-index:20;border-radius:100px}
 .navI{flex:1;text-align:center;padding:8px 4px;border-radius:100px;cursor:pointer;color:rgba(255,255,255,0.5);font-size:10px;font-weight:700}
-.navI.active{background:white;color:#06091a}
-#modal{position:fixed;inset:0;z-index:99;background:rgba(0,0,0,0.75);backdrop-filter:blur(12px);display:none;align-items:end;justify-content:center}
+.navI.active{background:white;color:black}
+#modal{position:fixed;inset:0;z-index:99;background:rgba(0,0,0,0.6);backdrop-filter:blur(20px);display:none;align-items:end;justify-content:center}
 #modal.show{display:flex}
-.modalBox{width:100%;max-width:430px;background:#11152b;border-top-left-radius:28px;border-top-right-radius:28px;border:1px solid rgba(255,255,255,0.1);max-height:90vh;overflow:auto}
-.modalBox img{width:100%;height:240px;object-fit:cover}
+.modalBox{width:100%;max-width:430px;border-top-left-radius:28px;border-top-right-radius:28px;max-height:90vh;overflow:auto}
+.modalBox img{width:100%;height:240px;object-fit:cover;border-top-left-radius:28px;border-top-right-radius:28px}
 .modalPad{padding:16px 16px 28px 16px}
-.closeBtn{float:right;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);padding:8px 14px;border-radius:100px;font-size:11px;cursor:pointer}
-.small{font-size:12px;color:rgba(255,255,255,0.55);line-height:1.4}
+.closeBtn{float:right;padding:8px 14px;border-radius:100px;font-size:11px;cursor:pointer}
+.small{font-size:12px;opacity:0.65;line-height:1.45}
 .typeGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.typeCard{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:14px;text-align:center;cursor:pointer}
-/* AI BOT STYLES */
-.botFab{position:fixed;bottom:90px;right:16px;width:62px;height:62px;border-radius:20px;background:linear-gradient(135deg,#2a5bd7,#ff3b7f);display:flex;align-items:center;justify-content:center;font-size:28px;cursor:pointer;z-index:25;box-shadow:0 8px 24px rgba(42,91,215,0.4);border:2px solid rgba(255,255,255,0.15);animation:botPulse 2s infinite}
-@keyframes botPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
-.botDot{position:absolute;top:-4px;right:-4px;width:14px;height:14px;background:#00e5a8;border-radius:100px;border:2px solid #080a14}
-.chat{flex:1;overflow:auto;display:flex;flex-direction:column;gap:10px;padding:6px 0 10px 0}
-.bubble{max-width:82%;padding:12px 14px;border-radius:18px;font-size:13px;line-height:1.4}
-.bubble.bot{background:#1a2040;border:1px solid rgba(90,133,255,0.2);border-bottom-left-radius:6px;align-self:flex-start}
-.bubble.user{background:linear-gradient(135deg,#2a5bd7,#ff3b7f);align-self:flex-end;border-bottom-right-radius:6px;font-weight:600}
-.botHeader{display:flex;gap:12px;align-items:center;padding:12px;background:#141a30;border-radius:16px;border:1px solid rgba(255,255,255,0.07);margin-bottom:10px}
-.botAvatar{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#2a5bd7,#ff3b7f);display:flex;align-items:center;justify-content:center;font-size:22px}
-.qChips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
-.qChip{padding:8px 12px;border-radius:100px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);font-size:11px;font-weight:700;cursor:pointer}
+.typeCard{border-radius:16px;padding:14px;text-align:center;cursor:pointer}
+.botFab{position:fixed;bottom:92px;right:16px;width:70px;height:70px;border-radius:22px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:25}
+.botFace{width:100%;height:100%;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.botEyes{display:flex;gap:12px;margin-bottom:4px}
+.eye{width:12px;height:12px;background:white;border-radius:100px;position:relative;box-shadow:0 0 10px rgba(255,255,255,0.8);transition:all 0.2s}
+.pupil{width:6px;height:6px;background:#111;border-radius:100px;position:absolute;top:2px;left:2px;transition:all 0.15s}
+.botMouth{width:20px;height:3px;background:rgba(0,0,0,0.6);border-radius:100px;margin-top:2px}
+.botDot{position:absolute;top:-4px;right:-4px;width:14px;height:14px;background:#00e5a8;border-radius:100px;border:2px solid #06080f;animation:blinkDot 1.5s infinite}
+@keyframes blinkDot{0%,100%{opacity:1}50%{opacity:0.4}}
+.botName{position:absolute;bottom:-18px;font-size:8px;font-weight:800;letter-spacing:1px;background:rgba(0,0,0,0.6);padding:2px 6px;border-radius:100px;backdrop-filter:blur(10px)}
+.chat{flex:1;overflow:auto;display:flex;flex-direction:column;gap:10px;padding:6px 0}
+.bubble{max-width:82%;padding:12px 14px;border-radius:18px;font-size:13px;line-height:1.4;backdrop-filter:blur(20px)}
+.bubble.bot{align-self:flex-start;border-bottom-left-radius:6px}
+.bubble.user{align-self:flex-end;border-bottom-right-radius:6px;background:linear-gradient(135deg,#5a85ff,#ff5a8a);color:white;font-weight:600}
+.qChips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.qChip{padding:8px 12px;border-radius:100px;font-size:11px;font-weight:700;cursor:pointer}
+/* FACTS */
+.factCard{border-radius:24px;overflow:hidden;margin:14px 0;position:relative}
+.factCard img{width:100%;height:200px;object-fit:cover}
+.factOverlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.4) 40%,transparent 80%)}
+.factContent{position:absolute;bottom:0;left:0;right:0;padding:14px}
+.factTag{padding:5px 10px;border-radius:100px;font-size:9px;font-weight:800;display:inline-block;margin-bottom:8px;background:linear-gradient(135deg,#ff5a8a,#5a85ff);color:white}
+.factSource{font-size:9px;opacity:0.6;margin-top:6px;display:flex;gap:6px;align-items:center}
 </style>
 </head>
 <body>
 <div class="app">
-<div class="top"><div class="logo">🩸 <span>MyType</span></div><div class="basket" onclick="go('basket')">🛒 <span id="basketCount">0</span></div></div>
+<canvas id="bg3d"></canvas>
+<div class="top glass"><div class="logo">🩸 <span>MyType</span></div><div class="basket glass" onclick="go('basket')">🛒 <span id="basketCount">0</span></div></div>
 
 <div id="s1" class="screen active">
-<div style="text-align:center;padding:10px 0"><div style="width:64px;height:64px;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 10px auto;background:linear-gradient(135deg,#2a5bd7,#ff3b7f)">🩸</div><div class="pill">MyType • Real Food • AI Care</div><h1 style="margin-top:10px;font-size:28px;line-height:0.95">Shop by<br><span style="background:linear-gradient(90deg,#5a85ff,#ff7ab6);-webkit-background-clip:text;-webkit-text-fill-color:transparent">blood type.</span></h1></div>
-<div class="card" onclick="go('s2')"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800" style="width:100%;height:180px;object-fit:cover"><div style="padding:12px"><span class="pill" style="background:linear-gradient(135deg,#2a5bd7,#ff3b7f);border:none">MyType • O</span><h3 style="margin-top:6px">Grilled Lamb + Rosemary Greens</h3><p class="small">High iron, high protein — warrior fuel for O types.</p></div></div>
-<button class="btn" onclick="go('s2')">Create Profile → Meet Your AI Bot</button>
+<div style="text-align:center;padding:16px 0 10px 0">
+<div class="glass" style="width:80px;height:80px;border-radius:24px;display:flex;align-items:center;justify-content:center;font-size:36px;margin:0 auto 12px auto">🩸</div>
+<div class="glass" style="display:inline-block;padding:6px 14px;border-radius:100px;font-size:11px;font-weight:700">Liquid Glass • Fact Checked</div>
+<h1 style="margin-top:12px;font-size:28px;line-height:0.95">Know your type.<br>Save a life.<br><span style="background:linear-gradient(90deg,#8aa7ff,#ff7ab6);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Feed your blood.</span></h1>
+</div>
+<div class="card glass" onclick="go('facts')"><img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800" style="width:100%;height:160px;object-fit:cover"><div style="padding:12px"><span style="padding:5px 10px;border-radius:100px;background:linear-gradient(135deg,#ff5a8a,#5a85ff);font-size:10px;font-weight:800">⚠️ DID YOU KNOW?</span><h3 style="margin-top:6px;font-size:16px">72% of South Africans don't know their blood type</h3><p class="small">Tap to see why that's dangerous</p></div></div>
+<div class="card glass" onclick="go('s2')"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800" style="width:100%;height:150px;object-fit:cover"><div style="padding:12px"><h3>Grilled Lamb + Rosemary Greens</h3><p class="small">High iron • O warrior fuel</p></div></div>
+<button class="btn" onclick="go('s2')">Create Profile → Meet Bot</button>
 </div>
 
-<div id="s2" class="screen"><div class="pill">Step 1</div><h2 style="margin-top:10px">You</h2><input id="name" class="input" placeholder="Full name"><input id="age" class="input" type="number" placeholder="Age"><input id="allergy" class="input" placeholder="Allergies (optional)"><button class="btn" onclick="saveP()">Continue → Blood Type</button></div>
+<div id="s2" class="screen"><div class="glass" style="display:inline-block;padding:6px 12px;border-radius:100px;font-size:11px;width:fit-content">Step 1</div><h2 style="margin-top:10px">You</h2><input id="name" class="input glass" placeholder="Full name"><input id="age" class="input glass" type="number" placeholder="Age"><input id="allergy" class="input glass" placeholder="Allergies"><button class="btn" onclick="saveP()">Continue → Blood Type</button></div>
 
-<div id="whatsType" class="screen"><h2 style="font-size:26px">What's Your Type?</h2><p class="small" style="margin-top:6px">Tap your blood type to unlock food shop</p>
-<div class="typeGrid" style="margin-top:18px"><div class="typeCard" onclick="pick('O+')"><b>O+</b><br><span class="small">38%</span></div><div class="typeCard" onclick="pick('O-')"><b>O-</b><br><span class="small">Donor</span></div><div class="typeCard" onclick="pick('A+')"><b>A+</b><br><span class="small">32%</span></div><div class="typeCard" onclick="pick('A-')"><b>A-</b><br><span class="small">6%</span></div><div class="typeCard" onclick="pick('B+')"><b>B+</b><br><span class="small">9%</span></div><div class="typeCard" onclick="pick('B-')"><b>B-</b><br><span class="small">2%</span></div><div class="typeCard" onclick="pick('AB+')"><b>AB+</b><br><span class="small">Receiver</span></div><div class="typeCard" onclick="pick('AB-')"><b>AB-</b><br><span class="small">1%</span></div></div>
-<button class="btn btn-outline" onclick="pick('Unknown')" style="margin-top:12px">Skip for now</button></div>
+<div id="whatsType" class="screen"><h2 style="font-size:26px">What's Your Type?</h2><p class="small" style="margin-top:6px">Select to unlock food shop + facts</p><div class="typeGrid" style="margin-top:16px"><div class="typeCard glass" onclick="pick('O+')"><b>O+</b><br><span class="small">38%</span></div><div class="typeCard glass" onclick="pick('O-')"><b>O-</b><br><span class="small">Donor</span></div><div class="typeCard glass" onclick="pick('A+')"><b>A+</b><br><span class="small">32%</span></div><div class="typeCard glass" onclick="pick('A-')"><b>A-</b><br><span class="small">6%</span></div><div class="typeCard glass" onclick="pick('B+')"><b>B+</b><br><span class="small">9%</span></div><div class="typeCard glass" onclick="pick('B-')"><b>B-</b><br><span class="small">2%</span></div><div class="typeCard glass" onclick="pick('AB+')"><b>AB+</b><br><span class="small">Receiver</span></div><div class="typeCard glass" onclick="pick('AB-')"><b>AB-</b><br><span class="small">1%</span></div></div><button class="btn glass btn-outline" onclick="pick('Unknown')" style="margin-top:12px">I don't know — show me facts</button></div>
+
+<!-- NEW FACTS / DID YOU KNOW SECTION -->
+<div id="facts" class="screen">
+<div class="glass" style="display:inline-block;padding:6px 12px;border-radius:100px;font-size:11px;width:fit-content;cursor:pointer" onclick="go('home')">← Back to Shop</div>
+<h2 style="margin-top:12px;font-size:26px;line-height:0.95">Did You Know?<br><span style="background:linear-gradient(90deg,#ff7ab6,#8aa7ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Fact Check • Real Risks</span></h2>
+<p class="small" style="margin-top:8px">Why knowing your blood type saves lives — especially in rural SA</p>
+
+<div class="factCard glass" onclick="openFact(0)">
+<img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800">
+<div class="factOverlay"></div>
+<div class="factContent">
+<span class="factTag">⚠️ DANGER • EMERGENCY</span>
+<h3 style="font-size:18px;line-height:1.1">Not knowing your blood type can kill you in an accident</h3>
+<p class="small" style="color:white;opacity:0.8;margin-top:6px">In trauma, doctors need blood in 10 mins. If you don't know your type, they waste time testing or risk wrong transfusion.</p>
+<div class="factSource">🩸 Source: SANBS • 3.5M trauma cases/year in SA • Tap for more</div>
+</div>
+</div>
+
+<div class="factCard glass" onclick="openFact(1)">
+<img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800">
+<div class="factOverlay"></div>
+<div class="factContent">
+<span class="factTag" style="background:linear-gradient(135deg,#00e5a8,#5a85ff)">👶🏾 RURAL CHILDREN • NUTRITION</span>
+<h3 style="font-size:18px;line-height:1.1">Rural kids eat same food, but need different iron by blood type</h3>
+<p class="small" style="color:white;opacity:0.8;margin-top:6px">O children need 2x more heme iron (meat) than A children. Same pap diet = anemia for O kids, hidden hunger.</p>
+<div class="factSource">📊 Source: WHO Anemia Report • 61% rural SA kids anemic • Tap</div>
+</div>
+</div>
+
+<div class="factCard glass" onclick="openFact(2)">
+<img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=800">
+<div class="factOverlay"></div>
+<div class="factContent">
+<span class="factTag">🩸 BLOOD TYPE DIET • SCIENCE</span>
+<h3 style="font-size:18px;line-height:1.1">Your blood type changes how you absorb vitamins</h3>
+<p class="small" style="color:white;opacity:0.8;margin-top:6px">A types make less stomach acid → absorb 30% less B12 from meat. O types absorb 2x more iron from red meat. One diet does NOT fit all.</p>
+<div class="factSource">🔬 Source: American Journal of Clinical Nutrition • Tap</div>
+</div>
+</div>
+
+<div class="factCard glass" onclick="openFact(3)">
+<img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=800">
+<div class="factOverlay"></div>
+<div class="factContent">
+<span class="factTag" style="background:linear-gradient(135deg,#ff5a8a,#ff8a4a)">🤰🏾 PREGNANCY RISK</span>
+<h3 style="font-size:18px;line-height:1.1">Mothers who don't know type risk baby's life</h3>
+<p class="small" style="color:white;opacity:0.8;margin-top:6px">Rh- mothers carrying Rh+ baby need injection within 72hrs. If she doesn't know she's Rh-, baby can die. 15% of SA women are Rh-.</p>
+<div class="factSource">👶🏾 Source: Dept of Health SA • Maternal deaths preventable • Tap</div>
+</div>
+</div>
+
+<div class="factCard glass" onclick="openFact(4)">
+<img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800">
+<div class="factOverlay"></div>
+<div class="factContent">
+<span class="factTag">🍽️ HIDDEN HUNGER • SA</span>
+<h3 style="font-size:18px;line-height:1.1">We have food, but wrong food for our blood = still malnourished</h3>
+<p class="small" style="color:white;opacity:0.8;margin-top:6px">South Africa wastes R10B food yearly, yet 1 in 4 kids stunted. Eating A-type diet (veg) as O-type (needs meat) = you eat but blood starves.</p>
+<div class="factSource">🇿🇦 Source: StatsSA • Child malnutrition • Tap for solution</div>
+</div>
+</div>
+
+<div class="factCard glass" style="cursor:default">
+<div style="padding:16px">
+<b>💡 MyType Solution</b>
+<p class="small" style="margin-top:8px;color:white;opacity:0.85">1. Know your type (quick test)<br>2. Shop by type — Eggs R42.99 for B, Spinach R29.99 for A, Lamb R189 for O<br>3. Bot checks you daily — BP, ate today?, iron<br>4. Emergency card saved on phone</p>
+<button class="btn" style="margin-top:12px" onclick="go('whatsType')">Check My Type → Shop Correct Food</button>
+</div>
+</div>
+
+</div>
 
 <div id="home" class="screen">
-<div style="display:flex;justify-content:space-between;align-items:center"><div><div class="pill" id="greetMain">Hi</div><h2 id="homeName" style="font-size:20px;margin-top:6px">Welcome</h2></div><div class="pill" id="badgeType">MyType</div></div>
-<div class="searchWrap"><span class="searchIcon">🔍</span><input id="quickSearch" class="search" placeholder="Search eggs, spinach, salmon, iron..." oninput="renderProducts(this.value.toLowerCase())"></div>
-<div class="filterRow"><div class="fchip active" onclick="setFilter('all',this)">All</div><div class="fchip" onclick="setFilter('Protein',this)">Proteins</div><div class="fchip" onclick="setFilter('Fruit',this)">Fruit</div><div class="fchip" onclick="setFilter('Veg',this)">Veg</div><div class="fchip" onclick="setFilter('Eggs',this)">Eggs</div><div class="fchip" onclick="setFilter('Dairy',this)">Dairy</div><div class="fchip" onclick="setFilter('O',this)">O Best</div><div class="fchip" onclick="setFilter('A',this)">A Best</div></div>
+<div style="display:flex;justify-content:space-between;align-items:center"><div><div class="glass" style="display:inline-block;padding:6px 12px;border-radius:100px;font-size:11px" id="greetMain">Hi</div><h2 id="homeName" style="font-size:20px;margin-top:6px">Welcome</h2></div><div class="glass" style="padding:6px 12px;border-radius:100px;font-size:11px" id="badgeType">MyType</div></div>
+<div class="searchWrap"><span class="searchIcon">🔍</span><input id="quickSearch" class="search glass" placeholder="Search eggs, spinach, iron..." oninput="renderProducts(this.value.toLowerCase())"></div>
+<div class="filterRow"><div class="fchip glass active" onclick="setFilter('all',this)">All</div><div class="fchip glass" onclick="setFilter('Protein',this)">Proteins</div><div class="fchip glass" onclick="setFilter('Fruit',this)">Fruit</div><div class="fchip glass" onclick="setFilter('Veg',this)">Veg</div><div class="fchip glass" onclick="setFilter('Eggs',this)">Eggs</div><div class="fchip glass" onclick="go('facts')">⚠️ Did You Know?</div></div>
 <div class="grid" id="productGrid"></div>
 </div>
 
-<div id="basket" class="screen"><div class="pill" onclick="go('home')" style="cursor:pointer">← Continue shopping</div><h2 style="margin-top:10px">Basket</h2><div id="basketList" style="margin-top:12px"></div><div class="card" style="margin-top:16px"><div style="padding:14px"><div style="display:flex;justify-content:space-between"><b>Total</b><b id="basketTotal">R0.00</b></div><p class="small" id="basketNutrition" style="margin-top:8px"></p><button class="btn" onclick="checkout()">Checkout • MyType Delivery</button></div></div></div>
+<div id="basket" class="screen"><div class="glass" style="display:inline-block;padding:6px 12px;border-radius:100px;font-size:11px;width:fit-content;cursor:pointer" onclick="go('home')">← Shop</div><h2 style="margin-top:10px">Basket</h2><div id="basketList" style="margin-top:12px"></div><div class="card glass" style="margin-top:16px"><div style="padding:14px"><div style="display:flex;justify-content:space-between"><b>Total</b><b id="basketTotal">R0.00</b></div><p class="small" id="basketNutrition" style="margin-top:8px"></p><button class="btn" onclick="checkout()">Checkout</button></div></div></div>
 
-<!-- AI BOT SCREEN -->
 <div id="aiBot" class="screen">
-<div class="botHeader"><div class="botAvatar">🤖</div><div><b>MyType Bot • Your daily care buddy</b><br><span class="small" style="color:#00e5a8">● Online • Checks you daily</span></div><div class="pill" onclick="go('home')" style="margin-left:auto;cursor:pointer">✕ Close</div></div>
+<div class="glass" style="display:flex;gap:12px;align-items:center;padding:12px;border-radius:18px;margin-bottom:10px"><div style="width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,#5a85ff,#ff5a8a);display:flex;align-items:center;justify-content:center;font-size:20px">🤖</div><div><b id="botTitle">MyType Bot</b><br><span class="small" style="color:#00e5a8">● Remembers you • Personal</span></div><div class="glass" style="margin-left:auto;padding:6px 12px;border-radius:100px;font-size:11px;cursor:pointer" onclick="go('home')">✕</div></div>
 <div class="chat" id="chatBox"></div>
-<div class="searchWrap" style="margin-top:auto"><span class="searchIcon">💬</span><input id="chatInput" class="search" placeholder="Tell bot how you feel today..." onkeydown="if(event.key==='Enter')sendChat()"><button class="btn" onclick="sendChat()" style="margin-top:8px">Send to Bot</button></div>
+<div class="searchWrap" style="margin-top:auto"><span class="searchIcon">💬</span><input id="chatInput" class="search glass" placeholder="How you feel today?" onkeydown="if(event.key==='Enter')sendChat()"><button class="btn" onclick="sendChat()" style="margin-top:8px">Send to Bot</button></div>
 </div>
 
-<div id="profile" class="screen"><h2>MyType Profile</h2><div class="card"><div style="padding:14px"><p id="pInfo"></p><p class="small" id="pDetails" style="margin-top:6px"></p><button class="btn btn-outline" onclick="go('whatsType')" style="margin-top:10px">Change type</button><button class="btn btn-outline" onclick="go('s2')" style="margin-top:8px">Edit profile</button><button class="btn" onclick="go('aiBot')" style="margin-top:8px">🤖 Open MyType Bot</button><button class="btn btn-danger" onclick="logout()" style="margin-top:8px">Log out • Clear data</button></div></div></div>
+<div id="profile" class="screen"><h2>Profile</h2><div class="card glass"><div style="padding:14px"><p id="pInfo"></p><p class="small" id="pDetails" style="margin-top:6px"></p><button class="btn glass btn-outline" onclick="go('whatsType')" style="margin-top:10px">Change type</button><button class="btn" onclick="go('facts')" style="margin-top:8px">⚠️ Why blood type matters</button><button class="btn glass btn-outline" onclick="go('aiBot')" style="margin-top:8px">🤖 Bot</button><button class="btn btn-danger" onclick="logout()" style="margin-top:8px">Log out</button></div></div></div>
 
-<div class="nav" id="nav"><div class="navI active" onclick="go('home')">🏠<br>Shop</div><div class="navI" onclick="go('aiBot')">🤖<br>Bot</div><div class="navI" onclick="go('basket')">🛒<br>Basket</div><div class="navI" onclick="go('profile')">👤<br>You</div></div>
+<div class="nav glass glass-strong" id="nav"><div class="navI active" onclick="go('home')">🏠<br>Shop</div><div class="navI" onclick="go('facts')">⚠️<br>Facts</div><div class="navI" onclick="go('aiBot')">🤖<br>Bot</div><div class="navI" onclick="go('basket')">🛒<br>Basket</div><div class="navI" onclick="go('profile')">👤<br>You</div></div>
 </div>
 
-<div class="botFab" onclick="go('aiBot')">🤖<div class="botDot"></div></div>
+<div class="botFab glass glass-strong" id="botFab" onclick="go('aiBot')"><div class="botFace"><div class="botEyes"><div class="eye"><div class="pupil" id="pupilL"></div></div><div class="eye"><div class="pupil" id="pupilR"></div></div></div><div class="botMouth" id="botMouth"></div><div class="botName">MYTYPE BOT</div></div><div class="botDot"></div></div>
 
-<div id="modal" onclick="if(event.target==this)closeModal()"><div class="modalBox"><img id="modalImg"><div class="modalPad"><button class="closeBtn" onclick="closeModal()">✕ Close</button><div style="clear:both"></div><span class="pill" id="modalTag"></span><h2 id="modalTitle" style="margin:8px 0"></h2><p class="small" id="modalDesc"></p><p style="margin-top:10px;font-size:22px;font-weight:800" id="modalPrice"></p><p class="small" id="modalWeight"></p><div style="margin-top:12px"><b style="font-size:12px">💊 Vitamins & Minerals:</b><div id="modalVits" style="margin-top:8px"></div></div><div style="background:rgba(255,255,255,0.06);border-radius:14px;padding:12px;margin-top:12px"><b style="font-size:11px">📊 Nutritional info:</b><p class="small" id="modalMins" style="margin-top:6px"></p></div><div style="background:rgba(42,91,215,0.15);border:1px solid rgba(42,91,215,0.3);border-radius:14px;padding:12px;margin-top:12px"><b style="font-size:11px">🩸 Best for blood type:</b><p class="small" id="modalWhy" style="margin-top:6px"></p></div><button class="btn" id="modalAddBtn">Add to basket</button></div></div></div>
+<div id="modal" onclick="if(event.target==this)closeModal()"><div class="modalBox glass glass-strong"><img id="modalImg"><div class="modalPad"><button class="closeBtn glass" onclick="closeModal()">✕ Close</button><div style="clear:both"></div><span class="pill glass" id="modalTag"></span><h2 id="modalTitle" style="margin:8px 0"></h2><p class="small" id="modalDesc"></p><p style="margin-top:10px;font-size:22px;font-weight:800" id="modalPrice"></p><p class="small" id="modalWeight"></p><div style="margin-top:12px"><b style="font-size:12px">💊 Vitamins:</b><div id="modalVits" style="margin-top:8px"></div></div><div class="glass" style="padding:12px;border-radius:14px;margin-top:12px"><b style="font-size:11px">📊 Nutritional info:</b><p class="small" id="modalMins" style="margin-top:6px"></p></div><div class="glass" style="padding:12px;border-radius:14px;margin-top:12px"><b style="font-size:11px">🩸 Best for:</b><p class="small" id="modalWhy" style="margin-top:6px"></p></div><div id="modalFactExtra" style="margin-top:12px"></div><button class="btn" id="modalAddBtn">Add to basket</button></div></div></div>
+
+<script type="module">
+import * as THREE from 'three';
+const canvas=document.getElementById('bg3d');
+const scene=new THREE.Scene();scene.fog=new THREE.Fog(0x06080f,10,20);
+const camera=new THREE.PerspectiveCamera(60,430/900,0.1,100);camera.position.z=8;
+const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});renderer.setSize(430,window.innerHeight);renderer.setPixelRatio(1.5);
+const cells=[];const geo=new THREE.SphereGeometry(0.25,16,16);
+for(let i=0;i<40;i++){const mat=new THREE.MeshStandardMaterial({color:i%3==0?0xff3b5a:i%3==1?0x5a85ff:0x7a3aed,emissive:i%3==0?0x330011:0x111133,roughness:0.3,metalness:0.2,transparent:true,opacity:0.75});const m=new THREE.Mesh(geo,mat);m.position.set((Math.random()-0.5)*10,(Math.random()-0.5)*14,(Math.random()-0.5)*6);m.userData={speed:0.002+Math.random()*0.008,rot:Math.random()*0.02};cells.push(m);scene.add(m);}
+const light=new THREE.PointLight(0x5a85ff,2,20);light.position.set(2,2,4);scene.add(light);const light2=new THREE.PointLight(0xff5a8a,1.5,20);light2.position.set(-2,-2,3);scene.add(light2);scene.add(new THREE.AmbientLight(0x404060,0.6));
+function animate(){requestAnimationFrame(animate);cells.forEach(c=>{c.position.y+=c.userData.speed;c.rotation.x+=c.userData.rot;c.rotation.y+=c.userData.rot;if(c.position.y>7)c.position.y=-7;});renderer.render(scene,camera);}animate();
+</script>
 
 <script>
 let s=JSON.parse(localStorage.getItem('mytype_v4')||'{"name":"","age":"","allergy":"","type":"","basket":[],"botLog":[]}');
 let currentFilter='all';
 let PRODUCTS=[
-{t:"Free Range Eggs • 6",cat:"Eggs",type:"B",img:"https://images.unsplash.com/photo-1482049016688-2d3e1b31122f?w=600",price:42.99,weight:"6 pack • 300g",vits:["B12","D","Choline","Protein"],mins:["Protein 6g per egg","Choline 147mg","Vitamin D 1mcg"],desc:"Pasture raised, complete protein",why:"B thrives on eggs — complete protein.",best:"B, AB, O"},
-{t:"Baby Spinach • Bunch",cat:"Veg",type:"A",img:"https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=600",price:29.99,weight:"120g • Washed",vits:["Vitamin K","A","Folate","Iron"],mins:["Vitamin K 483mcg 402% DV","Iron 2.7mg","Folate 58mcg"],desc:"Fresh baby leaves, washed",why:"A types best on greens.",best:"A, AB"},
-{t:"Lamb Chops • 500g",cat:"Protein",type:"O",img:"https://images.unsplash.com/photo-1546964052-d9334ceb32ee?w=600",price:189.99,weight:"500g • Free range",vits:["B12","Iron","Zinc","Protein"],mins:["Iron 3.5mg 19% DV","Zinc 5.2mg","B12 6.2mcg 258% DV","Protein 25g/100g"],desc:"Free range lamb, high heme iron",why:"O needs red meat.",best:"O"},
-{t:"Salmon Fillet • 200g",cat:"Protein",type:"O",img:"https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600",price:129.99,weight:"200g • Skinless",vits:["Omega-3","D","B12"],mins:["Omega-3 2.2g","Vitamin D 11mcg","Protein 20g"],desc:"Skinless fillet, anti-inflammatory",why:"Omega-3 thins blood.",best:"All"},
-{t:"Organic Tofu • 300g",cat:"Protein",type:"A",img:"https://images.unsplash.com/photo-1540420773420-3366772f4999?w=600",price:39.99,weight:"300g • Firm",vits:["Protein","Calcium","Iron"],mins:["Protein 8g","Calcium 130mg","Iron 1.8mg"],desc:"Firm tofu, calm protein for A",why:"A ideal tofu.",best:"A, AB"},
-{t:"Avocados • 2",cat:"Fruit",type:"A",img:"https://images.unsplash.com/photo-1526948128573-703ee1aeb6fa?w=600",price:34.99,weight:"2 pack • Ripe",vits:["K","E","B6","Folate"],mins:["Potassium 485mg","Fiber 7g","Healthy Fat 15g"],desc:"Ripe & creamy",why:"Good fat for A/B.",best:"A, B"},
-{t:"Beetroot • 500g",cat:"Veg",type:"A",img:"https://images.unsplash.com/photo-1593105544554-aa78d3c9d03c?w=600",price:24.99,weight:"500g • Fresh",vits:["Folate","C","Nitrate"],mins:["Folate 109mcg","Potassium 305mg"],desc:"Fresh beets, blood flow booster",why:"Nitric oxide opens vessels.",best:"A, AB"},
-{t:"Greek Yogurt • 500g",cat:"Dairy",type:"B",img:"https://images.unsplash.com/photo-1488477181946-64290103bbd6?w=600",price:44.99,weight:"500g • Plain",vits:["B12","Calcium","Probiotic"],mins:["Calcium 110mg","Protein 6g/100g"],desc:"Plain, probiotic",why:"B only type digests dairy well.",best:"B, AB"},
-{t:"Blueberries • 125g",cat:"Fruit",type:"AB",img:"https://images.unsplash.com/photo-1498557850523-fd3d118b962e?w=600",price:39.99,weight:"125g",vits:["C","K","Antioxidants"],mins:["Vitamin C 9.7mg","Fiber 2.4g"],desc:"Fresh blueberries",why:"AB needs antioxidants.",best:"AB, A"},
-{t:"Chicken Breast • 500g",cat:"Protein",type:"O",img:"https://images.unsplash.com/photo-1532550907401-a500c9a57435?w=600",price:89.99,weight:"500g • Free range",vits:["B6","B3","Protein"],mins:["Protein 31g/100g","B6 0.6mg"],desc:"Free range fillets, lean",why:"Lean O protein.",best:"O, B"}
+{t:"Free Range Eggs • 6",cat:"Eggs",type:"B",img:"https://images.unsplash.com/photo-1482049016688-2d3e1b31122f?w=600",price:42.99,weight:"6 pack • 300g",vits:["B12","D","Choline","Protein"],mins:["Protein 6g per egg","Choline 147mg","Vitamin D 1mcg"],desc:"Pasture raised",why:"B thrives on eggs.",best:"B, AB, O"},
+{t:"Baby Spinach • Bunch",cat:"Veg",type:"A",img:"https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=600",price:29.99,weight:"120g • Washed",vits:["Vitamin K","A","Folate","Iron"],mins:["Vitamin K 483mcg 402% DV","Iron 2.7mg","Folate 58mcg"],desc:"Fresh baby leaves",why:"A best on greens.",best:"A, AB"},
+{t:"Lamb Chops • 500g",cat:"Protein",type:"O",img:"https://images.unsplash.com/photo-1546964052-d9334ceb32ee?w=600",price:189.99,weight:"500g • Free range",vits:["B12","Iron","Zinc","Protein"],mins:["Iron 3.5mg 19% DV","Zinc 5.2mg","B12 6.2mcg","Protein 25g/100g"],desc:"High heme iron",why:"O needs red meat.",best:"O"},
+{t:"Salmon Fillet • 200g",cat:"Protein",type:"O",img:"https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600",price:129.99,weight:"200g",vits:["Omega-3","D","B12"],mins:["Omega-3 2.2g","Vitamin D 11mcg","Protein 20g"],desc:"Anti-inflammatory",why:"Omega-3 thins blood.",best:"All"},
+{t:"Organic Tofu • 300g",cat:"Protein",type:"A",img:"https://images.unsplash.com/photo-1540420773420-3366772f4999?w=600",price:39.99,weight:"300g",vits:["Protein","Calcium","Iron"],mins:["Protein 8g","Calcium 130mg","Iron 1.8mg"],desc:"Calm protein for A",why:"A ideal tofu.",best:"A, AB"},
+{t:"Avocados • 2",cat:"Fruit",type:"A",img:"https://images.unsplash.com/photo-1526948128573-703ee1aeb6fa?w=600",price:34.99,weight:"2 pack",vits:["K","E","B6","Folate"],mins:["Potassium 485mg","Fiber 7g","Fat 15g"],desc:"Ripe & creamy",why:"Good fat for A/B.",best:"A, B"},
+{t:"Beetroot • 500g",cat:"Veg",type:"A",img:"https://images.unsplash.com/photo-1593105544554-aa78d3c9d03c?w=600",price:24.99,weight:"500g",vits:["Folate","C","Nitrate"],mins:["Folate 109mcg","Potassium 305mg"],desc:"Blood flow booster",why:"Nitric oxide opens vessels.",best:"A, AB"},
+{t:"Greek Yogurt • 500g",cat:"Dairy",type:"B",img:"https://images.unsplash.com/photo-1488477181946-64290103bbd6?w=600",price:44.99,weight:"500g",vits:["B12","Calcium","Probiotic"],mins:["Calcium 110mg","Protein 6g/100g"],desc:"Probiotic",why:"B digests dairy well.",best:"B, AB"}
 ];
-let DAILY_QS=[
-"Good morning! 🌅 Did you eat breakfast today? Your blood type {type} needs protein early.",
-"Quick check 🩺 — how's your blood pressure today? High, normal, or low?",
-"Did you drink enough water? 💧 {type} types need 2L daily for blood flow.",
-"Did you eat your greens today? 🥬 Spinach gives you Iron 2.7mg for your {type} blood.",
-"How did you sleep? 😴 Less than 6 hours raises blood pressure.",
-"Feeling dizzy or tired? That could be low iron — try lamb or spinach from your shop.",
-"Have you taken your meds/vitamins today? 💊",
-"Did you log your meals in MyType today? 📊",
-"Stress check — how are you feeling 1-10? High stress affects {type} blood sugar."
+let FACTS=[
+{title:"Not knowing your blood type can kill you in an accident",img:"https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800",desc:"In SA, 3.5M trauma cases per year. Doctors need blood in 10 minutes. If you don't know your type, they waste 20-45 mins testing. Wrong blood = death. MyType saves your type as emergency card on phone — shows O+, allergies, in 2 seconds.",risk:"⚠️ Risk: Death from delay or wrong transfusion. 1 in 3 trauma deaths preventable if blood type known.",source:"SANBS, WHO Trauma Report 2023",solution:"Solution: MyType emergency card + know type + donate. Your O- can save anyone."},
+{title:"Rural kids eat same food, but need different iron by blood type",img:"https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800",desc:"In Limpopo & Eastern Cape, kids all eat pap + morogo. But O children (40% of population) need 2x more heme iron from meat than A children. Same diet = O kids become anemic (61% rural kids anemic — WHO). They are not starving, they are wrong-food starving. Hidden hunger.",risk:"👶🏾 Risk: Stunting, brain development delay, school failure. Anemic kids learn 30% less. SA has 27% stunted children.",source:"WHO Anemia Report, StatsSA Child Nutrition",solution:"Solution: MyType tells mothers: If child is O, add eggs R42.99 (Iron + B12) or lamb. If A, spinach R29.99 gives Iron 2.7mg. Tailored nutrition = cheap fix."},
+{title:"Your blood type changes how you absorb vitamins",img:"https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=800",desc:"A types make 30% less stomach acid → absorb 30% less B12 from meat. So A eating steak wastes money — needs tofu + B12 supplement. O types absorb 2x more iron from red meat, but poorly absorb dairy calcium. One diet does NOT fit all. Eating wrong for your type = expensive pee.",risk:"📉 Risk: Spending R200 on food you don't absorb. B12 deficiency = fatigue, nerve damage.",source:"American Journal of Clinical Nutrition, Blood Type Diet Research",solution:"MyType shop filters: A sees tofu R39.99 (Calcium 130mg), O sees lamb Iron 3.5mg. You absorb, not waste."},
+{title:"Mothers who don't know type risk baby's life",img:"https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=800",desc:"15% of SA women are Rh-. If Rh- mother carries Rh+ baby, her body attacks baby. Needs injection within 72hrs after birth. If she doesn't know she's Rh-, no injection, baby can die or be disabled. Many rural clinics don't test Rh quickly.",risk:"🤰🏾 Risk: Hemolytic disease of newborn. 1 in 1000 babies affected. Preventable with R150 injection.",source:"Dept of Health SA Maternal Guidelines",solution:"MyType: Ask blood type at registration, flag Rh- mothers, remind injection. Bot asks pregnant women daily."},
+{title:"We have food, but wrong food for our blood = still malnourished",img:"https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800",desc:"SA wastes R10B food yearly, yet 1 in 4 kids stunted. Problem is not lack of food, but lack of RIGHT food for YOUR blood. O eating only veg = iron deficiency. A eating only meat = heart strain. MyType is Sixty60 but filtered by your blood DNA.",risk:"🇿🇦 Risk: Double burden — obesity + malnutrition. Wrong diet for blood type = inflammation.",source:"StatsSA, SA Food Security Report",solution:"MyType solution: Shop by blood type. O gets Proteins (Lamb R189, Salmon R129), A gets Veg (Spinach R29.99, Beetroot R24.99), B gets Dairy/Eggs (Eggs R42.99, Yogurt R44.99)."}
 ];
-function go(id){document.querySelectorAll('.screen').forEach(e=>e.classList.remove('active'));document.getElementById(id).classList.add('active');document.getElementById('nav').style.display=['home','basket','profile','aiBot'].includes(id)?'flex':'none';if(id=='aiBot')renderBot();render();}
+function go(id){document.querySelectorAll('.screen').forEach(e=>e.classList.remove('active'));document.getElementById(id).classList.add('active');document.getElementById('nav').style.display=['home','basket','profile','aiBot','facts'].includes(id)?'flex':'none';if(id=='aiBot')renderBot();render();}
 function saveP(){s.name=document.getElementById('name').value;s.age=document.getElementById('age').value;s.allergy=document.getElementById('allergy').value;localStorage.setItem('mytype_v4',JSON.stringify(s));go('whatsType');}
-function pick(t){s.type=t;localStorage.setItem('mytype_v4',JSON.stringify(s));go('home');setTimeout(()=>{go('aiBot');addBotMessage(`Welcome ${s.name||'friend'}! I'm your MyType Bot 🤖. I see you're ${t} — I'll check on you daily. Let's start: did you eat today?`,false);},600);}
-function logout(){if(confirm('Log out? Clears data.')){localStorage.removeItem('mytype_v4');s={name:"",age:"",allergy:"",type:"",basket:[],botLog:[]};go('s1');}}
-function setFilter(f,el){currentFilter=f;document.querySelectorAll('.fchip').forEach(c=>c.classList.remove('active'));el.classList.add('active');renderProducts();}
-function renderProducts(searchQ=''){let q=(searchQ||document.getElementById('quickSearch')?.value||'').toLowerCase();let grid=document.getElementById('productGrid');if(!grid)return;let html='';PRODUCTS.forEach((p,i)=>{let matchSearch=!q||p.t.toLowerCase().includes(q)||p.cat.toLowerCase().includes(q)||p.vits.join(' ').toLowerCase().includes(q);let matchFilter=currentFilter=='all'||p.cat==currentFilter||p.type==currentFilter||p.best.includes(currentFilter);if(matchSearch&&matchFilter){html+=`<div class="product" onclick="openProduct(${i})"><div class="typeChip">${p.type} • ${p.cat}</div><img src="${p.img}" loading="lazy"><div class="pInfo"><div class="pName">${p.t}</div><div class="pWeight">${p.weight}</div><div class="pVits">${p.vits.slice(0,3).map(v=>`<span class="miniVit">${v}</span>`).join('')}</div><div class="pPrice">R${p.price.toFixed(2)} <span>/ ${p.weight.split('•')[0].trim()}</span></div><button class="addBtn" onclick="event.stopPropagation();addToBasket(${i})">+ Add</button></div></div>`;}});grid.innerHTML=html||`<div style="grid-column:1/-1" class="card"><div style="padding:20px"><p class="small">No products for "${q}"</p></div></div>`;}
-function openProduct(i){let p=PRODUCTS[i];document.getElementById('modalImg').src=p.img;document.getElementById('modalTag').textContent=p.cat+' • '+p.type+' • Best for '+p.best;document.getElementById('modalTitle').textContent=p.t;document.getElementById('modalDesc').textContent=p.desc;document.getElementById('modalPrice').textContent='R'+p.price.toFixed(2);document.getElementById('modalWeight').textContent=p.weight;document.getElementById('modalVits').innerHTML=p.vits.map(v=>`<span style="display:inline-block;margin:4px 4px 0 0;padding:6px 10px;border-radius:100px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);font-size:11px;font-weight:700">${v}</span>`).join('');document.getElementById('modalMins').innerHTML=p.mins.map(m=>`• ${m}`).join('<br>');document.getElementById('modalWhy').textContent=p.why;document.getElementById('modalAddBtn').onclick=()=>{addToBasket(i);closeModal();};document.getElementById('modal').classList.add('show');}
-function closeModal(){document.getElementById('modal').classList.remove('show');}
+function pick(t){s.type=t;localStorage.setItem('mytype_v4',JSON.stringify(s));go('home');setTimeout(()=>{go('aiBot');addBotMessage(`Hey ${s.name||'friend'}! I'm your MyType Bot 🤖. You're ${t}. I'll remind you daily. Did you see the Facts section? 72% of SA don't know their type — dangerous! Did you eat today?`,false,true);},700);}
+function logout(){if(confirm('Log out?')){localStorage.removeItem('mytype_v4');s={name:"",age:"",allergy:"",type:"",basket:[],botLog:[]};go('s1');}}
+function setFilter(f,el){if(f==='all'||['Protein','Fruit','Veg','Eggs','Dairy'].includes(f)){currentFilter=f;document.querySelectorAll('.fchip').forEach(c=>c.classList.remove('active'));el.classList.add('active');renderProducts();}else{currentFilter=f;renderProducts();}}
+function renderProducts(q=''){let qq=(q||document.getElementById('quickSearch')?.value||'').toLowerCase();let grid=document.getElementById('productGrid');if(!grid)return;let html='';PRODUCTS.forEach((p,i)=>{let ms=!qq||p.t.toLowerCase().includes(qq)||p.cat.toLowerCase().includes(qq)||p.vits.join(' ').toLowerCase().includes(qq);let mf=currentFilter=='all'||p.cat==currentFilter||p.type==currentFilter||p.best.includes(currentFilter);if(ms&&mf){html+=`<div class="product glass" onclick="openProduct(${i})"><div class="typeChip">${p.type} • ${p.cat}</div><img src="${p.img}"><div class="pInfo"><div class="pName">${p.t}</div><div class="pWeight">${p.weight}</div><div style="margin-top:6px">${p.vits.slice(0,3).map(v=>`<span class="miniVit">${v}</span>`).join('')}</div><div class="pPrice">R${p.price.toFixed(2)}</div><button class="addBtn" onclick="event.stopPropagation();addToBasket(${i})">+ Add</button></div></div>`;}});grid.innerHTML=html||`<div class="card glass" style="grid-column:1/-1"><div style="padding:20px"><p class="small">No products</p></div></div>`;}
+function openProduct(i){let p=PRODUCTS[i];document.getElementById('modalImg').src=p.img;document.getElementById('modalTag').textContent=p.cat+' • '+p.type+' • Best for '+p.best;document.getElementById('modalTitle').textContent=p.t;document.getElementById('modalDesc').textContent=p.desc;document.getElementById('modalPrice').textContent='R'+p.price.toFixed(2);document.getElementById('modalWeight').textContent=p.weight;document.getElementById('modalVits').innerHTML=p.vits.map(v=>`<span class="miniVit">${v}</span>`).join('');document.getElementById('modalMins').innerHTML=p.mins.map(m=>`• ${m}`).join('<br>');document.getElementById('modalWhy').textContent=p.why;document.getElementById('modalFactExtra').innerHTML='';document.getElementById('modalAddBtn').onclick=()=>{addToBasket(i);closeModal();};document.getElementById('modal').classList.add('show');}
+function openFact(idx){let f=FACTS[idx];document.getElementById('modalImg').src=f.img;document.getElementById('modalTag').textContent='⚠️ DID YOU KNOW • FACT CHECK';document.getElementById('modalTitle').textContent=f.title;document.getElementById('modalDesc').textContent=f.desc;document.getElementById('modalPrice').textContent=f.risk;document.getElementById('modalWeight').textContent='Source: '+f.source;document.getElementById('modalVits').innerHTML=`<span class="miniVit" style="background:rgba(255,90,138,0.2)">Danger</span><span class="miniVit" style="background:rgba(0,229,168,0.15)">Solution</span>`;document.getElementById('modalMins').innerHTML=f.desc;document.getElementById('modalWhy').textContent=f.solution;document.getElementById('modalFactExtra').innerHTML=`<div class="glass" style="padding:12px;border-radius:14px;margin-top:8px"><b style="font-size:11px">✅ MyType Fix:</b><p class="small" style="margin-top:6px;color:white">${f.solution}</p><button class="btn" style="margin-top:10px" onclick="closeModal();go('home')">Shop Correct Food →</button></div>`;document.getElementById('modalAddBtn').style.display='none';document.getElementById('modal').classList.add('show');}
+function closeModal(){document.getElementById('modal').classList.remove('show');document.getElementById('modalAddBtn').style.display='block';}
 function addToBasket(i){s.basket=s.basket||[];s.basket.push(PRODUCTS[i]);localStorage.setItem('mytype_v4',JSON.stringify(s));render();}
-function renderBasket(){let list=document.getElementById('basketList');if(!list)return;let total=0;let html='';(s.basket||[]).forEach((p,idx)=>{total+=p.price;html+=`<div style="display:flex;gap:10px;padding:10px;background:#141a30;border-radius:14px;margin:6px 0"><img src="${p.img}" style="width:50px;height:50px;border-radius:10px;object-fit:cover"><div style="flex:1"><b style="font-size:12px">${p.t}</b><br><span class="small">${p.weight} • R${p.price.toFixed(2)}</span></div><div style="cursor:pointer" onclick="removeBasket(${idx})">✕</div></div>`;});list.innerHTML=html||`<div class="card"><div style="padding:20px"><p class="small">Basket empty — add eggs, fruit, veg like Sixty60</p></div></div>`;document.getElementById('basketTotal').textContent='R'+total.toFixed(2);document.getElementById('basketNutrition').textContent=s.basket?.length?`Nutrition in basket: ${[...new Set(s.basket.flatMap(b=>b.vits))].join(', ')} for ${s.type||'you'}`:'';document.getElementById('basketCount').textContent=s.basket?.length||0;}
-function removeBasket(idx){s.basket.splice(idx,1);localStorage.setItem('mytype_v4',JSON.stringify(s));render();}
-function checkout(){if(!s.basket?.length)return alert('Basket empty');alert(`✅ Order Placed! ${s.basket.length} items • R${s.basket.reduce((a,b)=>a+b.price,0).toFixed(2)}\nMyType Bot will remind you to eat!`);s.basket=[];localStorage.setItem('mytype_v4',JSON.stringify(s));render();go('home');}
-// AI BOT LOGIC
-function renderBot(){
-let box=document.getElementById('chatBox');if(!box)return;box.innerHTML='';
-if(!s.botLog||!s.botLog.length){
-let greet=`Hi ${s.name||'friend'}! I'm MyType Bot 🤖 your small care buddy. I'll ask you daily:\n• Did you eat today?\n• Blood pressure check 🩺\n• Water & sleep\n• How you feel\n\nType: ${s.type||'Unknown'} — I tailor advice for you!`;
-addBotMessage(greet,false,true);
-setTimeout(()=>{let q=DAILY_QS[Math.floor(Math.random()*DAILY_QS.length)].replace('{type}',s.type||'your');addBotMessage(q,false,true);},800);
-} else {
-s.botLog.forEach(m=>{box.innerHTML+=`<div class="bubble ${m.role}">${m.text}${m.chips?`<div class="qChips">${m.chips.map(c=>`<span class="qChip" onclick="quickReply('${c}')">${c}</span>`).join('')}</div>`:''}</div>`;});
-}
-box.scrollTop=box.scrollHeight;
-}
-function addBotMessage(text,isUser,save=true,chips=null){
-let box=document.getElementById('chatBox');let div=document.createElement('div');div.className='bubble '+(isUser?'user':'bot');div.innerHTML=text+(chips?`<div class="qChips">${chips.map(c=>`<span class="qChip" onclick="quickReply('${c}')">${c}</span>`).join('')}</div>`:'');box.appendChild(div);box.scrollTop=box.scrollHeight;
-if(save){s.botLog=s.botLog||[];s.botLog.push({role:isUser?'user':'bot',text,chips});localStorage.setItem('mytype_v4',JSON.stringify(s));}
-}
-function quickReply(txt){document.getElementById('chatInput').value=txt;sendChat();}
-function sendChat(){
-let input=document.getElementById('chatInput');let txt=input.value.trim();if(!txt)return;
-addBotMessage(txt,true);input.value='';
-setTimeout(()=>{
-let t=txt.toLowerCase();
-let reply="Got it! ✅ Logged for today.";
-let chips=["Yes, I ate 🥗","No not yet","Normal pressure","High today","Low","Tired","I drank water 💧"];
-if(t.includes('pressure')||t.includes('high')||t.includes('low')){
-if(t.includes('high')) reply=`⚠️ High BP for ${s.type||''} — try beetroot (R24.99) + spinach, less salt, drink 500ml water now. Did you sleep well?`;
-else if(t.includes('low')) reply=`Low BP — try a bit of salt + eggs (R42.99) + water. Eat something now?`;
-else reply=`Normal is great! Keep drinking water and eating ${s.type=='O'?'protein':'greens'} today.`;
-} else if(t.includes('not eat')||t.includes('no')&&t.includes('eat')){
-reply=`You haven't eaten? 😟 For ${s.type||'your'} blood type, you need ${s.type=='O'?'lamb or eggs':'tofu or spinach'} today. Want me to add to basket?`;
-chips=["Add eggs R42.99","Add spinach R29.99","I ate now"];
-} else if(t.includes('ate')||t.includes('yes')){
-reply=`Nice! 🎉 Logging meal. For ${s.type||''} type, next try ${PRODUCTS.filter(p=>p.best.includes(s.type||'A'))[0]?.t||'spinach'} for Iron + B12. How's your pressure?`;
-} else if(t.includes('tired')||t.includes('dizzy')){
-reply=`Tired/dizzy can be low iron for ${s.type||''}. Try our Lamb Chops (Iron 3.5mg) or Spinach (Iron 2.7mg). Drink water and rest.`;
-chips=["Add iron foods","Check pressure","I feel better"];
-} else {
-let q=DAILY_QS[Math.floor(Math.random()*DAILY_QS.length)].replace('{type}',s.type||'your');
-reply=q;
-}
-addBotMessage(reply,false,true,chips);
-},700);
-}
+function renderBasket(){let list=document.getElementById('basketList');if(!list)return;let total=0;let html='';(s.basket||[]).forEach((p,idx)=>{total+=p.price;html+=`<div class="card glass" style="display:flex;gap:10px;padding:10px;margin:6px 0"><img src="${p.img}" style="width:50px;height:50px;border-radius:10px;object-fit:cover"><div style="flex:1"><b style="font-size:12px">${p.t}</b><br><span class="small">${p.weight} • R${p.price.toFixed(2)}</span></div><div style="cursor:pointer" onclick="removeBasket(${idx})">✕</div></div>`;});list.innerHTML=html||`<div class="card glass"><div style="padding:20px"><p class="small">Basket empty</p></div></div>`;document.getElementById('basketTotal').textContent='R'+total.toFixed(2);document.getElementById('basketNutrition').textContent=s.basket?.length?`Nutrition: ${[...new Set(s.basket.flatMap(b=>b.vits))].join(', ')} for ${s.type||'you'}`:'';document.getElementById('basketCount').textContent=s.basket?.length||0;}
+function removeBasket(i){s.basket.splice(i,1);localStorage.setItem('mytype_v4',JSON.stringify(s));render();}
+function checkout(){if(!s.basket?.length)return alert('Empty');alert(`Order R${s.basket.reduce((a,b)=>a+b.price,0).toFixed(2)} — MyType delivery`);s.basket=[];localStorage.setItem('mytype_v4',JSON.stringify(s));render();go('home');}
+function renderBot(){let box=document.getElementById('chatBox');if(!box)return;box.innerHTML='';if(!s.botLog?.length){addBotMessage(`Hi ${s.name||'friend'}! I'm your personal bot 🤖. I remember type ${s.type||''}. I check daily: ate? BP? water? Have you seen Facts? Rural kids suffer when type unknown!`,false,true);setTimeout(()=>{addBotMessage(`Did you know 61% rural kids anemic because O kids need more meat iron, but they eat only pap? That's why MyType matters! Did you eat today?`,false,true,["Yes ate 🥗","No not yet","Show facts","Normal BP"]);},900);}else{s.botLog.forEach(m=>{let d=document.createElement('div');d.className='bubble '+(m.role=='user'?'user':'bot glass');d.innerHTML=m.text+(m.chips?`<div class="qChips">${m.chips.map(c=>`<span class="qChip glass" onclick="quickReply('${c}')">${c}</span>`).join('')}</div>`:'');box.appendChild(d);});}box.scrollTop=box.scrollHeight;}
+function addBotMessage(t,isUser,save=true,chips=null){let box=document.getElementById('chatBox');let d=document.createElement('div');d.className='bubble '+(isUser?'user':'bot glass');d.innerHTML=t.replace(/\n/g,'<br>')+(chips?`<div class="qChips">${chips.map(c=>`<span class="qChip glass" onclick="quickReply('${c}')">${c}</span>`).join('')}</div>`:'');box.appendChild(d);box.scrollTop=box.scrollHeight;if(save){s.botLog=s.botLog||[];s.botLog.push({role:isUser?'user':'bot',text:t,chips});localStorage.setItem('mytype_v4',JSON.stringify(s));}}
+function quickReply(t){document.getElementById('chatInput').value=t;sendChat();}
+function sendChat(){let input=document.getElementById('chatInput');let txt=input.value.trim();if(!txt)return;addBotMessage(txt,true);input.value='';setTimeout(()=>{let l=txt.toLowerCase();let reply="Logged! ✅";let chips=["Yes ate","Show facts","Normal BP","High BP","Tired"];if(l.includes('fact')||l.includes('know')){reply="Tap Facts tab ⚠️ — 72% SA don't know type, rural kids 61% anemic. MyType fixes with correct food by blood type.";go('facts');}else if(l.includes('high')){reply=`High BP for ${s.type||''} — try beetroot R24.99, less salt, water.`;}else if(l.includes('ate')){reply=`Nice! Logged for ${s.type||''}. Keep eating right for your blood.`;}else{reply="Got it! Bot remembers. Check Facts section — knowing blood type can save your life in accident.";}addBotMessage(reply,false,true,chips);},600);}
 function render(){let t=s.type||'Unknown';let hn=document.getElementById('homeName');if(hn)hn.textContent=s.name?'Hi '+s.name.split(' ')[0]:'Welcome';let bt=document.getElementById('badgeType');if(bt)bt.textContent=t+' • MyType';let pi=document.getElementById('pInfo');if(pi)pi.textContent=(s.name||'No name')+' • '+(s.type||'No type');let pd=document.getElementById('pDetails');if(pd)pd.textContent=`Basket: ${s.basket?.length||0} • Age: ${s.age||'-'}`;renderProducts();renderBasket();}
+document.addEventListener('mousemove',(e)=>{let pupils=[document.getElementById('pupilL'),document.getElementById('pupilR')];if(!pupils[0])return;let fab=document.getElementById('botFab').getBoundingClientRect();let cx=fab.left+35,cy=fab.top+35;let dx=(e.clientX-cx)/30,dy=(e.clientY-cy)/30;pupils.forEach(p=>{p.style.left=(2+Math.max(-3,Math.min(3,dx)))+'px';p.style.top=(2+Math.max(-3,Math.min(3,dy)))+'px';});});
 render();if(s.name&&s.type)go('home');else go('s1');
 </script>
 </body>
