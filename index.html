@@ -53,11 +53,9 @@ body{background:#06080f;color:white;display:flex;justify-content:center;overflow
 .small{font-size:12px;opacity:0.65;line-height:1.45}
 .typeGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .typeCard{border-radius:16px;padding:14px;text-align:center;cursor:pointer}
-
-/* RED - WAVING + EXPRESSIONS */
-.botFab{position:fixed;bottom:92px;right:16px;width:78px;height:78px;border-radius:26px;background:linear-gradient(135deg,rgba(255,20,50,0.98),rgba(150,0,20,0.98));backdrop-filter:blur(40px) saturate(200%);border:1px solid rgba(255,255,255,0.3);border-top:1px solid rgba(255,255,255,0.6);box-shadow:0 12px 32px rgba(255,0,40,0.55), inset 0 1px 0 rgba(255,255,255,0.6);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:25;transition:all 0.3s}
+.botFab{position:fixed;bottom:92px;right:16px;width:78px;height:78px;border-radius:26px;background:linear-gradient(135deg,rgba(255,20,50,0.98),rgba(150,0,20,0.98));backdrop-filter:blur(40px) saturate(200%);border:1px solid rgba(255,255,255,0.3);border-top:1px solid rgba(255,255,255,0.6);box-shadow:0 12px 32px rgba(255,0,40,0.55), inset 0 1px 0 rgba(255,255,255,0.6);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:30;transition:all 0.3s}
 .botFab.wave{animation:redWave 0.6s ease-in-out 3}
-@keyframes redWave{0%,100%{transform:rotate(0) scale(1)}25%{transform:rotate(-12deg) scale(1.1) translateY(-6px)}50%{transform:rotate(12deg) scale(1.1) translateY(-6px)}75%{transform:rotate(-8deg) scale(1.05)}}
+@keyframes redWave{0%,100%{transform:rotate(0) scale(1)}25%{transform:rotate(-12deg) scale(1.12) translateY(-8px)}50%{transform:rotate(12deg) scale(1.12) translateY(-8px)}75%{transform:rotate(-8deg) scale(1.05)}}
 .botFace{width:100%;height:100%;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .botEyes{display:flex;gap:16px;margin-bottom:6px}
 .eye{width:16px;height:16px;background:white;border-radius:100px;position:relative;box-shadow:0 0 14px rgba(255,255,255,0.9);overflow:hidden;transition:all 0.25s}
@@ -81,19 +79,24 @@ body{background:#06080f;color:white;display:flex;justify-content:center;overflow
 .brow{width:14px;height:4px;background:rgba(0,0,0,0.6);border-radius:100px}
 .brow.sad{transform:rotate(-20deg)}.brow.sad:last-child{transform:rotate(20deg)}
 .brow.worried{transform:rotate(20deg)}.brow.worried:last-child{transform:rotate(-20deg)}
+/* SPEECH BUBBLE AFTER LOGIN */
+#redSpeechBubble{position:fixed;bottom:180px;right:16px;max-width:300px;z-index:31;display:none;animation:bubblePop 0.5s cubic-bezier(0.34,1.56,0.64,1)}
+#redSpeechBubble.show{display:block}
+@keyframes bubblePop{0%{transform:scale(0.5) translateY(20px);opacity:0}100%{transform:scale(1) translateY(0);opacity:1}}
+.speechTail{position:absolute;bottom:-8px;right:28px;width:16px;height:16px;background:linear-gradient(135deg,rgba(255,255,255,0.95),rgba(255,255,255,0.85));transform:rotate(45deg);border-right:1px solid rgba(255,255,255,0.3);border-bottom:1px solid rgba(255,255,255,0.3)}
+.speechContent{padding:14px 16px;border-radius:20px;border-bottom-right-radius:6px;background:linear-gradient(135deg,rgba(255,255,255,0.96),rgba(255,255,255,0.88));backdrop-filter:blur(30px);color:#111;font-size:13px;line-height:1.4;box-shadow:0 12px 32px rgba(0,0,0,0.3),0 0 0 1px rgba(255,255,255,0.5);font-weight:600;position:relative}
 .chat{flex:1;overflow:auto;display:flex;flex-direction:column;gap:10px;padding:6px 0}
-.bubble{max-width:82%;padding:12px 14px;border-radius:18px;font-size:13px;line-height:1.4;backdrop-filter:blur(20px)}
+.bubble{max-width:82%;padding:12px 14px;border-radius:18px;font-size:13px;line-height:1.45;backdrop-filter:blur(20px)}
 .bubble.bot{align-self:flex-start;border-bottom-left-radius:6px}
 .bubble.user{align-self:flex-end;border-bottom-right-radius:6px;background:linear-gradient(135deg,#ff2a45,#ff5a8a);color:white;font-weight:600}
 .qChips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 .qChip{padding:8px 12px;border-radius:100px;font-size:11px;font-weight:700;cursor:pointer}
 .factCard{border-radius:24px;overflow:hidden;margin:14px 0;position:relative}
 .factCard img{width:100%;height:200px;object-fit:cover}
-.factOverlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.9) 0%,rgba(0,0,0,0.4) 45%,transparent 85%)}
+.factOverlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.92) 0%,rgba(0,0,0,0.5) 45%,transparent 85%)}
 .factContent{position:absolute;bottom:0;left:0;right:0;padding:14px}
 .factTag{padding:5px 10px;border-radius:100px;font-size:9px;font-weight:800;display:inline-block;margin-bottom:8px;background:linear-gradient(135deg,#ff2a45,#ff5a8a);color:white}
 #s1{justify-content:flex-start;padding-top:6px}
-.lockOverlay{position:absolute;inset:0;background:rgba(6,8,15,0.85);backdrop-filter:blur(20px);z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;text-align:center;border-radius:22px}
 </style>
 </head>
 <body>
@@ -116,7 +119,12 @@ body{background:#06080f;color:white;display:flex;justify-content:center;overflow
 
 <div id="whatsType" class="screen"><h2 style="font-size:26px">What's Your Type?</h2><div class="typeGrid" style="margin-top:16px"><div class="typeCard glass" onclick="pick('O+')"><b>O+</b></div><div class="typeCard glass" onclick="pick('O-')"><b>O-</b></div><div class="typeCard glass" onclick="pick('A+')"><b>A+</b></div><div class="typeCard glass" onclick="pick('A-')"><b>A-</b></div><div class="typeCard glass" onclick="pick('B+')"><b>B+</b></div><div class="typeCard glass" onclick="pick('B-')"><b>B-</b></div><div class="typeCard glass" onclick="pick('AB+')"><b>AB+</b></div><div class="typeCard glass" onclick="pick('AB-')"><b>AB-</b></div></div><button class="btn glass btn-outline" onclick="pick('Unknown')" style="margin-top:12px">Skip for now</button></div>
 
-<div id="facts" class="screen"><div class="glass" style="display:inline-block;padding:6px 12px;border-radius:100px;font-size:11px;width:fit-content;cursor:pointer" onclick="go('home')">← Shop</div><h2 style="margin-top:12px;font-size:24px">Did You Know?</h2><div class="factCard glass" onclick="openFact(0)"><img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800"><div class="factOverlay"></div><div class="factContent"><span class="factTag">⚠️ EMERGENCY</span><h3 style="font-size:16px">Not knowing blood type can kill</h3></div></div><div class="factCard glass" onclick="openFact(1)"><img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800"><div class="factOverlay"></div><div class="factContent"><span class="factTag">👶🏾 RURAL CHILDREN</span><h3 style="font-size:16px">Rural kids need different iron</h3></div></div></div>
+<div id="facts" class="screen">
+<div class="glass" style="display:inline-block;padding:6px 12px;border-radius:100px;font-size:11px;width:fit-content;cursor:pointer" onclick="go('home')">← Shop</div>
+<h2 style="margin-top:12px;font-size:24px;line-height:0.95">Did You Know?<br><span style="background:linear-gradient(90deg,#ff7ab6,#8aa7ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent">8 Facts That Can Save You</span></h2>
+<p class="small" style="margin-top:8px">Swipe through — real risks in SA</p>
+<div id="factsList"></div>
+</div>
 
 <div id="home" class="screen">
 <div style="display:flex;justify-content:space-between;align-items:center"><div><div class="glass" style="display:inline-block;padding:6px 12px;border-radius:100px;font-size:11px" id="greetMain">Hi</div><h2 id="homeName" style="font-size:20px;margin-top:6px">Welcome</h2></div><div class="glass" style="padding:6px 12px;border-radius:100px;font-size:11px" id="badgeType">MyType</div></div>
@@ -128,7 +136,7 @@ body{background:#06080f;color:white;display:flex;justify-content:center;overflow
 <div id="basket" class="screen"><div class="glass" style="display:inline-block;padding:6px 12px;border-radius:100px;font-size:11px;width:fit-content;cursor:pointer" onclick="go('home')">← Shop</div><h2 style="margin-top:10px">Basket</h2><div id="basketList" style="margin-top:12px"></div><div class="card glass" style="margin-top:16px"><div style="padding:14px"><div style="display:flex;justify-content:space-between"><b>Total</b><b id="basketTotal">R0.00</b></div><p class="small" id="basketNutrition" style="margin-top:8px"></p><button class="btn" onclick="checkout()">Checkout</button></div></div></div>
 
 <div id="aiBot" class="screen">
-<div class="glass" style="display:flex;gap:12px;align-items:center;padding:12px;border-radius:18px;margin-bottom:10px;background:linear-gradient(135deg,rgba(255,20,50,0.18),rgba(150,0,20,0.18))"><div style="width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,#ff2a45,#9a0014);display:flex;align-items:center;justify-content:center;font-size:20px">🔴</div><div><b id="botTitle">Red • Your Assistant</b><br><span class="small" id="botMood" style="color:#ff6b7f">● Happy • Ready</span></div><div class="glass" style="margin-left:auto;padding:6px 12px;border-radius:100px;font-size:11px;cursor:pointer" onclick="go('home')">✕</div></div>
+<div class="glass" style="display:flex;gap:12px;align-items:center;padding:12px;border-radius:18px;margin-bottom:10px;background:linear-gradient(135deg,rgba(255,20,50,0.18),rgba(150,0,20,0.18))"><div style="width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,#ff2a45,#9a0014);display:flex;align-items:center;justify-content:center;font-size:20px">🔴</div><div><b id="botTitle">Red</b><br><span class="small" id="botMood" style="color:#ff6b7f">● Here for you</span></div><div class="glass" style="margin-left:auto;padding:6px 12px;border-radius:100px;font-size:11px;cursor:pointer" onclick="go('home')">✕</div></div>
 <div class="chat" id="chatBox" style="position:relative"></div>
 <div class="searchWrap" style="margin-top:auto"><span class="searchIcon">💬</span><input id="chatInput" class="search glass" placeholder="Tell Red how you feel..." onkeydown="if(event.key==='Enter')sendChat()" autocomplete="off"><button class="btn" onclick="sendChat()" style="margin-top:8px">Send to Red</button></div>
 </div>
@@ -138,7 +146,7 @@ body{background:#06080f;color:white;display:flex;justify-content:center;overflow
 <div class="nav glass glass-strong" id="nav"><div class="navI active" onclick="go('home')">🏠<br>Shop</div><div class="navI" onclick="go('facts')">⚠️<br>Facts</div><div class="navI" onclick="go('aiBot')">🔴<br>Red</div><div class="navI" onclick="go('basket')">🛒<br>Basket</div><div class="navI" onclick="go('profile')">👤<br>You</div></div>
 </div>
 
-<!-- RED ROBOT WITH WAVE HAND -->
+<!-- RED ROBOT -->
 <div class="botFab" id="botFab" onclick="go('aiBot')">
 <div class="botFace">
 <div class="botEyebrow" id="botEyebrow"><div class="brow"></div><div class="brow"></div></div>
@@ -148,6 +156,12 @@ body{background:#06080f;color:white;display:flex;justify-content:center;overflow
 <div class="botName">RED</div>
 </div>
 <div class="botDot"></div>
+</div>
+
+<!-- SPEECH BUBBLE AFTER LOGIN - NOT IN CHAT -->
+<div id="redSpeechBubble" onclick="this.classList.remove('show'); go('aiBot')">
+<div class="speechContent" id="redSpeechText">Hey! I'm Red — waving!</div>
+<div class="speechTail"></div>
 </div>
 
 <div id="modal" onclick="if(event.target==this)closeModal()"><div class="modalBox glass glass-strong"><img id="modalImg" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800'"><div class="modalPad"><button class="closeBtn glass" onclick="closeModal()">✕ Close</button><div style="clear:both"></div><span class="pill glass" id="modalTag"></span><h2 id="modalTitle" style="margin:8px 0"></h2><p class="small" id="modalDesc"></p><p style="margin-top:10px;font-size:22px;font-weight:800" id="modalPrice"></p><p class="small" id="modalWeight"></p><div style="margin-top:12px"><b style="font-size:12px">💊 Vitamins:</b><div id="modalVits" style="margin-top:8px"></div></div><div class="glass" style="padding:12px;border-radius:14px;margin-top:12px"><b style="font-size:11px">📊 Nutritional info:</b><p class="small" id="modalMins" style="margin-top:6px"></p></div><div class="glass" style="padding:12px;border-radius:14px;margin-top:12px"><b style="font-size:11px">🩸 Best for:</b><p class="small" id="modalWhy" style="margin-top:6px"></p></div><div id="modalFactExtra" style="margin-top:12px"></div><button class="btn" id="modalAddBtn">Add to basket</button></div></div></div>
@@ -165,26 +179,33 @@ function animate(){requestAnimationFrame(animate);cells.forEach(c=>{c.position.y
 </script>
 
 <script>
-let s=JSON.parse(localStorage.getItem('mytype_v4')||'{"name":"","age":"","allergy":"","type":"","basket":[],"botLog":[],"botState":{"ate":null,"bp":null,"water":null,"sleep":null,"mood":null,"lastQ":null,"streak":0}}');
+let s=JSON.parse(localStorage.getItem('mytype_v4')||'{"name":"","age":"","allergy":"","type":"","basket":[],"botLog":[],"botState":{"ate":null,"bp":null,"water":null,"sleep":null,"mood":null,"lastQ":null}}');
 let currentFilter='all';
 let PRODUCTS=[
-{t:"Free Range Eggs • 6",cat:"Eggs",type:"B",img:"https://images.unsplash.com/photo-1582722872445-44dc5f7e531c?w=600",price:42.99,weight:"6 pack • 300g",vits:["B12","D","Choline","Protein"],mins:["Protein 6g per egg","Choline 147mg","Vitamin D 1mcg"],desc:"Pasture raised, golden yolk",why:"B thrives on eggs.",best:"B, AB, O"},
-{t:"Baby Spinach • Bunch",cat:"Veg",type:"A",img:"https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=600",price:29.99,weight:"120g • Washed",vits:["Vitamin K","A","Folate","Iron"],mins:["Vitamin K 483mcg 402% DV","Iron 2.7mg","Folate 58mcg"],desc:"Fresh baby leaves",why:"A best on greens.",best:"A, AB"},
-{t:"Lamb Chops • 500g",cat:"Protein",type:"O",img:"https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=600",price:189.99,weight:"500g • Free range",vits:["B12","Iron","Zinc","Protein"],mins:["Iron 3.5mg 19% DV","Zinc 5.2mg","B12 6.2mcg","Protein 25g/100g"],desc:"Free range lamb",why:"O needs red meat.",best:"O"},
+{t:"Free Range Eggs • 6",cat:"Eggs",type:"B",img:"https://images.unsplash.com/photo-1582722872445-44dc5f7e531c?w=600",price:42.99,weight:"6 pack • 300g",vits:["B12","D","Choline","Protein"],mins:["Protein 6g per egg","Choline 147mg","Vitamin D 1mcg"],desc:"Pasture raised",why:"B thrives on eggs.",best:"B, AB, O"},
+{t:"Baby Spinach • Bunch",cat:"Veg",type:"A",img:"https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=600",price:29.99,weight:"120g",vits:["Vitamin K","A","Folate","Iron"],mins:["Vitamin K 483mcg","Iron 2.7mg","Folate 58mcg"],desc:"Fresh baby leaves",why:"A best on greens.",best:"A, AB"},
+{t:"Lamb Chops • 500g",cat:"Protein",type:"O",img:"https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=600",price:189.99,weight:"500g",vits:["B12","Iron","Zinc","Protein"],mins:["Iron 3.5mg","Zinc 5.2mg","B12 6.2mcg","Protein 25g/100g"],desc:"Free range lamb",why:"O needs red meat.",best:"O"},
 {t:"Salmon Fillet • 200g",cat:"Protein",type:"O",img:"https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=600",price:129.99,weight:"200g",vits:["Omega-3","D","B12"],mins:["Omega-3 2.2g","Vitamin D 11mcg","Protein 20g"],desc:"Fresh Atlantic salmon",why:"Omega-3 thins blood.",best:"All"},
 {t:"Organic Tofu • 300g",cat:"Protein",type:"A",img:"https://images.unsplash.com/photo-1540420773420-3366772f4999?w=600",price:39.99,weight:"300g",vits:["Protein","Calcium","Iron"],mins:["Protein 8g","Calcium 130mg","Iron 1.8mg"],desc:"Calm protein",why:"A ideal tofu.",best:"A, AB"},
-{t:"Avocados • 2",cat:"Fruit",type:"A",img:"https://images.unsplash.com/photo-1526948128573-703ee1aeb6fa?w=600",price:34.99,weight:"2 pack",vits:["K","E","B6","Folate"],mins:["Potassium 485mg","Fiber 7g","Fat 15g"],desc:"Ripe & creamy",why:"Good fat for A/B.",best:"A, B"},
-{t:"Beetroot • 500g",cat:"Veg",type:"A",img:"https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=600",price:24.99,weight:"500g",vits:["Folate","C","Nitrate"],mins:["Folate 109mcg","Potassium 305mg"],desc:"Blood flow booster",why:"Nitric oxide opens vessels.",best:"A, AB"},
-{t:"Greek Yogurt • 500g",cat:"Dairy",type:"B",img:"https://images.unsplash.com/photo-1488477181946-64290103bbd6?w=600",price:44.99,weight:"500g",vits:["B12","Calcium","Probiotic"],mins:["Calcium 110mg","Protein 6g/100g"],desc:"Plain probiotic",why:"B digests dairy well.",best:"B, AB"},
-{t:"Blueberries • 125g",cat:"Fruit",type:"AB",img:"https://images.unsplash.com/photo-1498557850523-fd3d118b962e?w=600",price:39.99,weight:"125g",vits:["C","K","Antioxidants"],mins:["Vitamin C 9.7mg","Fiber 2.4g"],desc:"Fresh blueberries",why:"AB needs antioxidants.",best:"AB, A"},
-{t:"Chicken Breast • 500g",cat:"Protein",type:"O",img:"https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=600",price:89.99,weight:"500g",vits:["B6","B3","Protein"],mins:["Protein 31g/100g","B6 0.6mg"],desc:"Free range fillets",why:"Lean O protein.",best:"O, B"}
+{t:"Avocados • 2",cat:"Fruit",type:"A",img:"https://images.unsplash.com/photo-1526948128573-703ee1aeb6fa?w=600",price:34.99,weight:"2 pack",vits:["K","E","B6","Folate"],mins:["Potassium 485mg","Fiber 7g","Fat 15g"],desc:"Ripe & creamy",why:"Good fat.",best:"A, B"},
+{t:"Beetroot • 500g",cat:"Veg",type:"A",img:"https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=600",price:24.99,weight:"500g",vits:["Folate","C","Nitrate"],mins:["Folate 109mcg","Potassium 305mg"],desc:"Blood flow booster",why:"Nitric oxide.",best:"A, AB"},
+{t:"Greek Yogurt • 500g",cat:"Dairy",type:"B",img:"https://images.unsplash.com/photo-1488477181946-64290103bbd6?w=600",price:44.99,weight:"500g",vits:["B12","Calcium","Probiotic"],mins:["Calcium 110mg","Protein 6g/100g"],desc:"Probiotic",why:"B digests dairy.",best:"B, AB"}
 ];
-let FACTS=[{title:"Not knowing blood type can kill",img:"https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800",desc:"3.5M trauma cases/year.",risk:"⚠️ Risk: Death from delay.",source:"SANBS",solution:"MyType card shows type in 2 secs."},{title:"Rural kids need different iron",img:"https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800",desc:"O kids need 2x more heme iron.",risk:"👶🏾 Risk: 61% anemic.",source:"WHO",solution:"Correct food by type."}];
+// 8 FACTS - MORE INFO + PICTURES
+let FACTS=[
+{title:"Not knowing your blood type can kill you in an accident",img:"https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800",desc:"South Africa has 3.5 million trauma cases every year — car crashes, stabbings, falls. In an emergency, doctors need blood in under 10 minutes. If you don't know your type, they waste 20-45 minutes testing your blood. If they guess wrong, your body attacks the blood and you can die within hours. Having your type saved on your phone (like MyType does) saves that time.",risk:"⚠️ Risk: Death from delay or wrong transfusion. 1 in 3 trauma deaths in SA is preventable if blood type is known immediately.",source:"SANBS 2023 • WHO Trauma Report • Netcare Emergency Data",solution:"MyType Solution: Your blood type O+, A-, etc, allergies, and emergency contact saved as a lock-screen card. Shows in 2 seconds, even offline. Share with paramedics.",icon:"🩸"},
+{title:"Rural kids eat the same food, but need different iron",img:"https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800",desc:"In Limpopo, Eastern Cape, KZN, most kids eat the same: pap + morogo + maybe beans. But blood types change iron needs. O kids (40% of SA) need 2x more heme iron from meat to make blood. A kids (32%) make less stomach acid, so they absorb iron better from spinach and plants. Same pap diet means O kids become anemic — 61% of rural kids are anemic, not because there's no food, but wrong food for their blood.",risk:"👶🏾 Risk: Anemia causes stunting (27% SA kids), brain development delays, kids learn 30% less, feel tired at school, get sick often.",source:"WHO Anemia Report 2022 • StatsSA Child Nutrition • Dept Health Limpopo",solution:"MyType for mothers: Enter child's blood type. If O, app pushes eggs R42.99 (Iron + B12) or lamb. If A, spinach R29.99 (Iron 2.7mg + Vitamin K). Cheap, correct nutrition, not expensive supplements.",icon:"👶🏾"},
+{title:"Your blood type changes how you absorb vitamins",img:"https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=800",desc:"A types produce 30% less stomach acid than O types. That means A absorbs 30% less Vitamin B12 from steak — you pay R189 for lamb but pee out the B12. O types absorb 2x more iron from red meat, but absorb dairy calcium poorly (causes bloating). B types are the only ones who digest dairy well. AB needs antioxidants most. One diet does NOT fit all — you waste money and still feel tired.",risk:"📉 Risk: B12 deficiency = nerve damage, tingling hands, extreme fatigue. Iron deficiency = dizzy, pale. Spending R200 on food your blood can't use.",source:"American Journal of Clinical Nutrition 2021 • Blood Type & Nutrition Review • Peter D'Adamo Research",solution:"MyType Shop filters by blood: O sees Proteins (Lamb Iron 3.5mg, Salmon Omega-3), A sees Veg (Spinach Vitamin K 483mcg, Tofu Calcium 130mg), B sees Dairy/Eggs (Eggs B12 + Choline). You absorb what you buy.",icon:"🧬"},
+{title:"Mothers who don't know their Rh risk their baby's life",img:"https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=800",desc:"15% of South African women are Rh-negative (O-, A-, B-, AB-). If an Rh- mom carries an Rh+ baby (which is 85% chance), her body sees baby's blood as enemy and makes antibodies that attack the baby. First baby usually okay, second baby can die or be severely disabled (brain damage, anemia). Solution is a R150 injection called Anti-D within 72 hours after birth — but only if you KNOW you're Rh-. Many rural clinics don't test fast enough.",risk:"🤰🏾 Risk: Hemolytic Disease of the Newborn affects 1 in 1000 babies in SA. Second pregnancies high risk. Preventable with one injection.",source:"Dept of Health SA Maternal Guidelines 2023 • WHO Pregnancy • SANBS Rh Data",solution:"MyType: When you register, we flag Rh- women. Red reminds you during pregnancy and after birth to get Anti-D injection. Emergency card shows Rh- so clinic acts fast.",icon:"🤰🏾"},
+{title:"We waste food, yet 1 in 4 kids is stunted — wrong food for blood",img:"https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800",desc:"South Africa wastes R10 billion of food yearly (supermarkets throw away), yet 1 in 4 children is stunted (too short for age, brain not growing). How? Hidden hunger. Child eats enough calories (pap fills belly) but not enough correct micronutrients for his blood type. O child eating only veg = iron starvation. A child eating only meat = inflammation, heart strain. Body is full, blood is starving.",risk:"🇿🇦 Risk: Stunting is permanent after age 2. Obese + malnourished at same time (double burden). SA has both highest obesity and high stunting.",source:"StatsSA Food Security 2023 • SA Child Gauge 2022 • WHO Double Burden Report",solution:"MyType = Sixty60 but filtered by your blood DNA. O gets Proteins, A gets Veg, B gets Dairy/Eggs. Right food, not more food.",icon:"🍽️"},
+{title:"Blood type affects your risk for diseases",img:"https://images.unsplash.com/photo-1576671414121-aa0c81c869e1?w=800",desc:"Research shows: O types have 35% lower risk of blood clots and heart attack, but higher risk of ulcers (stomach acid). A types have higher risk of stomach cancer and heart disease if they eat too much red meat. AB types have 82% higher risk of memory problems if low on Omega-3. Knowing type isn't just food — it's early warning for what to watch.",risk:"🫀 Risk: A eating O diet (lots red meat) increases heart disease risk by 15%. O not eating iron increases ulcer risk.",source:"Harvard School of Public Health 2022 • American Heart Association • Neurology Journal",solution:"MyType shows you personal risk by type and pushes correct prevention food: A gets more fibre + garlic, O gets lean protein + vitamin C for ulcers, AB gets blueberries R39.99 antioxidants.",icon:"🫀"},
+{title:"Black South Africans are O+ majority — but eat least red meat",img:"https://images.unsplash.com/photo-1528369943567-201a0d6bf6d7?w=800",desc:"52% of Black South Africans are O+ (highest of all groups). O+ thrives on red meat iron, B12. But due to cost, rural O+ families eat pap + veg only — exactly opposite of what their blood needs. Result: high anemia, fatigue, low energy. They think they're eating healthy (veg), but their O blood is craving heme iron. MyType explains this cultural mismatch.",risk:"📊 Risk: O+ rural families have highest anemia (68% women). Fatigue mistaken for laziness, but it's blood starving.",source:"SANBS Ethnic Distribution Data • SA Nutrition Survey • UKZN Blood Type Study",solution:"MyType: If you're O+ and low budget, we push affordable iron: eggs R42.99 (B12 1mcg per egg) + chicken R89.99 + spinach R29.99 combo, not expensive lamb only. Smart cheap iron.",icon:"🌍"},
+{title:"Kids who know their blood type donate earlier and save lives",img:"https://images.unsplash.com/photo-1615461066159-fea0960485d5?w=800",desc:"SANBS needs 3,500 blood donations daily in SA. Only 1% of South Africans donate. If kids learn their type early (like MyType teaches), they understand they're universal donors (O-) or universal receivers (AB+). O- kids in school can be heroes — one donation saves 3 lives. Knowing type creates pride, not fear.",risk:"🩸 Risk: Blood shortage kills. During holidays, SA runs out of O- in 2 days.",source:"SANBS Donor Statistics 2023 • Western Cape Blood Service",solution:"MyType: Shows if you're donor type (O- = everyone) or receiver (AB+ = everyone gives to you). Teaches kids donation age 16+. Badge: 'I'm O- Universal Donor' to share.",icon:"🦸🏾"}
+];
 
 function go(id){
- // RED DOES NOT WORK WITHOUT LOGIN
  if((id==='aiBot') && (!s.name ||!s.type)){
-   alert('🔴 Red says: Hey! I need to know who you are first. Please create your profile — I only work after you log in, so I can remember you personally!');
+   alert('🔴 Red says: Hey! I need to know you first — I only work after you log in so I can be personal! Please create your profile.');
    document.querySelectorAll('.screen').forEach(e=>e.classList.remove('active'));
    document.getElementById('s1').classList.add('active');
    return;
@@ -192,32 +213,39 @@ function go(id){
  document.querySelectorAll('.screen').forEach(e=>e.classList.remove('active'));
  document.getElementById(id).classList.add('active');
  document.getElementById('nav').style.display=['home','basket','profile','aiBot','facts'].includes(id)?'flex':'none';
- if(id=='aiBot')renderBot();
+ if(id==='facts')renderFacts();
+ if(id==='aiBot')renderBot();
  render();
 }
-function saveP(){s.name=document.getElementById('name').value.trim();s.age=document.getElementById('age').value;s.allergy=document.getElementById('allergy').value;if(!s.name){alert('Enter name — Red needs to know you');return;}localStorage.setItem('mytype_v4',JSON.stringify(s));go('whatsType');}
+function saveP(){s.name=document.getElementById('name').value.trim();s.age=document.getElementById('age').value;s.allergy=document.getElementById('allergy').value;if(!s.name){alert('Red needs your name to know you');return;}localStorage.setItem('mytype_v4',JSON.stringify(s));go('whatsType');}
+
+// RED WAVES WITH SPEECH BUBBLE - NOT IN CHAT
 function pick(t){
  s.type=t; s.botState=s.botState||{}; s.botState.streak=(s.botState.streak||0)+1;
  localStorage.setItem('mytype_v4',JSON.stringify(s));
  go('home');
- // RED WAVES RIGHT AFTER LOGIN + TELLS WHO HE IS
  setTimeout(()=>{
    const fab=document.getElementById('botFab');
-   fab.classList.add('wave');
-   document.getElementById('botHand').classList.add('wave');
+   const hand=document.getElementById('botHand');
+   const bubble=document.getElementById('redSpeechBubble');
+   const bubbleText=document.getElementById('redSpeechText');
+   fab.classList.add('wave'); hand.classList.add('wave');
    setRedExpression('happy');
-   setTimeout(()=>{fab.classList.remove('wave');document.getElementById('botHand').classList.remove('wave');},2000);
-   go('aiBot');
-   setRedExpression('happy');
-   addBotMessage(`👋 *waves* Hi ${s.name}! I'm Red 🔴\n\nI'm your personal health buddy — I live in this app only for YOU.\n\nI remember:\n• Your name is ${s.name}\n• Your blood type is ${t}\n• Age ${s.age||''} ${s.allergy?', allergy '+s.allergy:''}\n\nI won't ask same questions twice. I ask follow-ups based on your answers and I remember day-to-day.\n\nMy job:\n• Check if you ate today 🥗\n• Check blood pressure 🩺\n• Check water 💧, sleep 😴, mood\n• Help you shop correct food for ${t}\n\nHow are you feeling right now?`,false,true,["I'm good 😊","A bit tired 😴","Didn't eat yet","BP high","BP normal","Happy!"]);
-   setRedExpression('happy');
+   // SPEECH BUBBLE - WHO RED IS - OUTSIDE CHAT
+   bubbleText.innerHTML=`👋 Hey ${s.name}! I'm <b>Red</b> 🔴<br><br>I'm your personal health buddy. I remember your type <b>${t}</b> and age ${s.age||''}. I check if you ate, your BP, water, sleep — just for YOU.<br><br>Tap me to talk!`;
+   bubble.classList.add('show');
+   setTimeout(()=>{fab.classList.remove('wave');hand.classList.remove('wave');},2000);
+   setTimeout(()=>{bubble.classList.remove('show');},6000);
+   // Also blink happy
+   setTimeout(()=>setRedExpression('happy'),500);
  },600);
 }
 function logout(){if(confirm('Log out? Red will forget you.')){localStorage.removeItem('mytype_v4');s={name:"",age:"",allergy:"",type:"",basket:[],botLog:[],botState:{}};go('s1');}}
 function setFilter(f,el){currentFilter=f;document.querySelectorAll('.fchip').forEach(c=>c.classList.remove('active'));el.classList.add('active');renderProducts();}
 function renderProducts(q=''){let qq=(q||document.getElementById('quickSearch')?.value||'').toLowerCase();let grid=document.getElementById('productGrid');if(!grid)return;let html='';PRODUCTS.forEach((p,i)=>{let ms=!qq||p.t.toLowerCase().includes(qq)||p.cat.toLowerCase().includes(qq);let mf=currentFilter=='all'||p.cat==currentFilter||p.type==currentFilter||p.best.includes(currentFilter);if(ms&&mf){html+=`<div class="product glass" onclick="openProduct(${i})"><div class="typeChip">${p.type} • ${p.cat}</div><img src="${p.img}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600'"><div class="pInfo"><div class="pName">${p.t}</div><div class="pWeight">${p.weight}</div><div style="margin-top:6px">${p.vits.slice(0,3).map(v=>`<span class="miniVit">${v}</span>`).join('')}</div><div class="pPrice">R${p.price.toFixed(2)}</div><button class="addBtn" onclick="event.stopPropagation();addToBasket(${i})">+ Add</button></div></div>`;}});grid.innerHTML=html;}
-function openProduct(i){let p=PRODUCTS[i];document.getElementById('modalImg').src=p.img;document.getElementById('modalTag').textContent=p.cat+' • '+p.type+' • Best for '+p.best;document.getElementById('modalTitle').textContent=p.t;document.getElementById('modalDesc').textContent=p.desc;document.getElementById('modalPrice').textContent='R'+p.price.toFixed(2);document.getElementById('modalWeight').textContent=p.weight;document.getElementById('modalVits').innerHTML=p.vits.map(v=>`<span class="miniVit">${v}</span>`).join('');document.getElementById('modalMins').innerHTML=p.mins.map(m=>`• ${m}`).join('<br>');document.getElementById('modalWhy').textContent=p.why;document.getElementById('modalAddBtn').style.display='block';document.getElementById('modalAddBtn').onclick=()=>{addToBasket(i);closeModal();};document.getElementById('modal').classList.add('show');}
-function openFact(idx){let f=FACTS[idx];document.getElementById('modalImg').src=f.img;document.getElementById('modalTag').textContent='⚠️ DID YOU KNOW';document.getElementById('modalTitle').textContent=f.title;document.getElementById('modalDesc').textContent=f.desc;document.getElementById('modalPrice').textContent=f.risk;document.getElementById('modalWeight').textContent='Source: '+f.source;document.getElementById('modalMins').innerHTML=f.desc;document.getElementById('modalWhy').textContent=f.solution;document.getElementById('modalAddBtn').style.display='none';document.getElementById('modal').classList.add('show');}
+function openProduct(i){let p=PRODUCTS[i];document.getElementById('modalImg').src=p.img;document.getElementById('modalTag').textContent=p.cat+' • '+p.type+' • Best for '+p.best;document.getElementById('modalTitle').textContent=p.t;document.getElementById('modalDesc').textContent=p.desc;document.getElementById('modalPrice').textContent='R'+p.price.toFixed(2);document.getElementById('modalWeight').textContent=p.weight;document.getElementById('modalVits').innerHTML=p.vits.map(v=>`<span class="miniVit">${v}</span>`).join('');document.getElementById('modalMins').innerHTML=p.mins.map(m=>`• ${m}`).join('<br>');document.getElementById('modalWhy').textContent=p.why;document.getElementById('modalFactExtra').innerHTML='';document.getElementById('modalAddBtn').style.display='block';document.getElementById('modalAddBtn').onclick=()=>{addToBasket(i);closeModal();};document.getElementById('modal').classList.add('show');}
+function renderFacts(){let list=document.getElementById('factsList');if(!list)return;let html='';FACTS.forEach((f,i)=>{html+=`<div class="factCard glass" onclick="openFact(${i})"><img src="${f.img}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=800'"><div class="factOverlay"></div><div class="factContent"><span class="factTag">${f.icon} ${f.title.split(' ').slice(0,3).join(' ').toUpperCase()}</span><h3 style="font-size:17px;line-height:1.15">${f.title}</h3><p class="small" style="color:white;opacity:0.85;margin-top:6px">${f.desc.substring(0,90)}...</p><div style="margin-top:8px;font-size:10px;opacity:0.6">📚 ${f.source.split('•')[0]} • Tap for full</div></div></div>`;});list.innerHTML=html;}
+function openFact(idx){let f=FACTS[idx];document.getElementById('modalImg').src=f.img;document.getElementById('modalTag').textContent=f.icon+' DID YOU KNOW • FACT '+ (idx+1) +'/8';document.getElementById('modalTitle').textContent=f.title;document.getElementById('modalDesc').textContent=f.desc;document.getElementById('modalPrice').textContent=f.risk;document.getElementById('modalWeight').textContent='Source: '+f.source;document.getElementById('modalVits').innerHTML=`<span class="miniVit">${f.icon} Verified</span><span class="miniVit" style="background:rgba(255,50,80,0.2)">Important</span>`;document.getElementById('modalMins').innerHTML=f.desc;document.getElementById('modalWhy').textContent=f.solution;document.getElementById('modalFactExtra').innerHTML=`<div class="glass" style="padding:12px;border-radius:14px;margin-top:8px"><b style="font-size:11px">✅ MyType Fix:</b><p class="small" style="margin-top:6px;color:white">${f.solution}</p><div style="margin-top:10px;padding:10px;background:rgba(0,0,0,0.3);border-radius:12px"><b style="font-size:10px">📚 SOURCES:</b><p class="small" style="margin-top:4px">${f.source}</p></div><button class="btn" style="margin-top:10px" onclick="closeModal();go('home')">Shop Correct Food for ${s.type||'Your Type'} →</button></div>`;document.getElementById('modalAddBtn').style.display='none';document.getElementById('modal').classList.add('show');}
 function closeModal(){document.getElementById('modal').classList.remove('show');document.getElementById('modalAddBtn').style.display='block';}
 function addToBasket(i){s.basket=s.basket||[];s.basket.push(PRODUCTS[i]);localStorage.setItem('mytype_v4',JSON.stringify(s));render();setRedExpression('happy');}
 function renderBasket(){let list=document.getElementById('basketList');if(!list)return;let total=0;let html='';(s.basket||[]).forEach((p,idx)=>{total+=p.price;html+=`<div class="card glass" style="display:flex;gap:10px;padding:10px;margin:6px 0"><img src="${p.img}" style="width:50px;height:50px;border-radius:10px;object-fit:cover"><div style="flex:1"><b style="font-size:12px">${p.t}</b><br><span class="small">${p.weight} • R${p.price.toFixed(2)}</span></div><div style="cursor:pointer" onclick="removeBasket(${idx})">✕</div></div>`;});list.innerHTML=html||`<div class="card glass"><div style="padding:20px"><p class="small">Basket empty</p></div></div>`;document.getElementById('basketTotal').textContent='R'+total.toFixed(2);document.getElementById('basketNutrition').textContent=s.basket?.length?`Nutrition: ${[...new Set(s.basket.flatMap(b=>b.vits))].join(', ')}`:'';document.getElementById('basketCount').textContent=s.basket?.length||0;}
@@ -228,7 +256,7 @@ function setRedExpression(mood){
 let mouth=document.getElementById('botMouth');let eyeL=document.getElementById('eyeL');let eyeR=document.getElementById('eyeR');let pupilL=document.getElementById('pupilL');let pupilR=document.getElementById('pupilR');let eyebrow=document.getElementById('botEyebrow');let moodText=document.getElementById('botMood');
 if(!mouth) return;
 mouth.className='botMouth'; eyeL.className='eye'; eyeR.className='eye'; pupilL.className='pupil'; pupilR.className='pupil'; eyebrow.className='botEyebrow';
-if(mood==='happy'){mouth.classList.add('smile'); pupilL.classList.add('happy'); pupilR.classList.add('happy'); if(moodText)moodText.textContent='● Happy • Caring for you';}
+if(mood==='happy'){mouth.classList.add('smile'); pupilL.classList.add('happy'); pupilR.classList.add('happy'); if(moodText)moodText.textContent='● Happy • Here for you';}
 else if(mood==='sad'){mouth.classList.add('sad'); pupilL.classList.add('sad'); pupilR.classList.add('sad'); eyebrow.classList.add('show'); eyebrow.innerHTML='<div class="brow sad"></div><div class="brow sad"></div>'; if(moodText)moodText.textContent='● Sad • Worried about you';}
 else if(mood==='worried'){mouth.classList.add('worried'); eyebrow.classList.add('show'); eyebrow.innerHTML='<div class="brow worried"></div><div class="brow worried"></div>'; if(moodText)moodText.textContent='● Worried • Tell me more';}
 else if(mood==='talk'){mouth.classList.add('talk');}
@@ -238,16 +266,16 @@ setInterval(blinkRed, 2600+Math.random()*1400);
 
 function renderBot(){
 let box=document.getElementById('chatBox');if(!box)return;
-// BLOCK IF NOT LOGGED IN
 if(!s.name||!s.type){
-box.innerHTML=`<div class="lockOverlay glass"><div style="font-size:48px">🔒</div><h3 style="margin-top:12px">Red is locked</h3><p class="small" style="margin-top:8px">Red only works after you log in — he needs to know your name, age, blood type to be personal.<br><br>Please create profile first.</p><button class="btn" onclick="go('s1')" style="margin-top:16px">Create Profile → Unlock Red</button></div>`;
+box.innerHTML=`<div class="glass" style="padding:20px;border-radius:22px;text-align:center"><div style="font-size:48px">🔒</div><h3 style="margin-top:12px">Red is locked</h3><p class="small" style="margin-top:8px">I only work after you log in so I can be personal. Please create profile first.</p><button class="btn" onclick="go('s1')" style="margin-top:16px">Create Profile → Unlock Red</button></div>`;
 return;
 }
 box.innerHTML='';
 s.botState=s.botState||{};
+// HUMAN-LIKE CHAT - NO INTRO ABOUT WHO HE IS (that was in speech bubble)
 if(!s.botLog?.length){
-addBotMessage(`Hi ${s.name}! I'm Red 🔴 — waving at you! 👋\n\nI'm your personal assistant, not a fact checker. I live only for you.\n\nI remember day-to-day: yesterday you were ${s.botState.mood||'unknown'}, today I'll check again.\n\nQuick: How are you right now?`,false,true);
-setTimeout(()=>{addBotMessage(`Pick one so I can follow up:`,false,true,["I'm good 😊","A bit tired 😴","Didn't eat yet","BP high","BP normal","Happy!","Stressed"]);setRedExpression('happy');},600);
+addBotMessage(`Hey ${s.name} — how are you feeling right now? Like, honestly?`,false,true);
+setTimeout(()=>{addBotMessage(`I'm just checking in — you good? Tired? Hungry? Something bothering you?`,false,true,["I'm actually good 😊","Kinda tired, ngl","Haven't eaten yet","My BP feels high","A bit stressed","Feeling dizzy"]);setRedExpression('happy');},700);
 }else{
 s.botLog.forEach(m=>{let d=document.createElement('div');d.className='bubble '+(m.role=='user'?'user':'bot glass');d.innerHTML=m.text+(m.chips?`<div class="qChips">${m.chips.map(c=>`<span class="qChip glass" onclick="quickReply('${c}')">${c}</span>`).join('')}</div>`:'');box.appendChild(d);});
 setRedExpression('happy');
@@ -265,57 +293,61 @@ addBotMessage(txt,true);input.value='';
 setRedExpression('talk');
 setTimeout(()=>{
 let l=txt.toLowerCase(); let reply=""; let chips=[];
-if(l.includes('good')||l.includes('happy')||l.includes('great')||l.includes('fine')||l.includes('😊')){
+if(l.includes('good')||l.includes('great')||l.includes('fine')||l.includes('happy')||l.includes('better')||l.includes('😊')||l.includes('okay')||l.includes('ok')){
 s.botState.mood='good'; setRedExpression('happy');
-if(s.botState.ate!=='yes'){reply=`You feel good, ${s.name}! Love that! 😊\n\nFollow-up: That's great — since you feel good, did you eat well today? Good mood often comes from good food. What did you eat?`; chips=["Ate protein 🥩","Ate veg 🥬","Ate light","Didn't eat yet"];}
-else{reply=`Happy mood logged! Since you ate and feel good, let's keep it: did you drink water today? Water keeps happy energy.`; chips=["Drank water 💧","No water yet","Energy high","Slept well"];}
+if(s.botState.ate!=='yes'){reply=`Nice, glad you're feeling good, ${s.name}! Honestly that makes me happy to hear.\n\nReal quick — have you eaten properly today? Sometimes good mood comes from good food, you know?`; chips=["Yeah I ate 🥗","Not yet tbh","Ate a little","What's good for "+(s.type||'me')+"?"];}
+else{reply=`That's awesome to hear! Since you're feeling good and you ate, did you get some water in? Water really keeps that good energy going.`; chips=["Yeah drank water 💧","Not yet","Energy is high","Slept well actually"];}
 }
-else if(l.includes('tired')||l.includes('dizzy')||l.includes('weak')||l.includes('fatigue')||l.includes('😴')){
+else if(l.includes('tired')||l.includes('dizzy')||l.includes('weak')||l.includes('exhausted')||l.includes('😴')||l.includes('fatigue')){
 s.botState.mood='tired'; setRedExpression('sad');
-reply=`You feel ${l.includes('dizzy')?'dizzy':'tired'} — I see that, ${s.name}. 😟 Yesterday you were ${s.botState.sleep||'unknown'} sleep.\n\nFollow-up 1: Is it body tired or head dizzy? Follow-up 2: When did it start — this morning or yesterday? Follow-up 3: For your ${s.type}, low iron causes this — did you eat iron today like eggs or spinach? And water?`;
-chips=["Body tired","Head dizzy","Started today","Started yesterday","No iron yet","Drank water","No water"];
+reply=`Ahh, I hear you — feeling ${l.includes('dizzy')?'dizzy':'tired'} is the worst, ${s.name}. I'm here.\n\nCan I ask — is it more like your body is tired, or your head feels dizzy? And when did it start, like this morning or since yesterday? I remember your sleep was ${s.botState.sleep||'unknown'} last time.\n\nFor your ${s.type} blood, low iron can do this. Did you have anything with iron today — like eggs or spinach?`;
+chips=["My body's tired","Head's dizzy","Started today","Since yesterday","No iron yet","Had some eggs","No water today"];
 }
-else if(l.includes('didn\'t eat')||l.includes('did not eat')||l.includes('not eat')||l.includes('haven\'t eaten')||l.includes('no food')){
+else if(l.includes("didn't eat")||l.includes('not eat')||l.includes('haven\'t eaten')||l.includes('no appetite')||l.includes('haven’t')){
 s.botState.ate='no'; setRedExpression('worried');
-reply=`You haven't eaten 😟 I'm worried.\n\nFollow-up 1: Why — no appetite, busy, no food? Follow-up 2: How many hours since last meal? For ${s.type}, you need ${s.type=='O'?'protein':'light food'} now. Can I add eggs R42.99 or spinach R29.99 to basket?`;
-chips=["No appetite","Busy","No food at home","Add eggs","Add spinach","Hours ago?","Ate now"];
+reply=`You haven't eaten? Okay, I'm a bit worried now, not gonna lie — it's already ${new Date().getHours()}:00.\n\nWhat's going on — is it no appetite, you're just busy, or there's no food at home right now? No judgement, just want to understand so I can help.\n\nFor ${s.type}, even something small like eggs R42.99 or yogurt would help. Want me to add something to your basket?`;
+chips=["No appetite tbh","Just busy","No food at home","Add eggs please","Add spinach","I ate a bit actually"];
 }
 else if(l.includes('ate')&&!l.includes('not')){
 s.botState.ate='yes'; setRedExpression('happy');
-let prevAte=s.botState.lastMeal||'unknown';
-reply=`Great you ate! 🎉 Last time you ate ${prevAte}. What did you eat this time?\n\nFollow-up 1: Was it protein or veg? Follow-up 2: Do you feel energized now or still tired? Follow-up 3: Did you drink water with it?`;
-s.botState.lastMeal=txt; chips=["Protein","Veg","Still tired","Energized","Drank water","No water"];
+reply=`Okay good — you ate! That’s important, thank you for telling me.\n\nWhat did you have? And real talk — do you feel more energized now, or still kind of tired? Sometimes what we eat for our blood type makes a difference. Did you have water with it too?`;
+chips=["Had protein 🥩","Had veg 🥬","Still tired tbh","Feel energized now","Drank water too","No water yet"];
 }
-else if(l.includes('high')&&(l.includes('bp')||l.includes('pressure'))){
+else if(l.includes('high')&&(l.includes('bp')||l.includes('pressure')||l.includes('headache'))){
 s.botState.bp='high'; setRedExpression('worried');
-reply=`High BP ⚠️ — worried about you, ${s.name}.\n\nFollow-up 1: When did it spike — morning or now? Follow-up 2: Did you eat salty food? Follow-up 3: How many hours sleep last night? Sit, breathe, 500ml water now, tell me after.`;
-chips=["Morning spike","Just now","Salty food","Slept <6h","Slept well","Drank water","Still high","Normal now"];
+reply=`High BP? Okay, I’m listening — that can be scary.\n\nWhen did you notice it — this morning or just now? Did you have salty food today? And how did you sleep last night, because less than 6 hours really spikes it.\n\nFor now, sit down, breathe slow, drink 500ml water. Tell me in 5 mins how you feel.`;
+chips=["Started this morning","Just now tbh","Had salty food","Slept less than 6h","Slept well","Drank water now","Still high","Feels normal now"];
 }
 else if(l.includes('low')&&(l.includes('bp')||l.includes('pressure'))){
 s.botState.bp='low'; setRedExpression('sad');
-reply=`Low BP — might feel dizzy standing 😔\n\nFollow-up 1: Dizzy when you stand? Follow-up 2: Water today? Follow-up 3: Did you eat? Lie down, legs up, sip water + pinch salt.`;
-chips=["Dizzy standing","No dizziness","Drank water","No water","Ate","Didn't eat","Feel better"];
+reply=`Low BP — yeah you might feel lightheaded when you stand up, right?\n\nAre you feeling dizzy when you stand? Did you drink water today? And did you eat? For now, lie down, lift your legs a bit, sip water with a tiny pinch of salt if you have.`;
+chips=["Yeah dizzy standing","No dizziness","Drank water","No water yet","I ate","Didn't eat","Feel a bit better"];
 }
 else if(l.includes('normal')&&(l.includes('bp')||l.includes('pressure'))){
 s.botState.bp='normal'; setRedExpression('happy');
-reply=`Normal BP — excellent! 🙌 You were ${s.botState.bp||'unknown'} before.\n\nFollow-up: Since BP is good, let's keep it: water check — did you drink 1L? And sleep — how did you sleep? Those keep BP normal.`;
-chips=["Drank 1L","No water","Slept well","Slept badly","Feel good"];
+reply=`Normal — perfect! 🙌 Honestly that's great to hear, ${s.name}. Keep doing what you're doing.\n\nQuick follow-up though — since BP is good, how's water and sleep? Those two keep it normal. Did you hit 1L water today?`;
+chips=["Drank 1L 💧","No water yet","Slept well","Slept badly","Feeling good overall"];
+}
+else if(l.includes('stress')||l.includes('anxious')||l.includes('anxiety')||l.includes('worried')||l.includes('overwhelmed')){
+s.botState.mood='stressed'; setRedExpression('worried');
+reply=`I hear you — feeling stressed or anxious is heavy, ${s.name}. Thanks for telling me that, for real.\n\nIs it work, family, school, or just everything at once? No need to go deep if you don't want, just helps me understand.\n\nWhen you're stressed, your ${s.type} blood sugar can drop — have you eaten and had water? Sometimes a little walk and water helps more than we think.`;
+chips=["Work stress","Family stuff","Everything tbh","Ate a little","No water","Can't sleep","Feel a bit calmer"];
 }
 else if(l.includes('water')||l.includes('drank')){
-if(l.includes('no')){s.botState.water='no'; setRedExpression('worried'); reply=`No water yet? 💧 Dehydration = high BP + tired.\n\nFollow-up: Hours since last water? Try 500ml now, then tell me if headache or tiredness improves.`; chips=["Drank 500ml now","Still no","Headache","Feel better"];}
-else{s.botState.water='yes'; setRedExpression('happy'); reply=`Water logged! 💧 Good.\n\nFollow-up: Since you drank, do you feel better energy? And did you eat with water?`; chips=["Energy better","Still tired","Ate with water","No food"];}
+if(l.includes('no')){s.botState.water='no'; setRedExpression('worried'); reply=`No water yet? Okay, that explains a lot — dehydration makes BP weird and makes you tired.\n\nHow many hours since you last drank? Try 500ml right now and tell me if your headache or tiredness gets a bit better. Your ${s.type} blood needs flow.`; chips=["Drank 500ml now","Still no water","Headache a bit","Feel a bit better"];}
+else{s.botState.water='yes'; setRedExpression('happy'); reply=`Nice — water logged! Good job.\n\nDo you feel a bit better energy now? And did you eat something with it? Water + food together is best.`; chips=["Yeah energy better","Still tired tbh","Ate with water","No food yet"];}
 }
 else if(l.includes('sleep')||l.includes('slept')){
-s.botState.sleep=l.includes('bad')||l.includes('less')?'bad':'good';
-if(s.botState.sleep==='bad'){setRedExpression('sad'); reply=`Bad sleep 😴 — affects everything, you told me before you were ${s.botState.mood||'tired'}.\n\nFollow-up 1: What time did you sleep? Follow-up 2: Stress, noise, phone? Try 7-8h tonight. Follow-up 3: How do you feel now because of it?`; chips=["Stress","Noise","Phone late","Tired now","Anxious","Slept 4h","Slept 5h"];}
-else{setRedExpression('happy'); reply=`Good sleep! 🎉 Helps ${s.type} blood.\n\nFollow-up: With good sleep, how's mood 1-10? And did you eat breakfast after?`; chips=["Mood 8","Mood 5","Mood 3","Ate breakfast","No breakfast"];}
+s.botState.sleep=l.includes('bad')||l.includes('less')||l.includes('didn')?'bad':'good';
+if(s.botState.sleep==='bad'){setRedExpression('sad'); reply=`Bad sleep sucks, I know — and it messes everything up, BP, hunger, mood.\n\nWhat kept you up — stress, noise, or just scrolling on your phone late? What time did you actually sleep? Try 7-8h tonight, no screen before bed. How are you feeling now because of it?`; chips=["Stress kept me up","Noise","Phone late","Tired now","Anxious","Slept 4h","Slept 5h"];}
+else{setRedExpression('happy'); reply=`Good sleep! That’s huge for your ${s.type} blood, honestly.\n\nWith good sleep, how's your mood today 1-10? And did you manage breakfast after that sleep?`; chips=["Mood 8/10","Mood 5/10","Mood 3/10","Ate breakfast","No breakfast yet"];}
 }
 else{
 setRedExpression('happy');
-if(!s.botState.ate){reply=`Thanks ${s.name}. I remember: Ate=${s.botState.ate||'?'}, BP=${s.botState.bp||'?'}, Water=${s.botState.water||'?'}, Sleep=${s.botState.sleep||'?'}.\n\nFollow-up: Did you eat today?`; chips=["I ate 🥗","Didn't eat","BP normal","BP high","Drank water","Slept badly"];}
-else if(s.botState.bp===null){reply=`You ate — good. Follow-up: BP today?`; chips=["Normal BP","High BP","Low BP","Don't know"];}
-else if(s.botState.water===null){reply=`Ate + BP ${s.botState.bp||'normal'}. Follow-up: water today?`; chips=["Drank water 💧","No water yet"];}
-else{reply=`You're doing well: ate=${s.botState.ate}, BP=${s.botState.bp}, water=${s.botState.water}. Follow-up: sleep last night?`; chips=["Slept well","Slept badly","6 hours","<6 hours"];}
+if(!s.botState.ate){reply=`Thanks for telling me, ${s.name}. I'm keeping track so I don't repeat myself — so far I have: ate=${s.botState.ate||'?'}, BP=${s.botState.bp||'?'}, water=${s.botState.water||'?'}, sleep=${s.botState.sleep||'?'}.\n\nReal quick — did you eat today?`; chips=["I ate 🥗","Didn't eat yet","BP normal","BP high","Drank water","Slept badly"];}
+else if(s.botState.bp===null){reply=`Okay you ate — good. Follow-up: how's your blood pressure today?`; chips=["Normal BP","High BP","Low BP","Don't know tbh"];}
+else if(s.botState.water===null){reply=`Ate + BP ${s.botState.bp||'normal'} — good. Did you drink at least 1L water today? Water keeps your ${s.type||''} blood flowing, you know?`; chips=["Drank water 💧","No water yet","About 1L","2L done"];}
+else{reply=`You're doing okay — ate=${s.botState.ate}, BP=${s.botState.bp}, water=${s.botState.water}. Last check: how did you sleep last night? Sleep affects everything.`; chips=["Slept well","Slept badly","6 hours","Less than 6h","Feel okay"];}
 }
 addBotMessage(reply,false,true,chips);
 setTimeout(()=>{let m=document.getElementById('botMouth');if(m)m.className='botMouth';},900);
