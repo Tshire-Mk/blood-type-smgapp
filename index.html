@@ -2,144 +2,191 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MyType • Real Food • Vitamins</title>
+<title>MyType • Sixty60 + AI Bot</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;800&display=swap');
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Plus Jakarta Sans',sans-serif}
-body{background:#080a14;color:white;display:flex;justify-content:center}
+body{background:#0a0e1a;color:white;display:flex;justify-content:center}
 .app{width:100%;max-width:430px;min-height:100vh;position:relative;background:#080a14;overflow:hidden}
-.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:0.4}
-.b1{width:380px;height:380px;background:radial-gradient(circle,#2a5bd7,#7c3aed);top:-120px;left:-120px}
-.b2{width:320px;height:320px;background:radial-gradient(circle,#ff3b7f,#8b1a3d);top:38%;right:-100px;opacity:0.25}
-.top{position:relative;z-index:5;padding:18px 20px 0 20px;display:flex;justify-content:space-between;align-items:center}
+.top{position:sticky;top:0;z-index:10;padding:14px 16px;background:rgba(8,10,20,0.94);backdrop-filter:blur(20px);display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,0.06)}
 .logo{font-weight:800;font-size:19px;display:flex;gap:8px}
 .logo span{background:linear-gradient(135deg,#5a85ff,#ff7ab6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.badge{font-size:10px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);padding:6px 10px;border-radius:100px}
-.screen{display:none;padding:14px 20px 120px 20px;min-height:100vh;position:relative;z-index:3}
+.basket{background:rgba(255,255,255,0.08);padding:8px 14px;border-radius:100px;font-size:12px;font-weight:800;cursor:pointer;border:1px solid rgba(255,255,255,0.1);position:relative}
+.screen{display:none;padding:12px 12px 110px 12px;min-height:100vh}
 .screen.active{display:flex;flex-direction:column}
-.pill{display:inline-flex;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);padding:7px 14px;border-radius:100px;font-size:11px;font-weight:700}
-.card{background:rgba(18,24,47,0.88);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,0.07);border-radius:26px;padding:0;margin:12px 0;overflow:hidden;cursor:pointer;transition:0.2s}
-.card-pad{padding:16px}
-.search{width:100%;padding:16px 18px 16px 42px;border-radius:100px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.07);color:white;font-size:14px;outline:none}
-.searchWrap{position:relative;margin:14px 0}
-.searchIcon{position:absolute;left:16px;top:50%;transform:translateY(-50%);opacity:0.5}
-.info{padding:14px 16px}
-.tag{font-size:10px;font-weight:800;background:linear-gradient(135deg,#2a5bd7,#ff3b7f);padding:5px 10px;border-radius:100px;display:inline-block;margin-bottom:6px}
-.vits{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
-.vit{font-size:10px;font-weight:700;padding:6px 10px;border-radius:100px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1)}
-.input{width:100%;padding:16px 18px;border-radius:16px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);color:white;font-size:15px;margin:8px 0}
-.btn{width:100%;background:linear-gradient(135deg,#2a5bd7,#ff3b7f);color:white;border:none;padding:17px;border-radius:100px;font-weight:800;font-size:15px;margin-top:12px;cursor:pointer}
+.pill{display:inline-flex;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);padding:6px 12px;border-radius:100px;font-size:11px;font-weight:700}
+.card{background:#12172b;border:1px solid rgba(255,255,255,0.07);border-radius:20px;overflow:hidden}
+.search{width:100%;padding:14px 16px 14px 40px;border-radius:14px;border:1px solid rgba(255,255,255,0.1);background:#151a2f;color:white;font-size:14px;outline:none}
+.searchWrap{position:relative;margin:10px 0}
+.searchIcon{position:absolute;left:14px;top:50%;transform:translateY(-50%);opacity:0.5}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.product{background:#141a30;border:1px solid rgba(255,255,255,0.07);border-radius:20px;overflow:hidden;position:relative;display:flex;flex-direction:column}
+.product img{width:100%;height:130px;object-fit:cover;background:white}
+.pInfo{padding:10px;flex:1;display:flex;flex-direction:column}
+.pName{font-size:13px;font-weight:800;line-height:1.2;height:32px;overflow:hidden}
+.pWeight{font-size:10px;color:rgba(255,255,255,0.45);margin-top:2px}
+.pPrice{font-size:16px;font-weight:800;margin-top:6px}
+.pPrice span{font-size:11px;color:rgba(255,255,255,0.5);font-weight:600}
+.pVits{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap}
+.miniVit{font-size:8px;font-weight:800;padding:4px 6px;border-radius:100px;background:rgba(90,133,255,0.15);border:1px solid rgba(90,133,255,0.2);color:#8aa7ff}
+.addBtn{margin-top:8px;background:linear-gradient(135deg,#2a5bd7,#ff3b7f);border:none;color:white;padding:9px;border-radius:12px;font-weight:800;font-size:12px;cursor:pointer;width:100%}
+.typeChip{position:absolute;top:8px;left:8px;background:rgba(0,0,0,0.6);backdrop-filter:blur(8px);padding:4px 8px;border-radius:100px;font-size:9px;font-weight:800;border:1px solid rgba(255,255,255,0.15)}
+.filterRow{display:flex;gap:6px;overflow:auto;padding:8px 0}
+.fchip{white-space:nowrap;padding:8px 12px;border-radius:100px;font-size:11px;font-weight:700;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);cursor:pointer}
+.fchip.active{background:white;color:#080a14}
+.input{width:100%;padding:14px;border-radius:14px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);color:white;margin:6px 0}
+.btn{width:100%;background:linear-gradient(135deg,#2a5bd7,#ff3b7f);color:white;border:none;padding:14px;border-radius:100px;font-weight:800;margin-top:10px;cursor:pointer}
 .btn-outline{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12)}
 .btn-danger{background:rgba(255,59,79,0.15);border:1px solid rgba(255,59,79,0.3);color:#ff6b7f}
-.typeGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
-.typeCard{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:18px;text-align:center;cursor:pointer}
-.nav{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);width:90%;max-width:380px;background:rgba(15,19,38,0.94);backdrop-filter:blur(30px);border:1px solid rgba(255,255,255,0.08);border-radius:100px;display:flex;justify-content:space-around;padding:8px;z-index:20}
-.navI{flex:1;text-align:center;padding:10px 6px;border-radius:100px;cursor:pointer;color:rgba(255,255,255,0.5);font-size:11px;font-weight:700}
+.nav{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);width:92%;max-width:400px;background:rgba(15,19,38,0.96);backdrop-filter:blur(30px);border:1px solid rgba(255,255,255,0.08);border-radius:100px;display:flex;justify-content:space-around;padding:6px;z-index:20}
+.navI{flex:1;text-align:center;padding:8px 4px;border-radius:100px;cursor:pointer;color:rgba(255,255,255,0.5);font-size:10px;font-weight:700}
 .navI.active{background:white;color:#06091a}
-.small{font-size:12px;color:rgba(255,255,255,0.55);line-height:1.45}
-.filterRow{display:flex;gap:8px;overflow:auto;padding:6px 0 10px 0}
-.fchip{white-space:nowrap;padding:8px 14px;border-radius:100px;font-size:11px;font-weight:700;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);cursor:pointer}
-.fchip.active{background:linear-gradient(135deg,#2a5bd7,#ff3b7f);border-color:transparent}
-#modal{position:fixed;inset:0;z-index:99;background:rgba(0,0,0,0.7);backdrop-filter:blur(12px);display:none;align-items:end;justify-content:center}
+#modal{position:fixed;inset:0;z-index:99;background:rgba(0,0,0,0.75);backdrop-filter:blur(12px);display:none;align-items:end;justify-content:center}
 #modal.show{display:flex}
-.modalBox{width:100%;max-width:430px;background:#11152b;border-top-left-radius:32px;border-top-right-radius:32px;border:1px solid rgba(255,255,255,0.1);max-height:88vh;overflow:auto}
-.modalBox img{width:100%;height:220px;object-fit:cover}
-.modalPad{padding:18px 20px 30px 20px}
-.closeBtn{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);padding:10px 18px;border-radius:100px;font-size:12px;font-weight:700;cursor:pointer;float:right;margin-bottom:8px}
-.dontKnowCard{background:linear-gradient(135deg,rgba(42,91,215,0.25),rgba(255,59,127,0.18));border:1px solid rgba(90,133,255,0.25);border-radius:24px;padding:18px;display:flex;gap:14px;align-items:flex-start}
-.iconBox{width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,#5a85ff,#ff3b7f);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0}
-.metaRow{display:flex;gap:8px;margin-top:12px}
-.metaChip{background:rgba(0,229,168,0.12);border:1px solid rgba(0,229,168,0.2);color:#00e5a8;font-size:10px;font-weight:800;padding:8px 10px;border-radius:12px;flex:1}
-.orDivider{text-align:center;color:rgba(255,255,255,0.4);font-size:12px;letter-spacing:2px;margin:18px 0;font-weight:700}
-.siteItem{display:flex;justify-content:space-between;align-items:center;padding:12px;background:rgba(255,255,255,0.05);border-radius:14px;margin:8px 0;border:1px solid rgba(255,255,255,0.06)}
+.modalBox{width:100%;max-width:430px;background:#11152b;border-top-left-radius:28px;border-top-right-radius:28px;border:1px solid rgba(255,255,255,0.1);max-height:90vh;overflow:auto}
+.modalBox img{width:100%;height:240px;object-fit:cover}
+.modalPad{padding:16px 16px 28px 16px}
+.closeBtn{float:right;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);padding:8px 14px;border-radius:100px;font-size:11px;cursor:pointer}
+.small{font-size:12px;color:rgba(255,255,255,0.55);line-height:1.4}
+.typeGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.typeCard{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:14px;text-align:center;cursor:pointer}
+/* AI BOT STYLES */
+.botFab{position:fixed;bottom:90px;right:16px;width:62px;height:62px;border-radius:20px;background:linear-gradient(135deg,#2a5bd7,#ff3b7f);display:flex;align-items:center;justify-content:center;font-size:28px;cursor:pointer;z-index:25;box-shadow:0 8px 24px rgba(42,91,215,0.4);border:2px solid rgba(255,255,255,0.15);animation:botPulse 2s infinite}
+@keyframes botPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+.botDot{position:absolute;top:-4px;right:-4px;width:14px;height:14px;background:#00e5a8;border-radius:100px;border:2px solid #080a14}
+.chat{flex:1;overflow:auto;display:flex;flex-direction:column;gap:10px;padding:6px 0 10px 0}
+.bubble{max-width:82%;padding:12px 14px;border-radius:18px;font-size:13px;line-height:1.4}
+.bubble.bot{background:#1a2040;border:1px solid rgba(90,133,255,0.2);border-bottom-left-radius:6px;align-self:flex-start}
+.bubble.user{background:linear-gradient(135deg,#2a5bd7,#ff3b7f);align-self:flex-end;border-bottom-right-radius:6px;font-weight:600}
+.botHeader{display:flex;gap:12px;align-items:center;padding:12px;background:#141a30;border-radius:16px;border:1px solid rgba(255,255,255,0.07);margin-bottom:10px}
+.botAvatar{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#2a5bd7,#ff3b7f);display:flex;align-items:center;justify-content:center;font-size:22px}
+.qChips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.qChip{padding:8px 12px;border-radius:100px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);font-size:11px;font-weight:700;cursor:pointer}
 </style>
 </head>
 <body>
 <div class="app">
-<div class="blob b1"></div><div class="blob b2"></div>
-<div class="top"><div class="logo">🩸 <span>MyType</span></div><div class="badge">REAL FOOD • REAL BLOOD</div></div>
+<div class="top"><div class="logo">🩸 <span>MyType</span></div><div class="basket" onclick="go('basket')">🛒 <span id="basketCount">0</span></div></div>
 
 <div id="s1" class="screen active">
-<div style="text-align:center;padding:18px 0 10px 0">
-<div style="width:76px;height:76px;border-radius:24px;display:flex;align-items:center;justify-content:center;font-size:38px;margin:0 auto 14px auto;background:linear-gradient(135deg,#2a5bd7,#ff3b7f)">🩸</div>
-<div class="pill">MyType • Know. Eat. Give.</div>
-<h1 style="margin-top:14px;font-size:32px;line-height:0.95">Real food,<br>real vitamins,<br><span style="background:linear-gradient(90deg,#5a85ff,#ff7ab6);-webkit-background-clip:text;-webkit-text-fill-color:transparent">for your blood.</span></h1>
-</div>
-<div class="card" onclick="go('s2')">
-<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800" style="width:100%;height:210px;object-fit:cover;display:block">
-<div class="info"><span class="tag">MyType • O</span><h3 style="font-size:18px;margin-top:4px">Grilled Lamb + Rosemary Greens</h3><p class="small" style="margin-top:4px">High iron, high protein — warrior fuel for O types.</p></div>
-</div>
-<button class="btn" onclick="go('s2')">Create MyType Profile →</button>
+<div style="text-align:center;padding:10px 0"><div style="width:64px;height:64px;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 10px auto;background:linear-gradient(135deg,#2a5bd7,#ff3b7f)">🩸</div><div class="pill">MyType • Real Food • AI Care</div><h1 style="margin-top:10px;font-size:28px;line-height:0.95">Shop by<br><span style="background:linear-gradient(90deg,#5a85ff,#ff7ab6);-webkit-background-clip:text;-webkit-text-fill-color:transparent">blood type.</span></h1></div>
+<div class="card" onclick="go('s2')"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800" style="width:100%;height:180px;object-fit:cover"><div style="padding:12px"><span class="pill" style="background:linear-gradient(135deg,#2a5bd7,#ff3b7f);border:none">MyType • O</span><h3 style="margin-top:6px">Grilled Lamb + Rosemary Greens</h3><p class="small">High iron, high protein — warrior fuel for O types.</p></div></div>
+<button class="btn" onclick="go('s2')">Create Profile → Meet Your AI Bot</button>
 </div>
 
-<div id="s2" class="screen"><div class="pill">MyType • Step 1</div><h1 style="margin-top:12px;font-size:26px">You</h1><input id="name" class="input" placeholder="Full name"><input id="age" class="input" type="number" placeholder="Age"><input id="allergy" class="input" placeholder="Allergies (optional)"><button class="btn" onclick="saveP()">Continue → What's Your Type?</button></div>
+<div id="s2" class="screen"><div class="pill">Step 1</div><h2 style="margin-top:10px">You</h2><input id="name" class="input" placeholder="Full name"><input id="age" class="input" type="number" placeholder="Age"><input id="allergy" class="input" placeholder="Allergies (optional)"><button class="btn" onclick="saveP()">Continue → Blood Type</button></div>
 
-<div id="whatsType" class="screen">
-<h1 style="font-size:32px;line-height:0.95;margin-top:10px">What's Your Type?</h1>
-<p class="small" style="margin-top:8px">Choose your path to get started</p>
-<div class="card" style="margin-top:20px;cursor:default;padding:0"><div class="dontKnowCard" onclick="go('medirite')" style="cursor:pointer"><div class="iconBox">🔬</div><div style="flex:1"><b style="font-size:18px;line-height:1.2">I Don't Know My Blood Type</b><p class="small" style="margin-top:6px;color:rgba(255,255,255,0.7)">Find a Checkers Medirite pharmacy near you, book a quick blood type test (R75–R90), and your results sync automatically to the app.</p><div class="metaRow"><div class="metaChip">140+ Medirite locations</div><div class="metaChip">Results in 24–48hrs</div></div><div style="margin-top:12px;color:#5a85ff;font-weight:800;font-size:13px">Find a site →</div></div></div></div>
-<div class="orDivider">O R</div>
-<div><p style="font-size:14px;font-weight:700;margin-bottom:12px;color:rgba(255,255,255,0.8)">I already know my blood type</p>
-<div class="typeGrid" style="margin-top:0"><div class="typeCard" onclick="pick('O+')"><div style="font-size:22px">🩸</div><b>O+</b></div><div class="typeCard" onclick="pick('O-')"><div style="font-size:22px">🩸</div><b>O-</b></div><div class="typeCard" onclick="pick('A+')"><div style="font-size:22px">🩸</div><b>A+</b></div><div class="typeCard" onclick="pick('A-')"><div style="font-size:22px">🩸</div><b>A-</b></div><div class="typeCard" onclick="pick('B+')"><div style="font-size:22px">🩸</div><b>B+</b></div><div class="typeCard" onclick="pick('B-')"><div style="font-size:22px">🩸</div><b>B-</b></div><div class="typeCard" onclick="pick('AB+')"><div style="font-size:22px">🩸</div><b>AB+</b></div><div class="typeCard" onclick="pick('AB-')"><div style="font-size:22px">🩸</div><b>AB-</b></div></div><button class="btn btn-outline" style="margin-top:12px" onclick="pick('Unknown')">Skip for now</button></div>
-</div>
-
-<div id="medirite" class="screen"><div class="pill" onclick="go('whatsType')" style="cursor:pointer">← Back</div><h1 style="margin-top:14px;font-size:28px">Find Medirite<br>near you</h1><p class="small" style="margin-top:8px">R75–R90 • 140+ locations • Results auto-sync</p><div class="searchWrap"><span class="searchIcon">🔍</span><input id="siteSearch" class="search" placeholder="Search Pretoria, Joburg..." oninput="filterSites()"></div><div id="siteList"></div></div>
+<div id="whatsType" class="screen"><h2 style="font-size:26px">What's Your Type?</h2><p class="small" style="margin-top:6px">Tap your blood type to unlock food shop</p>
+<div class="typeGrid" style="margin-top:18px"><div class="typeCard" onclick="pick('O+')"><b>O+</b><br><span class="small">38%</span></div><div class="typeCard" onclick="pick('O-')"><b>O-</b><br><span class="small">Donor</span></div><div class="typeCard" onclick="pick('A+')"><b>A+</b><br><span class="small">32%</span></div><div class="typeCard" onclick="pick('A-')"><b>A-</b><br><span class="small">6%</span></div><div class="typeCard" onclick="pick('B+')"><b>B+</b><br><span class="small">9%</span></div><div class="typeCard" onclick="pick('B-')"><b>B-</b><br><span class="small">2%</span></div><div class="typeCard" onclick="pick('AB+')"><b>AB+</b><br><span class="small">Receiver</span></div><div class="typeCard" onclick="pick('AB-')"><b>AB-</b><br><span class="small">1%</span></div></div>
+<button class="btn btn-outline" onclick="pick('Unknown')" style="margin-top:12px">Skip for now</button></div>
 
 <div id="home" class="screen">
-<div style="display:flex;justify-content:space-between"><div><div class="pill" id="greetMain">Hi</div><h1 style="font-size:22px;margin-top:8px" id="homeName">Welcome</h1></div><div class="pill" id="badgeType">MyType</div></div>
-<div class="card" style="background:linear-gradient(135deg,#2a5bd7,#ff3b7f);cursor:default"><div class="card-pad"><p style="font-size:11px">SCORE</p><h1 style="font-size:42px" id="score">60</h1><p class="small" style="color:white" id="homeDesc">Tap meals below</p></div></div>
-<div class="searchWrap"><span class="searchIcon">🔍</span><input id="quickSearch" class="search" placeholder="Search food, iron, vitamin C..." oninput="quickSearch(this.value)"></div>
-<h3 style="margin:6px 0">Your meals 👇 tap any</h3><div id="homeMeals"></div>
+<div style="display:flex;justify-content:space-between;align-items:center"><div><div class="pill" id="greetMain">Hi</div><h2 id="homeName" style="font-size:20px;margin-top:6px">Welcome</h2></div><div class="pill" id="badgeType">MyType</div></div>
+<div class="searchWrap"><span class="searchIcon">🔍</span><input id="quickSearch" class="search" placeholder="Search eggs, spinach, salmon, iron..." oninput="renderProducts(this.value.toLowerCase())"></div>
+<div class="filterRow"><div class="fchip active" onclick="setFilter('all',this)">All</div><div class="fchip" onclick="setFilter('Protein',this)">Proteins</div><div class="fchip" onclick="setFilter('Fruit',this)">Fruit</div><div class="fchip" onclick="setFilter('Veg',this)">Veg</div><div class="fchip" onclick="setFilter('Eggs',this)">Eggs</div><div class="fchip" onclick="setFilter('Dairy',this)">Dairy</div><div class="fchip" onclick="setFilter('O',this)">O Best</div><div class="fchip" onclick="setFilter('A',this)">A Best</div></div>
+<div class="grid" id="productGrid"></div>
 </div>
 
-<div id="foods" class="screen"><div class="pill">MyType • Foods • Tap any</div><h1 style="margin-top:10px;font-size:26px">Real foods + vitamins</h1><div class="searchWrap"><span class="searchIcon">🔍</span><input id="foodSearch" class="search" placeholder="Search lamb, iron, vitamin D..." oninput="filterFoods()"></div><div class="filterRow"><div class="fchip active" onclick="setFilter('all',this)">All</div><div class="fchip" onclick="setFilter('O',this)">O Best</div><div class="fchip" onclick="setFilter('A',this)">A Best</div><div class="fchip" onclick="setFilter('B',this)">B Best</div><div class="fchip" onclick="setFilter('AB',this)">AB Best</div><div class="fchip" onclick="setFilter('iron',this)">Iron</div></div><div id="foodList"></div></div>
-<div id="meals" class="screen"><div class="pill" id="mType">MyType</div><h1 style="margin-top:10px;font-size:26px">Meals for your type 👇</h1><div id="mealCards"></div></div>
+<div id="basket" class="screen"><div class="pill" onclick="go('home')" style="cursor:pointer">← Continue shopping</div><h2 style="margin-top:10px">Basket</h2><div id="basketList" style="margin-top:12px"></div><div class="card" style="margin-top:16px"><div style="padding:14px"><div style="display:flex;justify-content:space-between"><b>Total</b><b id="basketTotal">R0.00</b></div><p class="small" id="basketNutrition" style="margin-top:8px"></p><button class="btn" onclick="checkout()">Checkout • MyType Delivery</button></div></div></div>
 
-<!-- PROFILE WITH LOG OUT -->
-<div id="profile" class="screen">
-<h1 style="font-size:28px">MyType Profile</h1>
-<div class="card" style="cursor:default"><div class="card-pad"><p id="pInfo" style="font-size:14px"></p><p class="small" id="pDetails" style="margin-top:8px"></p><button class="btn btn-outline" style="margin-top:14px" onclick="go('whatsType')">Change blood type</button></div></div>
-<div class="card" style="cursor:default"><div class="card-pad"><b style="font-size:13px">⚙️ Account</b><p class="small" style="margin-top:6px">Manage your MyType data</p>
-<button class="btn btn-outline" onclick="go('s2')" style="margin-top:12px">Edit profile</button>
-<button class="btn btn-danger" onclick="logout()" style="margin-top:10px">Log out • Clear MyType data</button>
-<p class="small" style="margin-top:10px;text-align:center">Logs you out and returns to start. Your local data is cleared.</p>
-</div></div>
+<!-- AI BOT SCREEN -->
+<div id="aiBot" class="screen">
+<div class="botHeader"><div class="botAvatar">🤖</div><div><b>MyType Bot • Your daily care buddy</b><br><span class="small" style="color:#00e5a8">● Online • Checks you daily</span></div><div class="pill" onclick="go('home')" style="margin-left:auto;cursor:pointer">✕ Close</div></div>
+<div class="chat" id="chatBox"></div>
+<div class="searchWrap" style="margin-top:auto"><span class="searchIcon">💬</span><input id="chatInput" class="search" placeholder="Tell bot how you feel today..." onkeydown="if(event.key==='Enter')sendChat()"><button class="btn" onclick="sendChat()" style="margin-top:8px">Send to Bot</button></div>
 </div>
 
-<div class="nav" id="nav"><div class="navI active" onclick="go('home')">🏠<br>Home</div><div class="navI" onclick="go('foods')">🥩<br>Foods</div><div class="navI" onclick="go('meals')">🥗<br>Meals</div><div class="navI" onclick="go('profile')">👤<br>You</div></div>
+<div id="profile" class="screen"><h2>MyType Profile</h2><div class="card"><div style="padding:14px"><p id="pInfo"></p><p class="small" id="pDetails" style="margin-top:6px"></p><button class="btn btn-outline" onclick="go('whatsType')" style="margin-top:10px">Change type</button><button class="btn btn-outline" onclick="go('s2')" style="margin-top:8px">Edit profile</button><button class="btn" onclick="go('aiBot')" style="margin-top:8px">🤖 Open MyType Bot</button><button class="btn btn-danger" onclick="logout()" style="margin-top:8px">Log out • Clear data</button></div></div></div>
+
+<div class="nav" id="nav"><div class="navI active" onclick="go('home')">🏠<br>Shop</div><div class="navI" onclick="go('aiBot')">🤖<br>Bot</div><div class="navI" onclick="go('basket')">🛒<br>Basket</div><div class="navI" onclick="go('profile')">👤<br>You</div></div>
 </div>
 
-<div id="modal" onclick="if(event.target==this)closeModal()"><div class="modalBox"><img id="modalImg" src=""><div class="modalPad"><button class="closeBtn" onclick="closeModal()">✕ Close</button><div style="clear:both"></div><span class="tag" id="modalTag"></span><h2 id="modalTitle" style="margin:8px 0"></h2><p class="small" id="modalDesc"></p><b style="font-size:13px">💊 Vitamins & Minerals:</b><div class="vits" id="modalVits"></div><div style="background:rgba(255,255,255,0.06);border-radius:16px;padding:14px;margin-top:12px"><b style="font-size:12px">📊 Per serving:</b><p class="small" id="modalMins" style="margin-top:6px"></p></div><div style="background:rgba(42,91,215,0.15);border:1px solid rgba(42,91,215,0.3);border-radius:16px;padding:14px;margin-top:12px"><b style="font-size:12px">🩸 Why good:</b><p class="small" id="modalWhy" style="margin-top:6px"></p></div><button class="btn" onclick="logMealFromModal()">Log +3 Score</button></div></div></div>
+<div class="botFab" onclick="go('aiBot')">🤖<div class="botDot"></div></div>
+
+<div id="modal" onclick="if(event.target==this)closeModal()"><div class="modalBox"><img id="modalImg"><div class="modalPad"><button class="closeBtn" onclick="closeModal()">✕ Close</button><div style="clear:both"></div><span class="pill" id="modalTag"></span><h2 id="modalTitle" style="margin:8px 0"></h2><p class="small" id="modalDesc"></p><p style="margin-top:10px;font-size:22px;font-weight:800" id="modalPrice"></p><p class="small" id="modalWeight"></p><div style="margin-top:12px"><b style="font-size:12px">💊 Vitamins & Minerals:</b><div id="modalVits" style="margin-top:8px"></div></div><div style="background:rgba(255,255,255,0.06);border-radius:14px;padding:12px;margin-top:12px"><b style="font-size:11px">📊 Nutritional info:</b><p class="small" id="modalMins" style="margin-top:6px"></p></div><div style="background:rgba(42,91,215,0.15);border:1px solid rgba(42,91,215,0.3);border-radius:14px;padding:12px;margin-top:12px"><b style="font-size:11px">🩸 Best for blood type:</b><p class="small" id="modalWhy" style="margin-top:6px"></p></div><button class="btn" id="modalAddBtn">Add to basket</button></div></div></div>
 
 <script>
-let s=JSON.parse(localStorage.getItem('mytype_v3')||'{"name":"","age":"","allergy":"","type":"","don":0,"meals":0}');
+let s=JSON.parse(localStorage.getItem('mytype_v4')||'{"name":"","age":"","allergy":"","type":"","basket":[],"botLog":[]}');
 let currentFilter='all';
-let FOODS=[
-{t:"Grilled Lamb Chops",type:"O",img:"https://images.unsplash.com/photo-1546964052-d9334ceb32ee?w=800",vits:["B12","Iron","Zinc","Protein"],mins:["Iron 3.5mg","Zinc 5.2mg","B12 6.2mcg","Protein 25g"],desc:"Warrior fuel",why:"O thrives on red meat, heme iron prevents fatigue."},
-{t:"Spinach & Kale",type:"A",img:"https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=800",vits:["Vitamin K","A","Folate","Iron"],mins:["Vitamin K 483mcg","Vitamin A 469mcg","Iron 2.7mg","Calcium 99mg"],desc:"Blood builder",why:"A best plant-based, vitamin K helps clotting."},
-{t:"Wild Salmon",type:"O",img:"https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800",vits:["Omega-3","Vitamin D","B12"],mins:["Omega-3 2.2g","Vitamin D 11mcg","Protein 20g"],desc:"Anti-inflammatory",why:"Omega-3 thins blood, D boosts immunity."},
-{t:"Organic Tofu",type:"A",img:"https://images.unsplash.com/photo-1540420773420-3366772f4999?w=800",vits:["Protein","Iron","Calcium"],mins:["Protein 8g","Calcium 130mg","Iron 1.8mg"],desc:"A calm protein",why:"A produces less stomach acid for meat."},
-{t:"Beef Liver",type:"O",img:"https://images.unsplash.com/photo-1608039824140-e0bbfdc64b04?w=800",vits:["Vitamin A","B12","Folate"],mins:["Vitamin A 9400mcg","B12 60mcg","Iron 6.5mg"],desc:"Most nutrient dense",why:"One serving covers B12 for week."},
-{t:"Avocado & Egg",type:"A",img:"https://images.unsplash.com/photo-1526948128573-703ee1aeb6fa?w=800",vits:["K","E","B6","Folate"],mins:["Potassium 485mg","Fiber 7g","Fat 15g"],desc:"Healthy fat",why:"Good fat for A/B limiting red meat."},
-{t:"Beetroot",type:"A",img:"https://images.unsplash.com/photo-1593105544554-aa78d3c9d03c?w=800",vits:["Folate","C","Nitrate"],mins:["Folate 109mcg","Potassium 305mg"],desc:"Blood flow booster",why:"Nitric oxide opens vessels."},
-{t:"Greek Yogurt",type:"B",img:"https://images.unsplash.com/photo-1488477181946-64290103bbd6?w=800",vits:["B12","Calcium","Probiotic"],mins:["Calcium 110mg","Protein 6g"],desc:"B gut hero",why:"B only type digests dairy well."}
+let PRODUCTS=[
+{t:"Free Range Eggs • 6",cat:"Eggs",type:"B",img:"https://images.unsplash.com/photo-1482049016688-2d3e1b31122f?w=600",price:42.99,weight:"6 pack • 300g",vits:["B12","D","Choline","Protein"],mins:["Protein 6g per egg","Choline 147mg","Vitamin D 1mcg"],desc:"Pasture raised, complete protein",why:"B thrives on eggs — complete protein.",best:"B, AB, O"},
+{t:"Baby Spinach • Bunch",cat:"Veg",type:"A",img:"https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=600",price:29.99,weight:"120g • Washed",vits:["Vitamin K","A","Folate","Iron"],mins:["Vitamin K 483mcg 402% DV","Iron 2.7mg","Folate 58mcg"],desc:"Fresh baby leaves, washed",why:"A types best on greens.",best:"A, AB"},
+{t:"Lamb Chops • 500g",cat:"Protein",type:"O",img:"https://images.unsplash.com/photo-1546964052-d9334ceb32ee?w=600",price:189.99,weight:"500g • Free range",vits:["B12","Iron","Zinc","Protein"],mins:["Iron 3.5mg 19% DV","Zinc 5.2mg","B12 6.2mcg 258% DV","Protein 25g/100g"],desc:"Free range lamb, high heme iron",why:"O needs red meat.",best:"O"},
+{t:"Salmon Fillet • 200g",cat:"Protein",type:"O",img:"https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600",price:129.99,weight:"200g • Skinless",vits:["Omega-3","D","B12"],mins:["Omega-3 2.2g","Vitamin D 11mcg","Protein 20g"],desc:"Skinless fillet, anti-inflammatory",why:"Omega-3 thins blood.",best:"All"},
+{t:"Organic Tofu • 300g",cat:"Protein",type:"A",img:"https://images.unsplash.com/photo-1540420773420-3366772f4999?w=600",price:39.99,weight:"300g • Firm",vits:["Protein","Calcium","Iron"],mins:["Protein 8g","Calcium 130mg","Iron 1.8mg"],desc:"Firm tofu, calm protein for A",why:"A ideal tofu.",best:"A, AB"},
+{t:"Avocados • 2",cat:"Fruit",type:"A",img:"https://images.unsplash.com/photo-1526948128573-703ee1aeb6fa?w=600",price:34.99,weight:"2 pack • Ripe",vits:["K","E","B6","Folate"],mins:["Potassium 485mg","Fiber 7g","Healthy Fat 15g"],desc:"Ripe & creamy",why:"Good fat for A/B.",best:"A, B"},
+{t:"Beetroot • 500g",cat:"Veg",type:"A",img:"https://images.unsplash.com/photo-1593105544554-aa78d3c9d03c?w=600",price:24.99,weight:"500g • Fresh",vits:["Folate","C","Nitrate"],mins:["Folate 109mcg","Potassium 305mg"],desc:"Fresh beets, blood flow booster",why:"Nitric oxide opens vessels.",best:"A, AB"},
+{t:"Greek Yogurt • 500g",cat:"Dairy",type:"B",img:"https://images.unsplash.com/photo-1488477181946-64290103bbd6?w=600",price:44.99,weight:"500g • Plain",vits:["B12","Calcium","Probiotic"],mins:["Calcium 110mg","Protein 6g/100g"],desc:"Plain, probiotic",why:"B only type digests dairy well.",best:"B, AB"},
+{t:"Blueberries • 125g",cat:"Fruit",type:"AB",img:"https://images.unsplash.com/photo-1498557850523-fd3d118b962e?w=600",price:39.99,weight:"125g",vits:["C","K","Antioxidants"],mins:["Vitamin C 9.7mg","Fiber 2.4g"],desc:"Fresh blueberries",why:"AB needs antioxidants.",best:"AB, A"},
+{t:"Chicken Breast • 500g",cat:"Protein",type:"O",img:"https://images.unsplash.com/photo-1532550907401-a500c9a57435?w=600",price:89.99,weight:"500g • Free range",vits:["B6","B3","Protein"],mins:["Protein 31g/100g","B6 0.6mg"],desc:"Free range fillets, lean",why:"Lean O protein.",best:"O, B"}
 ];
-let MEALS={"O+":[{title:"Herb Grilled Lamb + Kale",img:FOODS[0].img,note:"Iron + Zinc",foods:[0,1]},{title:"Salmon Bowl",img:FOODS[2].img,note:"Omega",foods:[2,5]}],"A+":[{title:"Tofu Buddha Bowl",img:FOODS[3].img,note:"Calm",foods:[3,1]},{title:"Lentil + Beet Bowl",img:FOODS[6].img,note:"Iron",foods:[6,1]}],"B+":[{title:"Yogurt + Berries",img:FOODS[7].img,note:"Gut",foods:[7,1]}],"AB+":[{title:"Seafood + Avocado",img:FOODS[2].img,note:"Ocean",foods:[2,5]}],"O-":[{title:"Steak + Spinach",img:FOODS[0].img,note:"Donor",foods:[0,1]}],"A-":[{title:"Tofu Greens",img:FOODS[3].img,note:"Calm",foods:[3,1]}],"B-":[{title:"Eggs Yogurt",img:FOODS[7].img,note:"Balanced",foods:[7,0]}],"AB-":[{title:"Rarest Plate",img:FOODS[5].img,note:"Rare",foods:[5,3]}],"Unknown":[{title:"Balanced Bowl",img:FOODS[2].img,note:"Real food",foods:[2,1,5]}]};
-let SITES=[{name:"Medirite Wonderboom",area:"Pretoria North • 2.1km",price:"R85",slots:"Tomorrow 9am, 11am"},{name:"Medirite Kolonnade",area:"Montana • 3.4km",price:"R75",slots:"Today 2pm, 4pm"},{name:"Medirite Centurion Mall",area:"Centurion • 8.2km",price:"R90",slots:"Tomorrow 10am"},{name:"Medirite Menlyn",area:"Pretoria East • 6.5km",price:"R85",slots:"Today 3pm"},{name:"Medirite Brooklyn",area:"Pretoria • 5.1km",price:"R80",slots:"Tomorrow 8am, 2pm"}];
-function go(id){document.querySelectorAll('.screen').forEach(e=>e.classList.remove('active'));document.getElementById(id).classList.add('active');document.getElementById('nav').style.display=['home','foods','meals','profile'].includes(id)?'flex':'none';render();}
-function saveP(){s.name=document.getElementById('name').value;s.age=document.getElementById('age').value;s.allergy=document.getElementById('allergy').value;localStorage.setItem('mytype_v3',JSON.stringify(s));go('whatsType');}
-function pick(t){s.type=t;localStorage.setItem('mytype_v3',JSON.stringify(s));go('home');}
-function logout(){if(confirm('Log out of MyType? This clears your name, blood type and score on this device.')){localStorage.removeItem('mytype_v3');s={name:"",age:"",allergy:"",type:"",don:0,meals:0};go('s1');}}
-function setFilter(f,el){currentFilter=f;document.querySelectorAll('.fchip').forEach(c=>c.classList.remove('active'));el.classList.add('active');filterFoods();}
-function filterFoods(){let q=(document.getElementById('foodSearch').value||'').toLowerCase();let list=document.getElementById('foodList');let html='';FOODS.forEach((fd,i)=>{let match=!q||fd.t.toLowerCase().includes(q)||fd.vits.join(' ').toLowerCase().includes(q);let filt=currentFilter=='all'||fd.type.includes(currentFilter)||(currentFilter=='iron'&&fd.mins.join(' ').toLowerCase().includes('iron'));if(match&&filt){html+=`<div class="card" onclick="openFoodDetail(${i})"><img src="${fd.img}" style="width:100%;height:160px;object-fit:cover"><div class="info"><span class="tag">${fd.type} • TAP</span><h4>${fd.t}</h4><p class="small">${fd.desc}</p></div></div>`;}});list.innerHTML=html;}
-function filterSites(){let q=(document.getElementById('siteSearch').value||'').toLowerCase();let list=document.getElementById('siteList');let html='';SITES.filter(s=>!q||s.name.toLowerCase().includes(q)||s.area.toLowerCase().includes(q)).forEach(site=>{html+=`<div class="siteItem" onclick="bookSite('${site.name}')"><div><b>${site.name}</b><br><span>${site.area} • ${site.price}</span><br><span style="color:#00e5a8">${site.slots}</span></div><div style="background:linear-gradient(135deg,#2a5bd7,#ff3b7f);padding:10px 14px;border-radius:100px;font-size:12px;font-weight:800">Book</div></div>`;});list.innerHTML=html;}
-function bookSite(name){alert(`✅ MyType Booking: ${name}\nR75–R90 • 10 mins • Results auto-sync`);pick('O+');}
-function quickSearch(v){if(v.length>1){go('foods');document.getElementById('foodSearch').value=v;filterFoods();}}
-function openFoodDetail(i){let f=FOODS[i];document.getElementById('modalImg').src=f.img;document.getElementById('modalTag').textContent=f.type+' • '+f.t;document.getElementById('modalTitle').textContent=f.t;document.getElementById('modalDesc').textContent=f.desc;document.getElementById('modalVits').innerHTML=f.vits.map(v=>`<span class="vit"><b>${v}</b></span>`).join('')+f.mins.map(m=>`<span class="vit"><b>${m.split(' ')[0]}</b> ${m.substring(m.indexOf(' ')+1)}</span>`).join('');document.getElementById('modalMins').innerHTML=f.mins.join('<br>• ');document.getElementById('modalWhy').textContent=f.why;document.getElementById('modal').classList.add('show');}
-function openMealDetail(t,idx){let mt=MEALS[t]||MEALS['Unknown'];let m=mt[idx];document.getElementById('modalImg').src=m.img;document.getElementById('modalTag').textContent=t+' • Meal';document.getElementById('modalTitle').textContent=m.title;document.getElementById('modalDesc').textContent=m.note+' — '+m.foods.map(fi=>FOODS[fi].t).join(' + ');let allVits=[...new Set(m.foods.flatMap(fi=>FOODS[fi].vits))];document.getElementById('modalVits').innerHTML=allVits.map(v=>`<span class="vit"><b>${v}</b></span>`).join('');let allMins=m.foods.map(fi=>FOODS[fi].mins.join(', ')).join(', ');document.getElementById('modalMins').innerHTML=allMins.split(',').map(x=>`• ${x.trim()}`).join('<br>');document.getElementById('modalWhy').textContent=FOODS[m.foods[0]].why;document.getElementById('modal').classList.add('show');}
+let DAILY_QS=[
+"Good morning! 🌅 Did you eat breakfast today? Your blood type {type} needs protein early.",
+"Quick check 🩺 — how's your blood pressure today? High, normal, or low?",
+"Did you drink enough water? 💧 {type} types need 2L daily for blood flow.",
+"Did you eat your greens today? 🥬 Spinach gives you Iron 2.7mg for your {type} blood.",
+"How did you sleep? 😴 Less than 6 hours raises blood pressure.",
+"Feeling dizzy or tired? That could be low iron — try lamb or spinach from your shop.",
+"Have you taken your meds/vitamins today? 💊",
+"Did you log your meals in MyType today? 📊",
+"Stress check — how are you feeling 1-10? High stress affects {type} blood sugar."
+];
+function go(id){document.querySelectorAll('.screen').forEach(e=>e.classList.remove('active'));document.getElementById(id).classList.add('active');document.getElementById('nav').style.display=['home','basket','profile','aiBot'].includes(id)?'flex':'none';if(id=='aiBot')renderBot();render();}
+function saveP(){s.name=document.getElementById('name').value;s.age=document.getElementById('age').value;s.allergy=document.getElementById('allergy').value;localStorage.setItem('mytype_v4',JSON.stringify(s));go('whatsType');}
+function pick(t){s.type=t;localStorage.setItem('mytype_v4',JSON.stringify(s));go('home');setTimeout(()=>{go('aiBot');addBotMessage(`Welcome ${s.name||'friend'}! I'm your MyType Bot 🤖. I see you're ${t} — I'll check on you daily. Let's start: did you eat today?`,false);},600);}
+function logout(){if(confirm('Log out? Clears data.')){localStorage.removeItem('mytype_v4');s={name:"",age:"",allergy:"",type:"",basket:[],botLog:[]};go('s1');}}
+function setFilter(f,el){currentFilter=f;document.querySelectorAll('.fchip').forEach(c=>c.classList.remove('active'));el.classList.add('active');renderProducts();}
+function renderProducts(searchQ=''){let q=(searchQ||document.getElementById('quickSearch')?.value||'').toLowerCase();let grid=document.getElementById('productGrid');if(!grid)return;let html='';PRODUCTS.forEach((p,i)=>{let matchSearch=!q||p.t.toLowerCase().includes(q)||p.cat.toLowerCase().includes(q)||p.vits.join(' ').toLowerCase().includes(q);let matchFilter=currentFilter=='all'||p.cat==currentFilter||p.type==currentFilter||p.best.includes(currentFilter);if(matchSearch&&matchFilter){html+=`<div class="product" onclick="openProduct(${i})"><div class="typeChip">${p.type} • ${p.cat}</div><img src="${p.img}" loading="lazy"><div class="pInfo"><div class="pName">${p.t}</div><div class="pWeight">${p.weight}</div><div class="pVits">${p.vits.slice(0,3).map(v=>`<span class="miniVit">${v}</span>`).join('')}</div><div class="pPrice">R${p.price.toFixed(2)} <span>/ ${p.weight.split('•')[0].trim()}</span></div><button class="addBtn" onclick="event.stopPropagation();addToBasket(${i})">+ Add</button></div></div>`;}});grid.innerHTML=html||`<div style="grid-column:1/-1" class="card"><div style="padding:20px"><p class="small">No products for "${q}"</p></div></div>`;}
+function openProduct(i){let p=PRODUCTS[i];document.getElementById('modalImg').src=p.img;document.getElementById('modalTag').textContent=p.cat+' • '+p.type+' • Best for '+p.best;document.getElementById('modalTitle').textContent=p.t;document.getElementById('modalDesc').textContent=p.desc;document.getElementById('modalPrice').textContent='R'+p.price.toFixed(2);document.getElementById('modalWeight').textContent=p.weight;document.getElementById('modalVits').innerHTML=p.vits.map(v=>`<span style="display:inline-block;margin:4px 4px 0 0;padding:6px 10px;border-radius:100px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);font-size:11px;font-weight:700">${v}</span>`).join('');document.getElementById('modalMins').innerHTML=p.mins.map(m=>`• ${m}`).join('<br>');document.getElementById('modalWhy').textContent=p.why;document.getElementById('modalAddBtn').onclick=()=>{addToBasket(i);closeModal();};document.getElementById('modal').classList.add('show');}
 function closeModal(){document.getElementById('modal').classList.remove('show');}
-function logMealFromModal(){s.meals++;localStorage.setItem('mytype_v3',JSON.stringify(s));closeModal();render();}
-function render(){let t=s.type||'Unknown';document.getElementById('homeName').textContent=s.name?'Hi '+s.name.split(' ')[0]:'Welcome';document.getElementById('badgeType').textContent=t+' • MyType';document.getElementById('score').textContent=50+s.meals*3;document.getElementById('pInfo').textContent=(s.name||'No name')+' • '+(s.type||'No type');let pd=document.getElementById('pDetails');if(pd)pd.textContent=`Age: ${s.age||'-'} • Allergies: ${s.allergy||'None'} • Meals logged: ${s.meals}`;let mt=MEALS[t]||MEALS['Unknown'];let mType=document.getElementById('mType');if(mType)mType.textContent='MyType • '+t;let homeMeals=document.getElementById('homeMeals');if(homeMeals){let hm='';mt.forEach((m,i)=>{hm+=`<div class="card" onclick="openMealDetail('${t}',${i})"><img src="${m.img}" style="width:100%;height:160px;object-fit:cover"><div class="info"><span class="tag">${t} • ${m.title}</span><h4>${m.title}</h4><p class="small">${m.note} — tap for vitamins</p></div></div>`});homeMeals.innerHTML=hm;}let mealCards=document.getElementById('mealCards');if(mealCards){let mh='';mt.forEach((m,i)=>{mh+=`<div class="card" onclick="openMealDetail('${t}',${i})"><img src="${m.img}" style="width:100%;height:160px;object-fit:cover"><div class="info"><span class="tag">${t} • TAP FOR VITAMINS</span><h4>${m.title}</h4><p class="small">${m.note}</p></div></div>`});mealCards.innerHTML=mh;}filterFoods();filterSites();}
+function addToBasket(i){s.basket=s.basket||[];s.basket.push(PRODUCTS[i]);localStorage.setItem('mytype_v4',JSON.stringify(s));render();}
+function renderBasket(){let list=document.getElementById('basketList');if(!list)return;let total=0;let html='';(s.basket||[]).forEach((p,idx)=>{total+=p.price;html+=`<div style="display:flex;gap:10px;padding:10px;background:#141a30;border-radius:14px;margin:6px 0"><img src="${p.img}" style="width:50px;height:50px;border-radius:10px;object-fit:cover"><div style="flex:1"><b style="font-size:12px">${p.t}</b><br><span class="small">${p.weight} • R${p.price.toFixed(2)}</span></div><div style="cursor:pointer" onclick="removeBasket(${idx})">✕</div></div>`;});list.innerHTML=html||`<div class="card"><div style="padding:20px"><p class="small">Basket empty — add eggs, fruit, veg like Sixty60</p></div></div>`;document.getElementById('basketTotal').textContent='R'+total.toFixed(2);document.getElementById('basketNutrition').textContent=s.basket?.length?`Nutrition in basket: ${[...new Set(s.basket.flatMap(b=>b.vits))].join(', ')} for ${s.type||'you'}`:'';document.getElementById('basketCount').textContent=s.basket?.length||0;}
+function removeBasket(idx){s.basket.splice(idx,1);localStorage.setItem('mytype_v4',JSON.stringify(s));render();}
+function checkout(){if(!s.basket?.length)return alert('Basket empty');alert(`✅ Order Placed! ${s.basket.length} items • R${s.basket.reduce((a,b)=>a+b.price,0).toFixed(2)}\nMyType Bot will remind you to eat!`);s.basket=[];localStorage.setItem('mytype_v4',JSON.stringify(s));render();go('home');}
+// AI BOT LOGIC
+function renderBot(){
+let box=document.getElementById('chatBox');if(!box)return;box.innerHTML='';
+if(!s.botLog||!s.botLog.length){
+let greet=`Hi ${s.name||'friend'}! I'm MyType Bot 🤖 your small care buddy. I'll ask you daily:\n• Did you eat today?\n• Blood pressure check 🩺\n• Water & sleep\n• How you feel\n\nType: ${s.type||'Unknown'} — I tailor advice for you!`;
+addBotMessage(greet,false,true);
+setTimeout(()=>{let q=DAILY_QS[Math.floor(Math.random()*DAILY_QS.length)].replace('{type}',s.type||'your');addBotMessage(q,false,true);},800);
+} else {
+s.botLog.forEach(m=>{box.innerHTML+=`<div class="bubble ${m.role}">${m.text}${m.chips?`<div class="qChips">${m.chips.map(c=>`<span class="qChip" onclick="quickReply('${c}')">${c}</span>`).join('')}</div>`:''}</div>`;});
+}
+box.scrollTop=box.scrollHeight;
+}
+function addBotMessage(text,isUser,save=true,chips=null){
+let box=document.getElementById('chatBox');let div=document.createElement('div');div.className='bubble '+(isUser?'user':'bot');div.innerHTML=text+(chips?`<div class="qChips">${chips.map(c=>`<span class="qChip" onclick="quickReply('${c}')">${c}</span>`).join('')}</div>`:'');box.appendChild(div);box.scrollTop=box.scrollHeight;
+if(save){s.botLog=s.botLog||[];s.botLog.push({role:isUser?'user':'bot',text,chips});localStorage.setItem('mytype_v4',JSON.stringify(s));}
+}
+function quickReply(txt){document.getElementById('chatInput').value=txt;sendChat();}
+function sendChat(){
+let input=document.getElementById('chatInput');let txt=input.value.trim();if(!txt)return;
+addBotMessage(txt,true);input.value='';
+setTimeout(()=>{
+let t=txt.toLowerCase();
+let reply="Got it! ✅ Logged for today.";
+let chips=["Yes, I ate 🥗","No not yet","Normal pressure","High today","Low","Tired","I drank water 💧"];
+if(t.includes('pressure')||t.includes('high')||t.includes('low')){
+if(t.includes('high')) reply=`⚠️ High BP for ${s.type||''} — try beetroot (R24.99) + spinach, less salt, drink 500ml water now. Did you sleep well?`;
+else if(t.includes('low')) reply=`Low BP — try a bit of salt + eggs (R42.99) + water. Eat something now?`;
+else reply=`Normal is great! Keep drinking water and eating ${s.type=='O'?'protein':'greens'} today.`;
+} else if(t.includes('not eat')||t.includes('no')&&t.includes('eat')){
+reply=`You haven't eaten? 😟 For ${s.type||'your'} blood type, you need ${s.type=='O'?'lamb or eggs':'tofu or spinach'} today. Want me to add to basket?`;
+chips=["Add eggs R42.99","Add spinach R29.99","I ate now"];
+} else if(t.includes('ate')||t.includes('yes')){
+reply=`Nice! 🎉 Logging meal. For ${s.type||''} type, next try ${PRODUCTS.filter(p=>p.best.includes(s.type||'A'))[0]?.t||'spinach'} for Iron + B12. How's your pressure?`;
+} else if(t.includes('tired')||t.includes('dizzy')){
+reply=`Tired/dizzy can be low iron for ${s.type||''}. Try our Lamb Chops (Iron 3.5mg) or Spinach (Iron 2.7mg). Drink water and rest.`;
+chips=["Add iron foods","Check pressure","I feel better"];
+} else {
+let q=DAILY_QS[Math.floor(Math.random()*DAILY_QS.length)].replace('{type}',s.type||'your');
+reply=q;
+}
+addBotMessage(reply,false,true,chips);
+},700);
+}
+function render(){let t=s.type||'Unknown';let hn=document.getElementById('homeName');if(hn)hn.textContent=s.name?'Hi '+s.name.split(' ')[0]:'Welcome';let bt=document.getElementById('badgeType');if(bt)bt.textContent=t+' • MyType';let pi=document.getElementById('pInfo');if(pi)pi.textContent=(s.name||'No name')+' • '+(s.type||'No type');let pd=document.getElementById('pDetails');if(pd)pd.textContent=`Basket: ${s.basket?.length||0} • Age: ${s.age||'-'}`;renderProducts();renderBasket();}
 render();if(s.name&&s.type)go('home');else go('s1');
 </script>
 </body>
