@@ -322,4 +322,71 @@ document.addEventListener('DOMContentLoaded',()=>{const grid=document.getElement
 </script>
 <script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script>
 
-</body></html>
+</body></html><html lang="en"><head><style>
+@font-face {
+  font-family: "Optimistic";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+}
+:where(html) {
+  font-family: "Optimistic", system-ui, sans-serif;
+}
+:where(code, pre, kbd, samp) {
+  font-family: "Optimistic Mono", ui-monospace, monospace;
+}
+</style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>MyType • Know your type • Know your food • Red LIVE</title>
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js"}}</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;800&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Plus Jakarta Sans',sans-serif}
+html{height:100%;overflow:hidden}
+body{background:#06080f;color:white;display:flex;justify-content:center;overflow:hidden;height:100%;position:fixed;width:100%;touch-action:manipulation}
+.app{width:100%;max-width:430px;height:100dvh;position:relative;overflow:hidden;background:#06080f;display:flex;flex-direction:column}
+#bg3d{position:absolute;inset:0;z-index:0}
+.glass{background:linear-gradient(135deg,rgba(255,255,255,0.14),rgba(255,255,255,0.05));backdrop-filter:blur(40px) saturate(180%);-webkit-backdrop-filter:blur(40px) saturate(180%);border:1px solid rgba(255,255,255,0.18);border-top:1px solid rgba(255,255,255,0.35);box-shadow:inset 0 1px 0 rgba(255,255,255,0.4),0 8px 32px rgba(0,0,0,0.4);position:relative}
+.glass-strong{background:linear-gradient(135deg,rgba(255,255,255,0.20),rgba(255,255,255,0.07));backdrop-filter:blur(50px) saturate(200%)}
+.top{position:sticky;top:0;z-index:10;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;margin:10px;border-radius:20px;flex-shrink:0}
+.logo{font-weight:800;font-size:18px;display:flex;gap:8px;align-items:center}
+.logo span{background:linear-gradient(135deg,#ff5a6a,#8aa7ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.basket{padding:8px 14px;border-radius:100px;font-size:12px;font-weight:800;cursor:pointer}
+.screen{display:none;padding:0 12px 110px 12px;flex:1;overflow:auto;position:relative;z-index:2}
+.screen.active{display:flex;flex-direction:column}
+.card{border-radius:22px;overflow:hidden;margin:10px 0;cursor:pointer}
+.search{width:100%;padding:14px 16px 14px 40px;border-radius:16px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.12);color:white;font-size:16px;outline:none}
+.searchWrap{position:relative;margin:10px 0}
+.searchIcon{position:absolute;left:14px;top:50%;transform:translateY(-50%);opacity:0.6}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.product{border-radius:22px;overflow:hidden;position:relative;display:flex;flex-direction:column;background:#141a30}
+.product img{width:100%;height:132px;object-fit:cover;background:#1e2545;display:block}
+.pInfo{padding:10px}.pName{font-size:12px;font-weight:800;line-height:1.2;height:32px;overflow:hidden}.pPrice{font-size:16px;font-weight:800;margin-top:6px}.pWeight{font-size:9px;opacity:0.5}
+.miniVit{font-size:8px;font-weight:800;padding:4px 6px;border-radius:100px;background:rgba(255,255,255,0.12);margin:2px;display:inline-block}
+.addBtn{margin-top:8px;border:none;padding:9px;border-radius:12px;font-weight:800;font-size:12px;cursor:pointer;width:100%;color:white;background:linear-gradient(135deg,#ff2a45,#ff5a8a)}
+.typeChip{position:absolute;top:8px;left:8px;padding:4px 8px;border-radius:100px;font-size:9px;font-weight:800;background:rgba(0,0,0,0.55);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.2)}
+.filterRow{display:flex;gap:6px;overflow:auto;padding:8px 0}
+.fchip{white-space:nowrap;padding:8px 12px;border-radius:100px;font-size:11px;font-weight:700;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);cursor:pointer}.fchip.active{background:white;color:black}
+.input{width:100%;padding:14px;border-radius:14px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.12);color:white;margin:6px 0;font-size:16px}
+.btn{width:100%;border:none;padding:14px;border-radius:100px;font-weight:800;margin-top:10px;cursor:pointer;color:white;background:linear-gradient(135deg,#ff2a45,#ff5a8a);font-size:16px}
+.btn-outline{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15)}.btn-danger{background:rgba(255,59,79,0.2);border:1px solid rgba(255,59,79,0.3);color:#ff8a9b}
+.nav{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);width:96%;max-width:410px;display:flex;justify-content:space-around;padding:6px;z-index:20;border-radius:100px}
+.navI{flex:1;text-align:center;padding:8px 4px;border-radius:100px;cursor:pointer;color:rgba(255,255,255,0.5);font-size:10px;font-weight:700}.navI.active{background:white;color:black}
+#modal{position:fixed;inset:0;z-index:99;background:rgba(0,0,0,0.6);backdrop-filter:blur(20px);display:none;align-items:end;justify-content:center}#modal.show{display:flex}
+.modalBox{width:100%;max-width:430px;border-top-left-radius:28px;border-top-right-radius:28px;max-height:90vh;overflow:auto}
+.modalBox img{width:100%;height:240px;object-fit:cover;border-top-left-radius:28px;border-top-right-radius:28px}
+.modalPad{padding:16px 16px 28px 16px}.closeBtn{float:right;padding:8px 14px;border-radius:100px;font-size:11px;cursor:pointer}
+.small{font-size:12px;opacity:0.65;line-height:1.45}.typeGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.typeCard{border-radius:16px;padding:14px;text-align:center;cursor:pointer}
+.botFab{position:fixed;bottom:92px;right:16px;width:78px;height:78px;border-radius:26px;background:linear-gradient(135deg,rgba(255,20,50,0.98),rgba(150,0,20,0.98));backdrop-filter:blur(40px) saturate(200%);border:1px solid rgba(255,255,255,0.3);border-top:1px solid rgba(255,255,255,0.6);box-shadow:0 12px 32px rgba(255,0,40,0.55), inset 0 1px 0 rgba(255,255,255,0.6);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:30}
+.botFab.wave{animation:redWave 0.6s ease-in-out 3}@keyframes redWave{0%,100%{transform:rotate(0) scale(1)}25%{transform:rotate(-12deg) scale(1.12) translateY(-8px)}50%{transform:rotate(12deg) scale(1.12) translateY(-8px)}75%{transform:rotate(-8deg) scale(1.05)}}
+.botFace{width:100%;height:100%;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.botEyes{display:flex;gap:16px;margin-bottom:6px}.eye{width:16px;height:16px;background:white;border-radius:100px;position:relative;box-shadow:0 0 14px rgba(255,255,255,0.9);overflow:hidden;transition:all 0.25s}.eye.blink{height:2px!important;margin-top:7px}.pupil{width:8px;height:8px;background:#7a000f;border-radius:100px;position:absolute;top:2px;left:2px;transition:all 0.15s}.pupil.happy{width:10px;height:4px;top:6px;border-radius:10px 10px 0 0}.pupil.sad{top:6px}
+.botMouth{width:24px;height:4px;background:rgba(0,0,0,0.75);border-radius:100px;margin-top:2px;transition:all 0.3s}.botMouth.smile{height:12px;width:20px;border-radius:0 0 12px 12px;background:rgba(0,0,0,0.8);border-top:2px solid rgba(255,255,255,0.2)}.botMouth.sad{height:3px;width:18px;transform:rotate(180deg);border-radius:12px 12px 0 0;margin-top:8px}.botMouth.worried{width:14px;height:14px;border-radius:100px;border:3px solid rgba(0,0,0,0.7);border-color:transparent rgba(0,0,0,0.7) rgba(0,0,0,0.7) transparent;tr
