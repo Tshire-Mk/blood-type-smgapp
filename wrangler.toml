@@ -1,0 +1,11 @@
+name = "mytype-red-ai"
+main = "red-worker.js"
+compatibility_date = "2024-01-01"
+
+# V13 MULTI-BRAIN - This is the missing piece! Binds Workers AI inside Cloudflare
+# Without this, env.AI is empty and Red has NO own brain.
+[ai]
+binding = "AI"
+
+[vars]
+# Optional: add GEMINI_API_KEY via wrangler secret, not here
