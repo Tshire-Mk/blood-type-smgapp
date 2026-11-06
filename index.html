@@ -21,7 +21,7 @@
 }
 </style>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>MyType • Know your type • Know your food • Red LIVE</title>
+<title>MyType • Red POWERFUL — mytypegroup.com</title>
 <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js"}}</script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;800&display=swap');
@@ -98,7 +98,7 @@ body{background:#06080f;color:white;display:flex;justify-content:center;overflow
 <div class="card glass" onclick="go('s2')"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800" style="width:100%;height:120px;object-fit:cover"><div style="padding:10px"><h3 style="font-size:14px">Grilled Lamb + Rosemary Greens</h3><p class="small">High iron • O fuel</p></div></div>
 <button class="btn" onclick="go('s2')">Create Profile → Meet Red LIVE</button>
 <p class="small" style="margin-top:12px;text-align:center;opacity:0.6">By continuing you agree to our <a href="privacy-policy.html" target="_blank" style="color:#8aa7ff">Privacy &amp; Health Information Policy</a>. Blood type needs separate opt-in next.</p>
-<p class="small" style="margin-top:8px;text-align:center;opacity:0.75">Contact: <a href="mailto:hello@mytypegroup.com" style="color:#8aa7ff;white-space:nowrap">hello@mytypegroup.com</a> • API: api.mytypepegroup.com/red</p>
+<p class="small" style="margin-top:8px;text-align:center;opacity:0.75">Contact: <a href="mailto:hello@mytypegroup.com" style="color:#8aa7ff;white-space:nowrap">hello@mytypegroup.com</a> • API: api.mytypegroup.com/red</p>
 </div>
 
 <div id="s2" class="screen"><div class="glass" style="display:inline-block;padding:6px 12px;border-radius:100px;font-size:11px;width:fit-content">Step 1</div><h2 style="margin-top:10px">You</h2><input id="name" class="input glass" placeholder="Full name"><input id="age" class="input glass" type="number" placeholder="Age"><input id="allergy" class="input glass" placeholder="Allergies"><button class="btn" onclick="saveP()">Continue → Blood Type</button><p class="small" style="margin-top:10px;text-align:center">We collect name + age to personalize. See <a href="privacy-policy.html" target="_blank" style="color:#8aa7ff">Privacy Policy</a></p></div>
@@ -131,16 +131,16 @@ body{background:#06080f;color:white;display:flex;justify-content:center;overflow
 <div id="basket" class="screen"><div class="glass" style="display:inline-block;padding:6px 12px;border-radius:100px;font-size:11px;width:fit-content;cursor:pointer" onclick="go('home')">← Shop</div><h2 style="margin-top:10px">Basket</h2><div id="basketList" style="margin-top:12px"><div class="card glass"><div style="padding:20px"><p class="small">Basket empty</p></div></div></div><div class="card glass" style="margin-top:16px"><div style="padding:14px"><div style="display:flex;justify-content:space-between"><b>Total</b><b id="basketTotal">R0.00</b></div><p class="small" id="basketNutrition" style="margin-top:8px"></p><button class="btn" onclick="checkout()">Checkout</button></div></div></div>
 
 <div id="aiBot" class="screen">
-<div class="glass" style="display:flex;gap:12px;align-items:center;padding:12px;border-radius:18px;margin-bottom:10px;background:linear-gradient(135deg,rgba(255,20,50,0.18),rgba(150,0,20,0.18))"><div style="width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,#ff2a45,#9a0014);display:flex;align-items:center;justify-content:center;font-size:20px;position:relative;">🔴<span class="live-badge">LIVE</span></div><div><b id="botTitle">Red LIVE</b><br><span class="small" id="botMood" style="color:#00e5a8">● Connected to api.mytypepegroup.com/red</span></div><div class="glass" style="margin-left:auto;padding:6px 12px;border-radius:100px;font-size:11px;cursor:pointer" onclick="go('home')">✕</div></div>
+<div class="glass" style="display:flex;gap:12px;align-items:center;padding:12px;border-radius:18px;margin-bottom:10px;background:linear-gradient(135deg,rgba(255,20,50,0.18),rgba(150,0,20,0.18))"><div style="width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,#ff2a45,#9a0014);display:flex;align-items:center;justify-content:center;font-size:20px;position:relative;">🔴<span class="live-badge">LIVE</span></div><div><b id="botTitle">Red LIVE</b><br><span class="small" id="botMood" style="color:#00e5a8">● Connected to api.mytypegroup.com/red</span></div><div class="glass" style="margin-left:auto;padding:6px 12px;border-radius:100px;font-size:11px;cursor:pointer" onclick="go('home')">✕</div></div>
 <div class="chat" id="chatBox"></div>
 <div class="searchWrap" style="margin-top:auto"><span class="searchIcon">💬</span><input id="chatInput" class="search glass" placeholder="Ask Red: low iron foods for O?..." onkeydown="if(event.key==='Enter')sendChat()" autocomplete="off"><button class="btn" onclick="sendChat()" style="margin-top:8px">Send to Red LIVE</button><p class="small" style="margin-top:6px;text-align:center;opacity:0.5">Powered by mytype-red-ai.tshireletsowanele.workers.dev/red</p></div>
 </div>
 
-<div id="profile" class="screen"><h2>Profile</h2><div class="card glass"><div style="padding:14px"><p id="pInfo">No name • No type</p><p class="small" id="pDetails" style="margin-top:6px">Basket: 0 • Age: - • Allergy: none • API: api.mytypepegroup.com/red</p><button class="btn glass btn-outline" onclick="go('whatsType')" style="margin-top:10px">Change blood type</button>
+<div id="profile" class="screen"><h2>Profile</h2><div class="card glass"><div style="padding:14px"><p id="pInfo">No name • No type</p><p class="small" id="pDetails" style="margin-top:6px">Basket: 0 • Age: - • Allergy: none • API: api.mytypegroup.com/red</p><button class="btn glass btn-outline" onclick="go('whatsType')" style="margin-top:10px">Change blood type</button>
 <a href="privacy-policy.html" target="_blank" class="glass" style="display:block;padding:12px;border-radius:12px;margin-top:12px;text-decoration:none;color:white;text-align:center;font-weight:700;font-size:13px">🔒 Privacy &amp; Health Data → View Policy</a>
 <button class="btn btn-outline" onclick="withdrawMyTypeConsent()" style="margin-top:8px">Withdraw Blood Type Consent</button>
 <button class="btn" onclick="go('facts')" style="margin-top:8px">⚠️ Facts</button><button class="btn glass btn-outline" onclick="go('aiBot')" style="margin-top:8px">🔴 Talk to Red LIVE</button><button class="btn btn-danger" onclick="logout()" style="margin-top:8px">Log out • Delete data</button>
-<p class="small" style="margin-top:8px;text-align:center;opacity:0.75">Contact: <a href="mailto:hello@mytypegroup.com" style="color:#8aa7ff;white-space:nowrap">hello@mytypegroup.com</a><br>API: api.mytypepegroup.com/red • workers.dev/red</p>
+<p class="small" style="margin-top:8px;text-align:center;opacity:0.75">Contact: <a href="mailto:hello@mytypegroup.com" style="color:#8aa7ff;white-space:nowrap">hello@mytypegroup.com</a><br>API: api.mytypegroup.com/red • workers.dev/red</p>
 </div></div></div>
 
 <div class="nav glass glass-strong" id="nav" style="display: none;"><div class="navI active" onclick="go('home')">🏠<br>Shop</div><div class="navI" onclick="go('facts')">⚠️<br>Facts</div><div class="navI" onclick="go('aiBot')">🔴<br>Red LIVE</div><div class="navI" onclick="go('basket')">🛒<br>Basket</div><div class="navI" onclick="go('profile')">👤<br>You</div></div>
@@ -165,9 +165,11 @@ function animate(){requestAnimationFrame(animate);cells.forEach(c=>{c.position.y
 </script>
 
 <script>
-// ===== RED LIVE API CONFIG - YOUR LIVE WORKER =====
-const RED_API_PRIMARY = "https://api.mytypepegroup.com/red";
+// ===== RED LIVE API CONFIG - TRIPLE FALLBACK - 39d123c0 LIVE =====
+// FIXED V6 FULL GLASS
+const RED_API_PRIMARY = "https://api.mytypegroup.com/red"; // TRUE AI - primary
 const RED_API_FALLBACK = "https://mytype-red-ai.tshireletsowanele.workers.dev/red";
+const RED_APIS = [RED_API_PRIMARY, RED_API_FALLBACK];
 
 let s=JSON.parse(localStorage.getItem('mytype_v4')||'{"name":"","age":"","allergy":"","type":"","basket":[],"botLog":[],"botState":{"ate":null,"bp":null,"water":null,"sleep":null,"mood":null}}');
 let currentFilter='all';
@@ -193,18 +195,32 @@ let FACTS=[
 ];
 
 async function callRedAPI(query){
-  const payload = { query: query, profile: { name: s.name, type: s.type, age: s.age, allergy: s.allergy, botState: s.botState }, products: PRODUCTS.map(p=>p.t).slice(0,15) };
-  for (const url of [RED_API_PRIMARY, RED_API_FALLBACK]) {
+  // Build history for ChatGPT-like memory (last 8 turns)
+  let history = [];
+  try {
+    if(s.botLog && s.botLog.length){
+      history = s.botLog.slice(-8).map(m=>({role: m.role==='user'?'user':'assistant', content: (m.text||'').toString().slice(0,600)}));
+    }
+  } catch(e){}
+  const payload = { query: query, history: history, profile: { name: s.name, type: s.type, age: s.age, allergy: s.allergy, botState: s.botState }, products: PRODUCTS.map(p=>p.t).slice(0,15) };
+  for (const url of RED_APIS) {
     try {
+      console.log('🔴 Red trying:', url);
       const ctrl = new AbortController();
-      const to = setTimeout(()=>ctrl.abort(), 8000);
-      const res = await fetch(url, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload), signal: ctrl.signal });
+      const to = setTimeout(()=>ctrl.abort(), 12000);
+      const res = await fetch(url, { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body: JSON.stringify(payload), signal: ctrl.signal });
       clearTimeout(to);
       if(!res.ok) throw new Error('HTTP '+res.status);
       const data = await res.json();
-      if(data && data.answer) return data;
-    } catch(e){ console.warn('Red API failed', url, e); continue; }
+      if(data && data.answer){ 
+        console.log('🔴 Red LIVE success:', url);
+        // update badge to show which API worked
+        let moodText=document.getElementById('botMood'); if(moodText) moodText.textContent='● LIVE • '+url.replace('https://','');
+        return data; 
+      }
+    } catch(e){ console.warn('Red API failed', url, e.message); continue; }
   }
+  console.error('🔴 All Red APIs failed');
   return null;
 }
 
@@ -244,7 +260,7 @@ function pick(t){
  setTimeout(()=>{
    const fab=document.getElementById('botFab'); const hand=document.getElementById('botHand'); const bubble=document.getElementById('redSpeechBubble'); const bubbleText=document.getElementById('redSpeechText');
    fab.classList.add('wave'); hand.classList.add('wave'); setRedExpression('happy');
-   bubbleText.innerHTML=`👋 Hey ${s.name}! I'm <b>Red LIVE</b> 🔴<br><br>I'm connected to <b>${t}</b> • API: api.mytypepegroup.com/red<br>Ask me anything — nutrition, iron, shop.<br><br><small>Tap me to talk →</small>`;
+   bubbleText.innerHTML=`👋 Hey ${s.name}! I'm <b>Red LIVE</b> 🔴<br><br>I'm connected to <b>${t}</b> • API: api.mytypegroup.com/red<br>Ask me anything — nutrition, iron, shop.<br><br><small>Tap me to talk →</small>`;
    bubble.classList.add('show');
    setTimeout(()=>{fab.classList.remove('wave');hand.classList.remove('wave');},2000);
    setTimeout(()=>{bubble.classList.remove('show');},6500);
@@ -268,7 +284,7 @@ let box=document.getElementById('chatBox');if(!box)return;
 if(!s.name||!s.type){box.innerHTML=`<div class="glass" style="padding:20px;border-radius:22px;text-align:center"><div style="font-size:48px">🔒</div><h3 style="margin-top:12px">Red is locked</h3><p class="small" style="margin-top:8px">I only work after you log in.</p><button class="btn" onclick="go('s1')" style="margin-top:16px">Create Profile → Unlock Red</button></div>`;return;}
 box.innerHTML='';s.botState=s.botState||{};
 if(!s.botLog?.length){
-addBotMessage(`Hey ${s.name} — I'm Red LIVE 🔴 connected to api.mytypepegroup.com/red
+addBotMessage(`Hey ${s.name} — I'm Red LIVE 🔴 connected to api.mytypegroup.com/red
 
 Ask me: low iron foods for ${s.type}, or how you feel?`,false,true);
 setTimeout(()=>{addBotMessage(`Try: 'low iron foods for blood type O' — I'm now pulling from your live Worker mytype-red-ai!`,false,true,["low iron foods for "+(s.type||'O'),"I'm tired today","High BP help","Best foods for "+(s.type||'me'),"Add eggs to basket"]);setRedExpression('happy');},700);
@@ -279,10 +295,9 @@ function addBotMessage(t,isUser,save=true,chips=null){let box=document.getElemen
 function quickReply(t){document.getElementById('chatInput').value=t;sendChat();}
 
 function fallbackRedLogic(txt){
-  let l=txt.toLowerCase();let reply="";let chips=[];
-  if(l.includes('tired')||l.includes('dizzy')){reply=`Feeling ${l.includes('dizzy')?'dizzy':'tired'} for ${s.type}? Red LIVE is checking iron + shop...`;chips=["Add eggs","Add spinach","Check iron foods"];}
-  else {reply=`Red LIVE fallback: I tried api.mytypepegroup.com/red and workers.dev/red but offline. You said: "${txt}" for type ${s.type}. Try: eggs, spinach, lamb for O.`;chips=["Retry Red LIVE","Add eggs","Shop for "+s.type];}
-  addBotMessage(reply,false,true,chips);
+  // V11 TRUE AI - NO canned answers. Honest error only.
+  // If we are here, both APIs failed. Don't fake an answer like Meta AI would never do.
+  addBotMessage(`Red is having trouble connecting to AI right now. 🟠\n\nI didn't get a real answer for "${txt}" — I won't fake one.\n\nPlease check connection and try again.`, false, true, ["Try again", "Retry Red LIVE"]);
 }
 
 function sendChat(){
@@ -315,78 +330,11 @@ let thinkingDiv=document.createElement('div'); thinkingDiv.className='bubble bot
 })();
 }
 
-function render(){let t=s.type||'Unknown';let hn=document.getElementById('homeName');if(hn)hn.textContent=s.name?'Hi '+s.name.split(' ')[0]:'Welcome';let bt=document.getElementById('badgeType');if(bt)bt.textContent=t+' • MyType LIVE';let pi=document.getElementById('pInfo');if(pi)pi.textContent=(s.name||'No name')+' • '+(s.type||'No type');let pd=document.getElementById('pDetails');if(pd)pd.textContent=`Basket: ${s.basket?.length||0} • Age: ${s.age||'-'} • Allergy: ${s.allergy||'none'} • API: api.mytypepegroup.com/red`;renderProducts();renderBasket();}
+function render(){let t=s.type||'Unknown';let hn=document.getElementById('homeName');if(hn)hn.textContent=s.name?'Hi '+s.name.split(' ')[0]:'Welcome';let bt=document.getElementById('badgeType');if(bt)bt.textContent=t+' • MyType LIVE';let pi=document.getElementById('pInfo');if(pi)pi.textContent=(s.name||'No name')+' • '+(s.type||'No type');let pd=document.getElementById('pDetails');if(pd)pd.textContent=`Basket: ${s.basket?.length||0} • Age: ${s.age||'-'} • Allergy: ${s.allergy||'none'} • API: api.mytypegroup.com/red`;renderProducts();renderBasket();}
 document.addEventListener('mousemove',(e)=>{let pupils=[document.getElementById('pupilL'),document.getElementById('pupilR')];if(!pupils[0])return;let fab=document.getElementById('botFab').getBoundingClientRect();let cx=fab.left+39,cy=fab.top+39;let dx=(e.clientX-cx)/30,dy=(e.clientY-cy)/30;pupils.forEach(p=>{p.style.left=(2+Math.max(-3,Math.min(3,dx)))+'px';p.style.top=(2+Math.max(-3,Math.min(3,dy)))+'px';});});
 render();if(s.name&&s.type){go('home');}else{go('s1');document.getElementById('nav').style.display='none';}
 document.addEventListener('DOMContentLoaded',()=>{const grid=document.getElementById('typeGrid');if(grid)grid.classList.add('blood-buttons-disabled');});
 </script>
 <script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script>
 
-</body></html><html lang="en"><head><style>
-@font-face {
-  font-family: "Optimistic";
-  font-style: normal;
-  font-weight: 400 600;
-  font-display: swap;
-  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Optimistic Mono";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
-}
-:where(html) {
-  font-family: "Optimistic", system-ui, sans-serif;
-}
-:where(code, pre, kbd, samp) {
-  font-family: "Optimistic Mono", ui-monospace, monospace;
-}
-</style>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>MyType • Know your type • Know your food • Red LIVE</title>
-<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js"}}</script>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;800&display=swap');
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Plus Jakarta Sans',sans-serif}
-html{height:100%;overflow:hidden}
-body{background:#06080f;color:white;display:flex;justify-content:center;overflow:hidden;height:100%;position:fixed;width:100%;touch-action:manipulation}
-.app{width:100%;max-width:430px;height:100dvh;position:relative;overflow:hidden;background:#06080f;display:flex;flex-direction:column}
-#bg3d{position:absolute;inset:0;z-index:0}
-.glass{background:linear-gradient(135deg,rgba(255,255,255,0.14),rgba(255,255,255,0.05));backdrop-filter:blur(40px) saturate(180%);-webkit-backdrop-filter:blur(40px) saturate(180%);border:1px solid rgba(255,255,255,0.18);border-top:1px solid rgba(255,255,255,0.35);box-shadow:inset 0 1px 0 rgba(255,255,255,0.4),0 8px 32px rgba(0,0,0,0.4);position:relative}
-.glass-strong{background:linear-gradient(135deg,rgba(255,255,255,0.20),rgba(255,255,255,0.07));backdrop-filter:blur(50px) saturate(200%)}
-.top{position:sticky;top:0;z-index:10;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;margin:10px;border-radius:20px;flex-shrink:0}
-.logo{font-weight:800;font-size:18px;display:flex;gap:8px;align-items:center}
-.logo span{background:linear-gradient(135deg,#ff5a6a,#8aa7ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.basket{padding:8px 14px;border-radius:100px;font-size:12px;font-weight:800;cursor:pointer}
-.screen{display:none;padding:0 12px 110px 12px;flex:1;overflow:auto;position:relative;z-index:2}
-.screen.active{display:flex;flex-direction:column}
-.card{border-radius:22px;overflow:hidden;margin:10px 0;cursor:pointer}
-.search{width:100%;padding:14px 16px 14px 40px;border-radius:16px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.12);color:white;font-size:16px;outline:none}
-.searchWrap{position:relative;margin:10px 0}
-.searchIcon{position:absolute;left:14px;top:50%;transform:translateY(-50%);opacity:0.6}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.product{border-radius:22px;overflow:hidden;position:relative;display:flex;flex-direction:column;background:#141a30}
-.product img{width:100%;height:132px;object-fit:cover;background:#1e2545;display:block}
-.pInfo{padding:10px}.pName{font-size:12px;font-weight:800;line-height:1.2;height:32px;overflow:hidden}.pPrice{font-size:16px;font-weight:800;margin-top:6px}.pWeight{font-size:9px;opacity:0.5}
-.miniVit{font-size:8px;font-weight:800;padding:4px 6px;border-radius:100px;background:rgba(255,255,255,0.12);margin:2px;display:inline-block}
-.addBtn{margin-top:8px;border:none;padding:9px;border-radius:12px;font-weight:800;font-size:12px;cursor:pointer;width:100%;color:white;background:linear-gradient(135deg,#ff2a45,#ff5a8a)}
-.typeChip{position:absolute;top:8px;left:8px;padding:4px 8px;border-radius:100px;font-size:9px;font-weight:800;background:rgba(0,0,0,0.55);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.2)}
-.filterRow{display:flex;gap:6px;overflow:auto;padding:8px 0}
-.fchip{white-space:nowrap;padding:8px 12px;border-radius:100px;font-size:11px;font-weight:700;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);cursor:pointer}.fchip.active{background:white;color:black}
-.input{width:100%;padding:14px;border-radius:14px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.12);color:white;margin:6px 0;font-size:16px}
-.btn{width:100%;border:none;padding:14px;border-radius:100px;font-weight:800;margin-top:10px;cursor:pointer;color:white;background:linear-gradient(135deg,#ff2a45,#ff5a8a);font-size:16px}
-.btn-outline{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15)}.btn-danger{background:rgba(255,59,79,0.2);border:1px solid rgba(255,59,79,0.3);color:#ff8a9b}
-.nav{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);width:96%;max-width:410px;display:flex;justify-content:space-around;padding:6px;z-index:20;border-radius:100px}
-.navI{flex:1;text-align:center;padding:8px 4px;border-radius:100px;cursor:pointer;color:rgba(255,255,255,0.5);font-size:10px;font-weight:700}.navI.active{background:white;color:black}
-#modal{position:fixed;inset:0;z-index:99;background:rgba(0,0,0,0.6);backdrop-filter:blur(20px);display:none;align-items:end;justify-content:center}#modal.show{display:flex}
-.modalBox{width:100%;max-width:430px;border-top-left-radius:28px;border-top-right-radius:28px;max-height:90vh;overflow:auto}
-.modalBox img{width:100%;height:240px;object-fit:cover;border-top-left-radius:28px;border-top-right-radius:28px}
-.modalPad{padding:16px 16px 28px 16px}.closeBtn{float:right;padding:8px 14px;border-radius:100px;font-size:11px;cursor:pointer}
-.small{font-size:12px;opacity:0.65;line-height:1.45}.typeGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.typeCard{border-radius:16px;padding:14px;text-align:center;cursor:pointer}
-.botFab{position:fixed;bottom:92px;right:16px;width:78px;height:78px;border-radius:26px;background:linear-gradient(135deg,rgba(255,20,50,0.98),rgba(150,0,20,0.98));backdrop-filter:blur(40px) saturate(200%);border:1px solid rgba(255,255,255,0.3);border-top:1px solid rgba(255,255,255,0.6);box-shadow:0 12px 32px rgba(255,0,40,0.55), inset 0 1px 0 rgba(255,255,255,0.6);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:30}
-.botFab.wave{animation:redWave 0.6s ease-in-out 3}@keyframes redWave{0%,100%{transform:rotate(0) scale(1)}25%{transform:rotate(-12deg) scale(1.12) translateY(-8px)}50%{transform:rotate(12deg) scale(1.12) translateY(-8px)}75%{transform:rotate(-8deg) scale(1.05)}}
-.botFace{width:100%;height:100%;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.botEyes{display:flex;gap:16px;margin-bottom:6px}.eye{width:16px;height:16px;background:white;border-radius:100px;position:relative;box-shadow:0 0 14px rgba(255,255,255,0.9);overflow:hidden;transition:all 0.25s}.eye.blink{height:2px!important;margin-top:7px}.pupil{width:8px;height:8px;background:#7a000f;border-radius:100px;position:absolute;top:2px;left:2px;transition:all 0.15s}.pupil.happy{width:10px;height:4px;top:6px;border-radius:10px 10px 0 0}.pupil.sad{top:6px}
-.botMouth{width:24px;height:4px;background:rgba(0,0,0,0.75);border-radius:100px;margin-top:2px;transition:all 0.3s}.botMouth.smile{height:12px;width:20px;border-radius:0 0 12px 12px;background:rgba(0,0,0,0.8);border-top:2px solid rgba(255,255,255,0.2)}.botMouth.sad{height:3px;width:18px;transform:rotate(180deg);border-radius:12px 12px 0 0;margin-top:8px}.botMouth.worried{width:14px;height:14px;border-radius:100px;border:3px solid rgba(0,0,0,0.7);border-color:transparent rgba(0,0,0,0.7) rgba(0,0,0,0.7) transparent;tr
+</body></html>
